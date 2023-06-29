@@ -16,6 +16,8 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { NewslettersComponent } from './components/newsletters/newsletters.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -36,7 +38,10 @@ import { NewslettersComponent } from './components/newsletters/newsletters.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
