@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupAdminComponent } from './components/signup-admin/signup-admin.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,8 @@ const routes: Routes = [
  {path: "", component: HomeComponent},
  // http://localhost:4200/subscription
  {path: "subscription", component: SignupComponent},
+ // http://localhost:4200/signupAdmin
+ {path: "signupAdmin", component: SignupAdminComponent},
  // http://localhost:4200/signin
  {path:"signin", component: LoginComponent}
 ];

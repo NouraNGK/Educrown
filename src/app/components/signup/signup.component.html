@@ -1,26 +1,7 @@
 <!-- main-area -->
 <main class="main-area fix" style="margin-top: 100px;">
 
-    <!-- breadcrumb-area -->
-    <section class="breadcrumb-area breadcrumb-bg" style="background-image: url('assets/img/bg/breadcrumb_bg.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb-content">
-                        <h3 class="title">Signup</h3>
-                        <nav class="breadcrumb">
-                            <span property="itemListElement" typeof="ListItem">
-                                <a routerLink="">Home</a>
-                            </span>
-                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem">Signup</span>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- breadcrumb-area-end -->
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
 
     <!-- Signup Start -->
     <section class="contact-area section-py-120">
@@ -32,7 +13,7 @@
                         <form [formGroup]="signupForm">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-grp">
+                                    <div class="form-group">
                                         <input type="text" class="form-control" formControlName="firstName"
                                             placeholder="First Name *">
                                     </div>
@@ -48,7 +29,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-grp">
+                                    <div class="form-group">
                                         <input type="text" class="form-control" formControlName="lastName"
                                             placeholder="Last Name *">
                                     </div>
@@ -64,7 +45,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-grp">
+                                    <div class="form-group">
                                         <input type="email" class="form-control" formControlName="email"
                                             placeholder="E-mail *">
                                     </div>
@@ -84,7 +65,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-grp">
+                                    <div class="form-group">
                                         <input type="tel" class="form-control" formControlName="tel"
                                             placeholder="Phone Number *">
                                     </div>
@@ -104,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-grp">
+                                    <div class="form-group">
                                         <input type="text" class="form-control" formControlName="address"
                                             placeholder="Address *">
                                     </div>
@@ -120,7 +101,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-grp">
+                                    <div class="form-group">
                                         <input type="password" class="form-control" formControlName="pwd"
                                             placeholder="Password *">
                                     </div>
@@ -139,9 +120,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-grp">
+                                    <div class="form-group">
                                         <select class="form-control" #roleSelect formControlName="role"
-                                            style="margin-left: 180px;">
+                                            style="margin-left: 170px;">
                                             <option value="">Select a Role *</option>
                                             <option value="teacher">Teacher</option>
                                             <option value="student">Student</option>
@@ -149,8 +130,7 @@
                                         </select>
                                     </div>
                                     <div style="color: red; margin-left: 180px;" *ngIf="signupForm.controls['role'].invalid && 
-                                    (signupForm.controls['role'].touched || 
-                                    signupForm.controls['role'].dirty)">
+                                    signupForm.controls['role'].touched">
                                         <div *ngIf="signupForm.controls['role'].errors.required">
                                             This field is required
                                         </div>
@@ -159,8 +139,9 @@
                             </div>
                             <div class="row" *ngIf="roleSelect.value === 'teacher'">
                                 <div class="col-md-6">
-                                    <div class="form-grp">
-                                        <select class="form-control" formControlName="specialty" style="margin-left: 180px;">
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="specialty"
+                                            style="margin-left: 170px;">
                                             <option value="">Select a Specialty *</option>
                                             <option value="business">Business</option>
                                             <option value="dataScience">Data Science</option>
@@ -170,8 +151,7 @@
                                         </select>
                                     </div>
                                     <div style="color: red; margin-left: 180px;" *ngIf="signupForm.controls['specialty'].invalid && 
-                                    (signupForm.controls['specialty'].touched || 
-                                    signupForm.controls['specialty'].dirty)">
+                                    signupForm.controls['specialty'].touched">
                                         <div *ngIf="signupForm.controls['specialty'].errors.required">
                                             Specialty is required
                                         </div>
@@ -179,37 +159,56 @@
                                 </div>
                             </div>
                             <div class="row" *ngIf="roleSelect.value === 'teacher'">
-                                <div class="col-md-6" style="margin-left: 180px;">
-                                    <div class="form-grp">
-                                        <span>CV:</span><input type="file" class="form-control" formControlName="cv">
-                                    </div>
+                                <div class="form-group" style="visibility: hidden;">
+                                    <input type="file" class="form-control" #cvPicker (change)="onCvSelected($event)">
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn" (click)="cvPicker.click()"
+                                        style="margin-top: -60px; margin-left: -20px;">
+                                        Please select your CV
+                                    </button>
+                                </div>
+                                <div class="row mt-5" *ngIf="cvName"
+                                    style="font-weight: bold; color: rgb(245, 160, 3); ">
+                                    <span style="text-align: center; margin-top: -20px;">Selected CV Name: {{ cvName
+                                        }}</span>
                                 </div>
                             </div>
                             <div class="row" *ngIf="roleSelect.value === 'student'">
-                                <div class="col-md-6" style="margin-left: 180px;">
-                                    <div class="form-grp">
-                                        <span>Photo:</span><input type="file" class="form-control"
-                                            formControlName="avatar">
+                                <div class="col-md-6" style="margin-left: -42px; margin-top: -60px;">
+                                    <div class="form-group" style="visibility: hidden;">
+                                        <input type="file" class="form-control" #filePicker
+                                            (change)="onImageSelected($event)">
+                                    </div>
+                                    <div class="text-center">
+                                        <button class="btn" (click)="filePicker.click()"
+                                            style="margin-left: -5px; margin-right: -435px;">
+                                            Please select your avatar
+                                        </button>
+                                    </div>
+                                    <div class="text-center mt-5">
+                                        <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px"
+                                            style="margin-left: 280px;">
                                     </div>
                                 </div>
                             </div>
                             <div class="row" *ngIf="roleSelect.value === 'parent'">
-                                <div class="col-md-6" style="margin-left: 180px;">
-                                    <div class="form-grp">
-                                        <input type="tel" class="form-control" formControlName="childNumber"
+                                <div class="col-md-6" style="margin-left: 170px;">
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" formControlName="childNbr"
                                             placeholder="Your child's number *">
                                     </div>
-                                    <div style="color: red;" *ngIf="signupForm.controls['childNumber'].invalid && 
-                                    (signupForm.controls['childNumber'].touched || 
-                                    signupForm.controls['childNumber'].dirty)">
-                                        <div *ngIf="signupForm.controls['childNumber'].errors.required">
+                                    <div style="color: red;" *ngIf="signupForm.controls['childNbr'].invalid && 
+                                    (signupForm.controls['childNbr'].touched || 
+                                    signupForm.controls['childNbr'].dirty)">
+                                        <div *ngIf="signupForm.controls['childNbr'].errors.required">
                                             Your child's number is required
                                         </div>
-                                        <div *ngIf="signupForm.controls['childNumber'].errors.pattern">
+                                        <div *ngIf="signupForm.controls['childNbr'].errors.pattern">
                                             Invalid phone number
                                         </div>
-                                        <div *ngIf="signupForm.controls['childNumber'].errors.minlength ||
-                                        signupForm.controls['childNumber'].errors.maxlength">
+                                        <div *ngIf="signupForm.controls['childNbr'].errors.minlength ||
+                                        signupForm.controls['childNbr'].errors.maxlength">
                                             You have to insert 8 numbers exactly
                                         </div>
                                     </div>
@@ -217,17 +216,21 @@
                             </div>
 
                             <div style="margin-top: 25px;">
-                                <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory !</p>
+                                <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory !
+                                </p>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-grp">
-                                        <input type="submit" (click)="signup()" [disabled]="signupForm.invalid"
+                                    <div class="form-group">
+                                        <input type="submit" (click)="signup()" [disabled]="disabledButton()"
                                             class="btn btn-primary py-3 px-5" value="Signup">
                                     </div>
                                 </div>
                             </div>
+
+                            {{signupForm.value | json}}
+                            {{signupForm.valid | json}}
                         </form>
                     </div>
                 </div>

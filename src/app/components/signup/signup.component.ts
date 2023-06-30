@@ -9,6 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
+  imagePreview: string;
+  cvName: string;
+  word: string = "subscription";
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -25,13 +28,72 @@ export class SignupComponent implements OnInit {
       specialty: ["", [Validators.required]],
       cv: [""],
       avatar: [""],
-      childNumber: ["", [Validators.required, Validators.pattern("^[0-9]*$"),
+      childNbr: ["", [Validators.required, Validators.pattern("^[0-9]*$"),
       Validators.minLength(8), Validators.maxLength(8)]]
-    })
+    });
   }
 
   signup() {
     console.log("Here is the object", this.signupForm.value);
   }
 
+  onImageSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    // console.log("Here selected file", file);
+    this.signupForm.patchValue({ avatar: file });
+    this.signupForm.updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string
+    };
+    reader.readAsDataURL(file);
+  }
+
+  onCvSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    console.log("Here selected file", file);
+    this.signupForm.patchValue({ cv: file });
+    this.signupForm.updateValueAndValidity();
+    this.cvName = this.signupForm.value.cv.name;
+    // ou bien this.cvName = file.name;
+  }
+
+  disabledButton() {
+    let obj = this.signupForm.value;
+    if (obj.firstName != "" && obj.lastName != "" && obj.email != ""
+      && obj.tel != "" && obj.address != "" && obj.pwd != "" 
+      && obj.role == "teacher" && obj.specialty != "" && obj.cv != ""
+      && obj.avatar == "" && obj.childNbr == "") {
+      return false;
+    } else if (obj.firstName != "" && obj.lastName != "" && obj.email != ""
+      && obj.tel != "" && obj.address != "" && obj.pwd != ""
+      && obj.role == "student" && obj.avatar != "" && obj.specialty == ""
+      && obj.cv == "" && obj.childNbr == "") {
+      return false;
+    } else if (obj.firstName != "" && obj.lastName != "" && obj.email != "" 
+    && obj.tel != "" && obj.address != "" && obj.pwd != ""
+      && obj.role == "parent" && obj.childNbr != "" && obj.specialty == "" 
+      && obj.cv == "" && obj.avatar == "") {
+      return false;
+    }
+    return true;
+  }
 }
+
+  // isSignupFormInvalid() {
+  //   if (this.signupForm.value.role === "teacher") {
+  //     if (this.signupForm.value.avatar == "" && this.signupForm.value.childNbr == "") {
+  //       return false;
+  //     }
+  //   } else if (this.signupForm.value.role === "student") {
+  //     if (this.signupForm.value.specialty == "" && this.signupForm.value.cv == "" && this.signupForm.value.childNbr == "") {
+  //       return false;
+  //     }
+  //   } else if (this.signupForm.value.role === "parent") {
+  //     if (this.signupForm.value.specialty == "" && this.signupForm.value.cv == "" && this.signupForm.value.avatar == "") {
+  //       return false;
+  //     }
+  //   }
+  //   return true;
+  // }
+

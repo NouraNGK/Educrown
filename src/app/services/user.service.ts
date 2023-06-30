@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,6 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  constructor() { }
+  userURL: string = "http://localhost:3000/api/users";
+  constructor(private http: HttpClient) { }
 }

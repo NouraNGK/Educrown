@@ -18,6 +18,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { NewslettersComponent } from './components/newsletters/newsletters.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
+import { OpeningWordComponent } from './components/opening-word/opening-word.component';
+import { SignupAdminComponent } from './components/signup-admin/signup-admin.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { HttpClientModule } from "@angular/common/http";
     TestimonialsComponent,
     TeachersComponent,
     BlogComponent,
-    NewslettersComponent
+    NewslettersComponent,
+    OpeningWordComponent,
+    SignupAdminComponent
   ],
   imports: [
     BrowserModule,

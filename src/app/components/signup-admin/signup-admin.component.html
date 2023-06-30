@@ -1,0 +1,144 @@
+<!-- Signup Start -->
+<section class="contact-area section-py-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8" style="margin-left: 200px;">
+                <div class="contact-form-wrap">
+                    <h4 class="title">Sign<span style="color: orange;">up</span></h4>
+                    <form [formGroup]="signupForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="firstName"
+                                        placeholder="First Name *">
+                                </div>
+                                <div style="color: red;" *ngIf="signupForm.controls['firstName'].invalid && 
+                                (signupForm.controls['firstName'].touched || 
+                                signupForm.controls['firstName'].dirty)">
+                                    <div *ngIf="signupForm.controls['firstName'].errors.required">
+                                        First Name is required
+                                    </div>
+                                    <div *ngIf="signupForm.controls['firstName'].errors.minlength">
+                                        First Name must have at least 3 chars
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="lastName"
+                                        placeholder="Last Name *">
+                                </div>
+                                <div style="color: red;" *ngIf="signupForm.controls['lastName'].invalid && 
+                                (signupForm.controls['lastName'].touched || 
+                                signupForm.controls['lastName'].dirty)">
+                                    <div *ngIf="signupForm.controls['lastName'].errors.required">
+                                        Last Name is required
+                                    </div>
+                                    <div *ngIf="signupForm.controls['lastName'].errors.minlength">
+                                        Last Name must have at least 5 chars
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" formControlName="email"
+                                        placeholder="E-mail *">
+                                </div>
+                                <div style="color: red;" *ngIf="signupForm.controls['email'].invalid && 
+                                (signupForm.controls['email'].touched || 
+                                signupForm.controls['email'].dirty)">
+                                    <div *ngIf="signupForm.controls['email'].errors.required">
+                                        Email is required
+                                    </div>
+                                    <div *ngIf="signupForm.controls['email'].errors.pattern">
+                                        Invalid Email Format <br>
+                                        Follow these examples to have a valid email address: <br>
+                                        1-user@example.com <br>
+                                        2-john.doe123@gmail.com <br>
+                                        3-info@my-domain.co <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" formControlName="tel"
+                                        placeholder="Phone Number *">
+                                </div>
+                                <div style="color: red;" *ngIf="signupForm.controls['tel'].invalid && 
+                                (signupForm.controls['tel'].touched || 
+                                signupForm.controls['tel'].dirty)">
+                                    <div *ngIf="signupForm.controls['tel'].errors.required">
+                                        Phone number is required
+                                    </div>
+                                    <div *ngIf="signupForm.controls['tel'].errors.pattern">
+                                        Invalid phone number
+                                    </div>
+                                    <div *ngIf="signupForm.controls['tel'].errors.minlength ||
+                                    signupForm.controls['tel'].errors.maxlength">
+                                        You have to insert 8 numbers exactly
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" formControlName="pwd"
+                                        placeholder="Password *">
+                                </div>
+                                <div style="color: red;" *ngIf="signupForm.controls['pwd'].invalid && 
+                                (signupForm.controls['pwd'].touched || 
+                                signupForm.controls['pwd'].dirty)">
+                                    <div *ngIf="signupForm.controls['pwd'].errors.required">
+                                        Password is required
+                                    </div>
+                                    <div *ngIf="signupForm.controls['pwd'].errors.pattern">
+                                        Password criteria: <br>
+                                        *Allowed characters: uppercase letters, lowercase letters, numbers, and the
+                                        special characters `!`, `@`, `#`, `$`, `%`, `^`, `&`, `*` <br>
+                                        *Length of 6 to 12 characters
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: -25px;">
+                            <div class="col-md-6">
+                                <div class="form-group" style="visibility: hidden;">
+                                    <input type="file" class="form-control" #filePicker
+                                        (change)="onImageSelected($event)">
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn" (click)="filePicker.click()"
+                                        style="margin-left: -5px; margin-right: -390px;">
+                                        Please select your avatar
+                                    </button>
+                                </div>
+                                <div class="text-center mt-5">
+                                    <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px"
+                                        style="margin-left: 255px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 25px;">
+                            <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory !
+                            </p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="submit" (click)="signup()" [disabled]="signupForm.invalid"
+                                        class="btn btn-primary py-3 px-5" value="Signup">
+                                </div>
+                            </div>
+                        </div>
+
+                        {{signupForm.value | json}}
+                        {{signupForm.valid | json}}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Signup End -->

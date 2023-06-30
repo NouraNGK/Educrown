@@ -6618,11 +6618,11 @@ textarea {
     margin: 50px 0 0;
   }
 }
-.events__sidebar-filter .form-grp {
+.events__sidebar-filter .form-group {
   position: relative;
   margin: 0 0 12px;
 }
-.events__sidebar-filter .form-grp input {
+.events__sidebar-filter .form-group input {
   display: block;
   width: 100%;
   background: #F6F7FA;
@@ -6633,12 +6633,12 @@ textarea {
   font-weight: var(--tg-fw-medium);
   line-height: 1;
 }
-.events__sidebar-filter .form-grp input::placeholder {
+.events__sidebar-filter .form-group input::placeholder {
   font-size: 15px;
   font-weight: var(--tg-fw-medium);
   color: #5A7093;
 }
-.events__sidebar-filter .form-grp i {
+.events__sidebar-filter .form-group i {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -6650,17 +6650,17 @@ textarea {
   color: #5A7093;
   font-size: 16px;
 }
-.events__sidebar-filter .form-grp i.fa-flip-horizontal {
+.events__sidebar-filter .form-group i.fa-flip-horizontal {
   -webkit-transform: translateY(-50%) scaleX(-1);
   -moz-transform: translateY(-50%) scaleX(-1);
   -ms-transform: translateY(-50%) scaleX(-1);
   -o-transform: translateY(-50%) scaleX(-1);
   transform: translateY(-50%) scaleX(-1);
 }
-.events__sidebar-filter .form-grp i.fa-flip-horizontal::before {
+.events__sidebar-filter .form-group i.fa-flip-horizontal::before {
   font-weight: 600 !important;
 }
-.events__sidebar-filter .form-grp .form-select {
+.events__sidebar-filter .form-group .form-select {
   background-color: #F6F7FA;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%235A7093' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   border: 1px solid #DAE0E7;
@@ -9096,10 +9096,10 @@ blockquote p {
   border-radius: 2px;
   background: var(--tg-theme-primary);
 }
-.contact-form-wrap .form-grp {
+.contact-form-wrap .form-group {
   margin-bottom: 20px;
 }
-.contact-form-wrap .form-grp input, .contact-form-wrap .form-grp textarea {
+.contact-form-wrap .form-group input, .contact-form-wrap .form-group textarea {
   width: 100%;
   border: 1px solid #DAE0E7;
   border-radius: 3px;
@@ -9112,16 +9112,16 @@ blockquote p {
   height: 50px;
   transition: 0.3s;
 }
-.contact-form-wrap .form-grp input::placeholder, .contact-form-wrap .form-grp textarea::placeholder {
+.contact-form-wrap .form-group input::placeholder, .contact-form-wrap .form-group textarea::placeholder {
   font-weight: 400;
   font-size: 15px;
   color: var(--tg-body-color);
   opacity: 0.8;
 }
-.contact-form-wrap .form-grp input:focus, .contact-form-wrap .form-grp textarea:focus {
+.contact-form-wrap .form-group input:focus, .contact-form-wrap .form-group textarea:focus {
   border-color: var(--tg-theme-primary);
 }
-.contact-form-wrap .form-grp textarea {
+.contact-form-wrap .form-group textarea {
   min-height: 135px;
   max-height: 135px;
 }

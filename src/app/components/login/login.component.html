@@ -1,1 +1,81 @@
-<p>login works!</p>
+<!-- main-area -->
+<main class="main-area fix" style="margin-top: 100px;">
+
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
+
+    <!-- Signup Start -->
+    <section class="contact-area section-py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8" style="margin-left: 200px;">
+                    <div class="contact-form-wrap">
+                        <h4 class="title">Log<span style="color: orange;">in</span></h4>
+                        <form [formGroup]="loginForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" formControlName="tel"
+                                            placeholder="Phone Number *">
+                                    </div>
+                                    <div style="color: red;" *ngIf="loginForm.controls['tel'].invalid && 
+                                    (loginForm.controls['tel'].touched || 
+                                    loginForm.controls['tel'].dirty)">
+                                        <div *ngIf="loginForm.controls['tel'].errors.required">
+                                            Phone number is required
+                                        </div>
+                                        <div *ngIf="loginForm.controls['tel'].errors.pattern">
+                                            Invalid phone number
+                                        </div>
+                                        <div *ngIf="loginForm.controls['tel'].errors.minlength ||
+                                        loginForm.controls['tel'].errors.maxlength">
+                                            You have to insert 8 numbers exactly
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" formControlName="pwd"
+                                            placeholder="Password *">
+                                    </div>
+                                    <div style="color: red;" *ngIf="loginForm.controls['pwd'].invalid && 
+                                    (loginForm.controls['pwd'].touched || 
+                                    loginForm.controls['pwd'].dirty)">
+                                        <div *ngIf="loginForm.controls['pwd'].errors.required">
+                                            Password is required
+                                        </div>
+                                        <div *ngIf="loginForm.controls['pwd'].errors.pattern">
+                                            Password criteria: <br>
+                                            *Allowed characters: uppercase letters, lowercase letters, numbers, and the
+                                            special characters `!`, `@`, `#`, `$`, `%`, `^`, `&`, `*` <br>
+                                            *Length of 6 to 12 characters
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 25px;">
+                                <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory !
+                                </p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="submit" (click)="login()" [disabled]="loginForm.invalid"
+                                            class="btn btn-primary py-3 px-5" value="Login">
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{loginForm.value | json}}
+                            {{loginForm.valid | json}}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Signup End -->
+
+</main>
+<!-- main-area-end -->
