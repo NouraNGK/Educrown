@@ -33,10 +33,6 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  signup() {
-    console.log("Here is the object", this.signupForm.value);
-  }
-
   onImageSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     // console.log("Here selected file", file);
@@ -78,6 +74,11 @@ export class SignupComponent implements OnInit {
     }
     return true;
   }
+
+  signup() {
+    console.log("Here is the object", this.signupForm.value);
+  }
+  
 }
 
   // isSignupFormInvalid() {

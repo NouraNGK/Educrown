@@ -1,0 +1,19 @@
+.btn {
+    background-color: #1363DF !important;
+    color: white !important;
+    font-weight: 600 !important;
+    margin-left: 270px;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+.btn:hover {
+    background-color: #061E43 !important;
+    letter-spacing: 2px;
+    border: 2px solid orange;
+}
+
+.col-md-6 {
+    width: 350px;
+    margin-left: 175px;
+}

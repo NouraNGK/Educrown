@@ -21,6 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { OpeningWordComponent } from './components/opening-word/opening-word.component';
 import { SignupAdminComponent } from './components/signup-admin/signup-admin.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
+import { SearchTeachersComponent } from './components/search-teachers/search-teachers.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AddCourseComponent } from './components/add-course/add-course.component
     NewslettersComponent,
     OpeningWordComponent,
     SignupAdminComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    SearchTeachersComponent
   ],
   imports: [
     BrowserModule,

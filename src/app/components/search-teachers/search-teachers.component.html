@@ -1,0 +1,42 @@
+<!-- main-area -->
+<main class="main-area fix" style="margin-top: 100px;">
+
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
+
+    <!-- Search Form Start -->
+    <section class="contact-area section-py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8" style="margin-left: 200px;">
+                    <div class="contact-form-wrap">
+                        <h4 class="title" style="margin-left: 175px;">Search <span
+                                style="color: orange;">Teachers</span>
+                        </h4>
+                        <form #searchForm="ngForm" (ngSubmit)="searchTeachers()">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" [(ngModel)]="teacher.branch"
+                                        [ngModelOptions]="{standalone:true}" #branch="ngModel"
+                                        placeholder="Add a speciality... *"
+                                        [ngClass]="{ 'is-invalid': searchForm.submitted && branch.invalid }" required>
+                                    <div *ngIf="searchForm.submitted && branch.invalid" class="invalid-feedback">
+                                        <p *ngIf="branch.errors.required" style="color: red;">Speciality is required</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input type="submit" [disabled]="searchForm.invalid"
+                                        class="btn btn-primary py-3 px-5" value="Search">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Search Form End -->
+
+</main>
+<!-- main-area-end -->
