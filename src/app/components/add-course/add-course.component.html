@@ -1,0 +1,138 @@
+<!-- main-area -->
+<main class="main-area fix" style="margin-top: 100px;">
+
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
+
+    <!-- Add Course Form Start -->
+    <section class="contact-area section-py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8" style="margin-left: 200px;">
+                    <div class="contact-form-wrap">
+                        <h4 class="title" style="margin-left: 175px;">Add <span style="color: orange;">Course</span>
+                        </h4>
+
+                        <form [formGroup]="courseForm">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="name"
+                                        placeholder="Name ... *">
+                                </div>
+                                <div style="color: red;" *ngIf="courseForm.controls['name'].invalid && 
+                                    (courseForm.controls['name'].touched || 
+                                    courseForm.controls['name'].dirty)">
+                                    <div *ngIf="courseForm.controls['name'].errors.required">
+                                        Course name is required
+                                    </div>
+                                    <div *ngIf="courseForm.controls['name'].errors.minlength">
+                                        Course name must have at least 4 chars
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" formControlName="duration"
+                                        placeholder="Course duration ... * exemple:2/4/7 weeks ">
+                                </div>
+                                <div style="color: red;" *ngIf="courseForm.controls['duration'].invalid && 
+                                    (courseForm.controls['duration'].touched || 
+                                    courseForm.controls['duration'].dirty)">
+                                    <div *ngIf="courseForm.controls['duration'].errors.required">
+                                        Course duration is required
+                                    </div>
+                                    <div *ngIf="courseForm.controls['duration'].errors.min">
+                                        Course duration must be at least 1 week
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" formControlName="sessionsNbr"
+                                        placeholder="Number of sessions .. *">
+                                </div>
+                                <div style="color: red;" *ngIf="courseForm.controls['sessionsNbr'].invalid && 
+                                    (courseForm.controls['sessionsNbr'].touched || 
+                                    courseForm.controls['sessionsNbr'].dirty)">
+                                    <div *ngIf="courseForm.controls['sessionsNbr'].errors.required">
+                                        The number of sessions is required
+                                    </div>
+                                    <div *ngIf="courseForm.controls['sessionsNbr'].errors.min">
+                                        The number of sessions must be at least 1
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="sessionDuration" style="color: #8193af; padding-left: 22px;">Duration of
+                                        one session *</label>
+                                    <input type="time" id="sessionDuration" class="form-control"
+                                        formControlName="sessionDuration">
+                                </div>
+                                <div style="color: red;" *ngIf="courseForm.controls['sessionDuration'].invalid && 
+                                    (courseForm.controls['sessionDuration'].touched || 
+                                    courseForm.controls['sessionDuration'].dirty)">
+                                    <div *ngIf="courseForm.controls['sessionDuration'].errors.required">
+                                        Duration of one session is required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control" formControlName="description"
+                                        placeholder="Course description ... *"></textarea>
+                                </div>
+                                <div style="color: red;" *ngIf="courseForm.controls['description'].invalid && 
+                                (courseForm.controls['description'].touched || 
+                                courseForm.controls['description'].dirty)">
+                                    <div *ngIf="courseForm.controls['description'].errors.required">
+                                        Course description is required
+                                    </div>
+                                    <div *ngIf="courseForm.controls['description'].errors.maxlength">
+                                        Course description should not exceed 150 chars
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group" style="visibility: hidden;">
+                                    <input type="file" class="form-control" #filePicker
+                                        (change)="onImageSelected($event)">
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn" (click)="filePicker.click()" style="margin-left: -5px;">
+                                        Select a course image
+                                    </button>
+                                </div>
+                                <div class="text-center mt-5">
+                                    <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px">
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 25px;">
+                                <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory !
+                                </p>
+                            </div>
+
+                            <div class="col-md-4" style="margin-left: -12px;">
+                                <div class="form-group">
+                                    <input type="submit" (click)="addCourse()" [disabled]="courseForm.invalid"
+                                        class="btn btn-primary py-3 px-5" value="Add Course" style="width: 250px;">
+                                </div>
+                            </div>
+
+
+                            {{courseForm.value | json}}
+                            {{courseForm.valid | json}}
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Course Form End -->
+
+</main>
+<!-- main-area-end -->

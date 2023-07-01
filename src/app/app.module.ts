@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { OpeningWordComponent } from './components/opening-word/opening-word.component';
 import { SignupAdminComponent } from './components/signup-admin/signup-admin.component';
+import { AddCourseComponent } from './components/add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SignupAdminComponent } from './components/signup-admin/signup-admin.com
     BlogComponent,
     NewslettersComponent,
     OpeningWordComponent,
-    SignupAdminComponent
+    SignupAdminComponent,
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,
