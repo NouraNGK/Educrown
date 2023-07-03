@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -13,8 +15,10 @@ export class SignupComponent implements OnInit {
   imagePreview: string;
   cvName: string;
   word: string = "subscription";
+  errorMsg: any;
   constructor(private formBuilder: FormBuilder,
-    private userService: UserService) { }
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -82,13 +86,46 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.value.role === "teacher") {
       this.signupForm.value.status = "on hold";
       this.userService.signupTeacher(this.signupForm.value, this.signupForm.value.cv).subscribe(
-      (response) => {})
+      (response) => {
+        // console.log("Here response after signup", response.msg);
+        if (response.msg == "2") {
+          this.router.navigate(["signin"]) ;
+        } else if (response.msg == "1") {
+          this.errorMsg = "Email exists";
+        } else if (response.msg == "0") {
+          this.errorMsg = "Phone number exists";
+        }
+      })
     } else if (this.signupForm.value.role === "student") {
       this.userService.signupStudent(this.signupForm.value, this.signupForm.value.avatar).subscribe(
-        (response) => {})
+        (response) => {
+          // console.log("Here response after signup", response.msg);
+        if (response.msg == "2") {
+          this.router.navigate(["signin"]) ;
+        } else if (response.msg == "1") {
+          this.errorMsg = "Email exists";
+        } else if (response.msg == "0") {
+          this.errorMsg = "Phone number exists";
+        }
+        })
     } else {
       this.userService.signupParent(this.signupForm.value).subscribe(
-        (response) => {})
+        (response) => {
+          // console.log("Here response after signup", response.msg);
+          if (response.msg == "3") {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Sorry, but your child is not a registered student in our school',
+            })
+          } else if (response.msg == "2") {
+            this.router.navigate(["signin"]) ;
+          } else if (response.msg == "1") {
+            this.errorMsg = "Email exists";
+          } else if (response.msg == "0") {
+            this.errorMsg = "Phone number exists";
+          }
+        })
     }
   }
   

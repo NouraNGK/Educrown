@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
     email: { type: String, unique: true },
     tel: { type: Number, unique: true },
     address: String,
-    pwd: { type: String, unique: true },
+    pwd: String,
     role: { type:String, required: true},
     specialty: String,
     cv: String,

@@ -53,6 +53,9 @@ export class UserService {
     return this.http.post<{msg: string}>(this.userURL + "/signupAdmin", formData);
   }
 
+  login(user) {
+    return this.http.post<{msg: string, user: any}>(this.userURL + "/login", user);
+  }
 
 
 }

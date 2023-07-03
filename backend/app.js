@@ -121,11 +121,13 @@ app.post("/api/users/signupTeacher", multer({ storage: storageCvConfig }).single
             // console.log("Here error", err);
             // console.log("Success", doc);
             if (err) {
-                if (err.errors.email) {
+                if (err.errors.tel) {
                     res.json({ msg: "0" });
+                } else if (err.errors.email) {
+                    res.json({ msg: "1" });
                 }
             } else {
-                res.json({ msg: "1" });
+                res.json({ msg: "2" });
             }
         });
     });
@@ -140,12 +142,16 @@ app.post("/api/users/signupStudent", multer({ storage: storageImgConfig }).singl
         req.body.avatar = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`
         let user = new User(req.body);
         user.save((err, doc) => {
+            // console.log("Here error", err);
+            // console.log("Success", doc);
             if (err) {
-                if (err.errors.email) {
+                if (err.errors.tel) {
                     res.json({ msg: "0" });
+                } else if (err.errors.email) {
+                    res.json({ msg: "1" });
                 }
             } else {
-                res.json({ msg: "1" });
+                res.json({ msg: "2" });
             }
         });
     });
@@ -164,17 +170,21 @@ app.post("/api/users/signupParent", (req, res) => {
                     req.body.pwd = cryptedPwd;
                     let user = new User(req.body);
                     user.save((err, doc) => {
+                        // console.log("Here error", err);
+                        // console.log("Success", doc);
                         if (err) {
-                            if (err.errors.email) {
+                            if (err.errors.tel) {
                                 res.json({ msg: "0" });
+                            } else if (err.errors.email) {
+                                res.json({ msg: "1" });
                             }
                         } else {
-                            res.json({ msg: "1" });
+                            res.json({ msg: "2" });
                         }
                     });
                 });
             } else {
-                res.json({msg: "Student Not Found"});
+                res.json({msg: "3"});
             }
         }
     )
@@ -189,16 +199,68 @@ app.post("/api/users/signupAdmin", multer({ storage: storageImgConfig }).single(
         req.body.img = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`
         let user = new User(req.body);
         user.save((err, doc) => {
+            // console.log("Here error", err);
+            // console.log("Success", doc);
             if (err) {
-                if (err.errors.email) {
+                if (err.errors.tel) {
                     res.json({ msg: "0" });
+                } else if (err.errors.email) {
+                    res.json({ msg: "1" });
                 }
             } else {
-                res.json({ msg: "1" });
+                res.json({ msg: "2" });
             }
         });
     });
 });
+
+
+// Business Logic: Login
+// response : 0 => Tel Error
+// response : 1 => Pwd Error
+// response : 2 => Success
+// response : 3 => Teacher account must be approved by admin
+app.post("/api/users/login", (req, res) => {
+    console.log("Here Into BL: Login", req.body);
+    let user;
+    // Check if Tel exists
+    User.findOne({ tel: req.body.tel })
+      .then((doc) => {
+        console.log("Here doc", doc);
+        user = doc;
+        // Send Tel error msg
+        if (!doc) {
+          res.json({ msg: "0" });
+        } else {
+          // Check Pwd
+          return bcrypt.compare(req.body.pwd, doc.pwd);
+        }
+      })
+      .then((isEqual) => {
+        console.log("Here isEqual", isEqual);
+        // Send Pwd Error Msg
+        if (!isEqual) {
+          res.json({ msg: "1" });
+        } else {
+            if (user.role == "teacher" && user.status =="on hold") {
+                res.json({ msg: "2" });
+            } else if ((user.role == "teacher" && user.status =="confirmed")
+            || user.role !== "teacher") {
+                let userToSend = {
+                    userId: user._id,
+                    tel: user.tel,
+                    fName: user.firstName,
+                    lName: user.lastName,
+                    role: user.role
+                  };
+                  const token = jwt.sign(userToSend, secretKey, {
+                    expiresIn: '1h',
+                  });
+                  res.json({ user: token, msg: `3` });
+            } 
+        }
+      });
+  });
 
 
 

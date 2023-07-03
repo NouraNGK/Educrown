@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,8 +12,10 @@ export class SignupAdminComponent implements OnInit {
 
   signupForm: FormGroup;
   imagePreview: string;
+  errorMsg: string;
   constructor(private formBuilder: FormBuilder,
-    private userService : UserService) { }
+    private userService : UserService,
+    private router: Router) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -43,8 +46,15 @@ export class SignupAdminComponent implements OnInit {
     console.log("Here is the object", this.signupForm.value);
     this.signupForm.value.role = "admin";
     this.userService.signupAdmin(this.signupForm.value, this.signupForm.value.avatar).subscribe(
-    () => {
-
+    (response) => {
+      // console.log("Here response after signup", response.msg);
+      if (response.msg == "2") {
+        this.router.navigate(["signin"]) ;
+      } else if (response.msg == "1") {
+        this.errorMsg = "Email exists";
+      } else if (response.msg == "0") {
+        this.errorMsg = "Phone number exists";
+      }
     })
   }
 
