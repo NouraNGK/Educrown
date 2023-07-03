@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,8 @@ export class SignupComponent implements OnInit {
   imagePreview: string;
   cvName: string;
   word: string = "subscription";
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -77,8 +79,26 @@ export class SignupComponent implements OnInit {
 
   signup() {
     console.log("Here is the object", this.signupForm.value);
+    if (this.signupForm.value.role === "teacher") {
+      this.signupForm.value.status = "on hold";
+      this.userService.signupTeacher(this.signupForm.value, this.signupForm.value.cv).subscribe(
+      (response) => {})
+    } else if (this.signupForm.value.role === "student") {
+      this.userService.signupStudent(this.signupForm.value, this.signupForm.value.avatar).subscribe(
+        (response) => {})
+    } else {
+      this.userService.signupParent(this.signupForm.value).subscribe(
+        (response) => {})
+    }
   }
   
+
+
+
+
+
+
+
 }
 
   // isSignupFormInvalid() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup-admin',
@@ -10,7 +11,8 @@ export class SignupAdminComponent implements OnInit {
 
   signupForm: FormGroup;
   imagePreview: string;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private userService : UserService) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -25,10 +27,6 @@ export class SignupAdminComponent implements OnInit {
     });
   }
 
-  signup() {
-    console.log("Here is the object", this.signupForm.value);
-  }
-
   onImageSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     // console.log("Here selected file", file);
@@ -39,6 +37,15 @@ export class SignupAdminComponent implements OnInit {
       this.imagePreview = reader.result as string
     };
     reader.readAsDataURL(file);
+  }
+
+  signUp() {
+    console.log("Here is the object", this.signupForm.value);
+    this.signupForm.value.role = "admin";
+    this.userService.signupAdmin(this.signupForm.value, this.signupForm.value.avatar).subscribe(
+    () => {
+
+    })
   }
 
 }

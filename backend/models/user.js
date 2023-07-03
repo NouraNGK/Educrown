@@ -16,7 +16,8 @@ const userSchema = mongoose.Schema({
     specialty: String,
     cv: String,
     avatar: String,
-    childNbr: Number
+    childNbr: Number, 
+    status: String
 });
 
 userSchema.plugin(uniqueValidator);

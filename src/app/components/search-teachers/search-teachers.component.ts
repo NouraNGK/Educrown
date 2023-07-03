@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class SearchTeachersComponent implements OnInit {
 
-  word: string = "search matches";
+  word: string = "search teachers";
   searchForm: FormGroup;
   teacher:any={};
   constructor() { }
