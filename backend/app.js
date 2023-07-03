@@ -110,6 +110,12 @@ const storageCvConfig = multer.diskStorage({
 
 
 // *****Users*****
+// response : 0 => Tel and Email Errors
+// response : 1 => Tel Error
+// response : 2 => Email Error
+// response : 3 => Success
+// response : 4 => Tel Child not found (SignupParent)
+
 // Business Logic: SignupTeacher (ou add teacher)
 app.post("/api/users/signupTeacher", multer({ storage: storageCvConfig }).single('cv'), (req, res) => {
     console.log("Here into SignupTeacher BL", req.body);
@@ -121,13 +127,15 @@ app.post("/api/users/signupTeacher", multer({ storage: storageCvConfig }).single
             // console.log("Here error", err);
             // console.log("Success", doc);
             if (err) {
-                if (err.errors.tel) {
+                if (err.errors.tel && err.errors.email) {
                     res.json({ msg: "0" });
-                } else if (err.errors.email) {
+                } else if (err.errors.tel) {
                     res.json({ msg: "1" });
+                } else if (err.errors.email) {
+                    res.json({ msg: "2" });
                 }
             } else {
-                res.json({ msg: "2" });
+                res.json({ msg: "3" });
             }
         });
     });
@@ -145,13 +153,15 @@ app.post("/api/users/signupStudent", multer({ storage: storageImgConfig }).singl
             // console.log("Here error", err);
             // console.log("Success", doc);
             if (err) {
-                if (err.errors.tel) {
+                if (err.errors.tel && err.errors.email) {
                     res.json({ msg: "0" });
-                } else if (err.errors.email) {
+                } else if (err.errors.tel) {
                     res.json({ msg: "1" });
+                } else if (err.errors.email) {
+                    res.json({ msg: "2" });
                 }
             } else {
-                res.json({ msg: "2" });
+                res.json({ msg: "3" });
             }
         });
     });
@@ -162,7 +172,7 @@ app.post("/api/users/signupStudent", multer({ storage: storageImgConfig }).singl
 app.post("/api/users/signupParent", (req, res) => {
     console.log("Here into SignupParent BL", req.body);
     // Check if child number exists or not
-    User.findOne({ role: "student", tel: req.body.childNbr}).then(
+    User.findOne({ role: "student", tel: req.body.childNbr }).then(
         (findedStudent) => {
             console.log("Here is the finded student", findedStudent)
             if (findedStudent) {
@@ -173,18 +183,20 @@ app.post("/api/users/signupParent", (req, res) => {
                         // console.log("Here error", err);
                         // console.log("Success", doc);
                         if (err) {
-                            if (err.errors.tel) {
+                            if (err.errors.tel && err.errors.email) {
                                 res.json({ msg: "0" });
-                            } else if (err.errors.email) {
+                            } else if (err.errors.tel) {
                                 res.json({ msg: "1" });
+                            } else if (err.errors.email) {
+                                res.json({ msg: "2" });
                             }
                         } else {
-                            res.json({ msg: "2" });
+                            res.json({ msg: "3" });
                         }
                     });
                 });
             } else {
-                res.json({msg: "3"});
+                res.json({ msg: "4" });
             }
         }
     )
@@ -202,13 +214,15 @@ app.post("/api/users/signupAdmin", multer({ storage: storageImgConfig }).single(
             // console.log("Here error", err);
             // console.log("Success", doc);
             if (err) {
-                if (err.errors.tel) {
+                if (err.errors.tel && err.errors.email) {
                     res.json({ msg: "0" });
-                } else if (err.errors.email) {
+                } else if (err.errors.tel) {
                     res.json({ msg: "1" });
+                } else if (err.errors.email) {
+                    res.json({ msg: "2" });
                 }
             } else {
-                res.json({ msg: "2" });
+                res.json({ msg: "3" });
             }
         });
     });
@@ -218,49 +232,50 @@ app.post("/api/users/signupAdmin", multer({ storage: storageImgConfig }).single(
 // Business Logic: Login
 // response : 0 => Tel Error
 // response : 1 => Pwd Error
-// response : 2 => Success
-// response : 3 => Teacher account must be approved by admin
+// response : 2 => Teacher account must be approved by admin
+// response : 3 => Success
+
 app.post("/api/users/login", (req, res) => {
     console.log("Here Into BL: Login", req.body);
     let user;
     // Check if Tel exists
     User.findOne({ tel: req.body.tel })
-      .then((doc) => {
-        console.log("Here doc", doc);
-        user = doc;
-        // Send Tel error msg
-        if (!doc) {
-          res.json({ msg: "0" });
-        } else {
-          // Check Pwd
-          return bcrypt.compare(req.body.pwd, doc.pwd);
-        }
-      })
-      .then((isEqual) => {
-        console.log("Here isEqual", isEqual);
-        // Send Pwd Error Msg
-        if (!isEqual) {
-          res.json({ msg: "1" });
-        } else {
-            if (user.role == "teacher" && user.status =="on hold") {
-                res.json({ msg: "2" });
-            } else if ((user.role == "teacher" && user.status =="confirmed")
-            || user.role !== "teacher") {
-                let userToSend = {
-                    userId: user._id,
-                    tel: user.tel,
-                    fName: user.firstName,
-                    lName: user.lastName,
-                    role: user.role
-                  };
-                  const token = jwt.sign(userToSend, secretKey, {
-                    expiresIn: '1h',
-                  });
-                  res.json({ user: token, msg: `3` });
-            } 
-        }
-      });
-  });
+        .then((doc) => {
+            console.log("Here doc", doc);
+            user = doc;
+            // Send Tel error msg
+            if (!doc) {
+                res.json({ msg: "0" });
+            } else {
+                // Check Pwd
+                return bcrypt.compare(req.body.pwd, doc.pwd);
+            }
+        })
+        .then((isEqual) => {
+            console.log("Here isEqual", isEqual);
+            // Send Pwd Error Msg
+            if (!isEqual) {
+                res.json({ msg: "1" });
+            } else {
+                if (user.role == "teacher" && user.status == "on hold") {
+                    res.json({ msg: "2" });
+                } else if ((user.role == "teacher" && user.status == "confirmed")
+                    || user.role !== "teacher") {
+                    let userToSend = {
+                        userId: user._id,
+                        email: user.email,
+                        fName: user.firstName,
+                        lName: user.lastName,
+                        role: user.role
+                    };
+                    const token = jwt.sign(userToSend, secretKey, {
+                        expiresIn: '1h',
+                    });
+                    res.json({ user: token, msg: `3` });
+                }
+            }
+        });
+});
 
 
 

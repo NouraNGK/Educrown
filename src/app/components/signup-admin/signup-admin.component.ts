@@ -48,12 +48,14 @@ export class SignupAdminComponent implements OnInit {
     this.userService.signupAdmin(this.signupForm.value, this.signupForm.value.avatar).subscribe(
     (response) => {
       // console.log("Here response after signup", response.msg);
-      if (response.msg == "2") {
+      if (response.msg == "3") {
         this.router.navigate(["signin"]) ;
-      } else if (response.msg == "1") {
+      } else if (response.msg == "2") {
         this.errorMsg = "Email exists";
-      } else if (response.msg == "0") {
+      } else if (response.msg == "1") {
         this.errorMsg = "Phone number exists";
+      } else if (response.msg == "0") {
+        this.errorMsg = "Email and Phone number exist";
       }
     })
   }

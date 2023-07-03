@@ -88,52 +88,52 @@ export class SignupComponent implements OnInit {
       this.userService.signupTeacher(this.signupForm.value, this.signupForm.value.cv).subscribe(
       (response) => {
         // console.log("Here response after signup", response.msg);
-        if (response.msg == "2") {
+        if (response.msg == "3") {
           this.router.navigate(["signin"]) ;
-        } else if (response.msg == "1") {
+        } else if (response.msg == "2") {
           this.errorMsg = "Email exists";
-        } else if (response.msg == "0") {
+        } else if (response.msg == "1") {
           this.errorMsg = "Phone number exists";
+        } else if (response.msg == "0") {
+          this.errorMsg = "Email and Phone number exist";
         }
       })
     } else if (this.signupForm.value.role === "student") {
       this.userService.signupStudent(this.signupForm.value, this.signupForm.value.avatar).subscribe(
         (response) => {
           // console.log("Here response after signup", response.msg);
-        if (response.msg == "2") {
+        if (response.msg == "3") {
           this.router.navigate(["signin"]) ;
-        } else if (response.msg == "1") {
+        } else if (response.msg == "2") {
           this.errorMsg = "Email exists";
-        } else if (response.msg == "0") {
+        } else if (response.msg == "1") {
           this.errorMsg = "Phone number exists";
+        } else if (response.msg == "0") {
+          this.errorMsg = "Email and Phone number exist";
         }
         })
     } else {
       this.userService.signupParent(this.signupForm.value).subscribe(
         (response) => {
           // console.log("Here response after signup", response.msg);
-          if (response.msg == "3") {
+          if (response.msg == "4") {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: 'Sorry, but your child is not a registered student in our school',
             })
-          } else if (response.msg == "2") {
+          } else if (response.msg == "3") {
             this.router.navigate(["signin"]) ;
-          } else if (response.msg == "1") {
+          } else if (response.msg == "2") {
             this.errorMsg = "Email exists";
-          } else if (response.msg == "0") {
+          } else if (response.msg == "1") {
             this.errorMsg = "Phone number exists";
+          } else if (response.msg == "0") {
+            this.errorMsg = "Email and Phone number exist";
           }
         })
     }
   }
-  
-
-
-
-
-
 
 
 }

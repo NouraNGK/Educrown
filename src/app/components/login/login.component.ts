@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -30,10 +31,23 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log("Here is the object", this.loginForm.value);
+    let decodedToken;
     this.userService.login(this.loginForm.value).subscribe(
       (response) => {
         if (response.msg == "3") {
           sessionStorage.setItem('jwt', response.user);
+          let token = sessionStorage.getItem("jwt");
+          decodedToken = this.decodeToken(token);
+          console.log("Here is decoded jwt", decodedToken);
+          if (decodedToken.role == "admin") {
+            this.router.navigate([""]);
+          } else if (decodedToken.role == "teacher") {
+            this.router.navigate([""]);
+          } else if (decodedToken.role == "student") {
+            this.router.navigate([""]);
+          } else if (decodedToken.role == "parent") {
+            this.router.navigate([""]);
+          }
           // this.router.navigate([`profile/${this.loginForm.value.tel}`]);
         } else if (response.msg == "2") {
           Swal.fire('Sorry! but you should wait 24 hours to access your account. Thank you for your understanding!')
@@ -44,4 +58,8 @@ export class LoginComponent implements OnInit {
     )
   }
 
+
+  decodeToken(token: string) {
+    return jwt_decode(token);
+  }
 }
