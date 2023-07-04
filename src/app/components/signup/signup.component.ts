@@ -99,6 +99,7 @@ export class SignupComponent implements OnInit {
         }
       })
     } else if (this.signupForm.value.role === "student") {
+      console.log("Here is signupStudent obj", this.signupForm.value, "and student avatar", this.signupForm.value.avatar);
       this.userService.signupStudent(this.signupForm.value, this.signupForm.value.avatar).subscribe(
         (response) => {
           // console.log("Here response after signup", response.msg);

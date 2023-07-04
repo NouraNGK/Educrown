@@ -15,16 +15,16 @@
                         <form [formGroup]="courseForm">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" formControlName="name"
+                                    <input type="text" class="form-control" formControlName="courseName"
                                         placeholder="Name ... *">
                                 </div>
-                                <div style="color: red;" *ngIf="courseForm.controls['name'].invalid && 
-                                    (courseForm.controls['name'].touched || 
-                                    courseForm.controls['name'].dirty)">
-                                    <div *ngIf="courseForm.controls['name'].errors.required">
+                                <div style="color: red;" *ngIf="courseForm.controls['courseName'].invalid && 
+                                    (courseForm.controls['courseName'].touched || 
+                                    courseForm.controls['courseName'].dirty)">
+                                    <div *ngIf="courseForm.controls['courseName'].errors.required">
                                         Course name is required
                                     </div>
-                                    <div *ngIf="courseForm.controls['name'].errors.minlength">
+                                    <div *ngIf="courseForm.controls['courseName'].errors.minlength">
                                         Course name must have at least 4 chars
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="number" class="form-control" formControlName="sessionsNbr"
-                                        placeholder="Number of sessions .. *">
+                                        placeholder="Number of sessions ... *">
                                 </div>
                                 <div style="color: red;" *ngIf="courseForm.controls['sessionsNbr'].invalid && 
                                     (courseForm.controls['sessionsNbr'].touched || 
@@ -120,6 +120,9 @@
                                 </div>
                             </div>
 
+                            <div>
+                                <span>{{msg}}</span>
+                            </div>
 
                             {{courseForm.value | json}}
                             {{courseForm.valid | json}}

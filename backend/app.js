@@ -29,6 +29,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/educrownDB');
 
 // Models importation
 const User = require("./models/user");
+const Course = require("./models/course");
 
 // creates express application
 const app = express();
@@ -109,7 +110,8 @@ const storageCvConfig = multer.diskStorage({
 });
 
 
-// *****Users*****
+// **********Users********** 
+
 // response : 0 => Tel and Email Errors
 // response : 1 => Tel Error
 // response : 2 => Email Error
@@ -278,7 +280,16 @@ app.post("/api/users/login", (req, res) => {
 });
 
 
+// **********Courses********** 
 
+// Business Logic: Add Course
+app.post("/api/courses", multer({ storage: storageImgConfig }).single('img'), (req, res) => {
+    console.log("Here into BL: Add course", req.body);
+    req.body.img = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`;
+    let obj = new Course(req.body);
+    obj.save();
+    res.json ({ msg: "ok"});
+});
 
 
 
