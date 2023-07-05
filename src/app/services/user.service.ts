@@ -57,5 +57,7 @@ export class UserService {
     return this.http.post<{msg: string, user: any}>(this.userURL + "/login", user);
   }
 
-
+  // findUserById(id) {
+  //   return this.http.post<{user: any}>(this.userURL, id);
+  // }
 }

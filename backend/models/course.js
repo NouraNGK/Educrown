@@ -7,8 +7,13 @@ const courseSchema = mongoose.Schema({
     duration: Number,
     sessionsNbr: Number,
     sessionDuration: String,
+    studentsNbr: Number,
+    price: Number,
     description: String,
-    img: String
+    img: String,
+    idTeacher: String,
+    teacherFirstName: String,
+    teacherLastName: String
 });
 
 // create Model Name "Course"

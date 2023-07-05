@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 // import mongoose unique validator
 const uniqueValidator = require('mongoose-unique-validator');
 
-// create user schema
+// create user schema for Admin + Teacher + Student + Parent
 const userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,

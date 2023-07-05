@@ -22,6 +22,7 @@ import { OpeningWordComponent } from './components/opening-word/opening-word.com
 import { SignupAdminComponent } from './components/signup-admin/signup-admin.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { SearchTeachersComponent } from './components/search-teachers/search-teachers.component';
+import { CourseComponent } from './components/course/course.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SearchTeachersComponent } from './components/search-teachers/search-tea
     OpeningWordComponent,
     SignupAdminComponent,
     AddCourseComponent,
-    SearchTeachersComponent
+    SearchTeachersComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,

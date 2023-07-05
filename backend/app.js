@@ -280,6 +280,16 @@ app.post("/api/users/login", (req, res) => {
 });
 
 
+// Business Logic: Find user by Id
+// app.post("/api/users", (req, res) => {
+//     console.log("Here into BL: Find user by Id", req.body);
+//     User.findOne({ _id: req.body.id }).then(
+//         (findedUser) => {
+//             res.json({ user: findedUser });
+//         });
+// });
+
+
 // **********Courses********** 
 
 // Business Logic: Add Course
@@ -288,8 +298,16 @@ app.post("/api/courses", multer({ storage: storageImgConfig }).single('img'), (r
     req.body.img = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`;
     let obj = new Course(req.body);
     obj.save();
-    res.json ({ msg: "ok"});
+    res.json({ msg: "ok" });
 });
+
+// Business Logic: Get all courses
+app.get("/api/courses", (req, res) => {
+    Course.find().then((docs) => {
+        res.json({ allCourses: docs });
+    });
+});
+
 
 
 

@@ -1,0 +1,42 @@
+<div class="courses__item-two shine__animate-item">
+    <div class="courses__item-two-thumb">
+        <a href="#" class="shine__animate-link">
+            <img [src]=courseInput?.img alt="img">
+        </a>
+    </div>
+    <div class="courses__item-two-content">
+        <a href="#" style="text-transform: capitalize;" class="courses__item-tag" [ngClass]="{
+            'da': courseInput?.courseName == 'data science',
+            'de': courseInput?.courseName == 'development',
+            'di': courseInput?.courseName == 'digital marketing',
+            'b': courseInput?.courseName == 'business',
+            'f' : courseInput?.courseName == 'finance',
+            'g': courseInput?.courseName == 'graphic design'
+        }">
+            {{courseInput?.courseName}}
+        </a>
+        <h5 class="title"><a href="#">{{courseInput?.description}}</a></h5>
+        <ul class="courses__item-meta list-wrap">
+            <li><i class="flaticon-file"></i> {{courseInput?.sessionsNbr}}</li>
+            <li><i class="flaticon-timer"></i> {{courseInput?.sessionDuration}}</li>
+            <li><i class="flaticon-user-1"></i> {{courseInput?.studentsNbr}}</li>
+        </ul>
+        <div class="courses__item-bottom">
+            <div class="course__price">
+                <h3 class="price">{{courseInput?.price}} TND</h3>
+            </div>
+            <div class="courses__item-rating">
+                <i class="fas fa-star"></i>
+                <span class="rating-count">(4.2)</span>
+            </div>
+        </div>
+        <div class="courses__item-bottom">
+            <div class="author">
+                <a href="#">
+                    <img src="assets/img/courses/course_author002.png" alt="img">
+                </a>
+                <a href="#" style="text-transform: capitalize;">{{courseInput?.teacherFirstName}} {{courseInput?.teacherLastName}}</a>
+            </div>
+        </div>
+    </div>
+</div>

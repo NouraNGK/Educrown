@@ -15,24 +15,27 @@
                         <form [formGroup]="courseForm">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" formControlName="courseName"
-                                        placeholder="Name ... *">
+                                    <select class="form-control" formControlName="courseName">
+                                        <option value="">Select a Course *</option>
+                                        <option value="business">Business</option>
+                                        <option value="data science">Data Science</option>
+                                        <option value="development">Development</option>
+                                        <option value="finance">Finance</option>
+                                        <option value="digital marketing">Digital Marketing</option>
+                                        <option value="graphic design">Graphic Design</option>
+                                    </select>
                                 </div>
                                 <div style="color: red;" *ngIf="courseForm.controls['courseName'].invalid && 
-                                    (courseForm.controls['courseName'].touched || 
-                                    courseForm.controls['courseName'].dirty)">
+                                courseForm.controls['courseName'].touched">
                                     <div *ngIf="courseForm.controls['courseName'].errors.required">
-                                        Course name is required
-                                    </div>
-                                    <div *ngIf="courseForm.controls['courseName'].errors.minlength">
-                                        Course name must have at least 4 chars
+                                        This field is required
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="number" class="form-control" formControlName="duration"
-                                        placeholder="Course duration ... * exemple:2/4/7 weeks ">
+                                        placeholder="Course duration *  [exemple:2/4/7 weeks] ">
                                 </div>
                                 <div style="color: red;" *ngIf="courseForm.controls['duration'].invalid && 
                                     (courseForm.controls['duration'].touched || 
@@ -48,7 +51,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="number" class="form-control" formControlName="sessionsNbr"
-                                        placeholder="Number of sessions ... *">
+                                        placeholder="Number of sessions *">
                                 </div>
                                 <div style="color: red;" *ngIf="courseForm.controls['sessionsNbr'].invalid && 
                                     (courseForm.controls['sessionsNbr'].touched || 
@@ -76,10 +79,45 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" formControlName="studentsNbr"
+                                        placeholder="Students number * ">
+                                </div>
+                                <div style="color: red;" *ngIf="courseForm.controls['studentsNbr'].invalid && 
+                                    (courseForm.controls['studentsNbr'].touched || 
+                                    courseForm.controls['studentsNbr'].dirty)">
+                                    <div *ngIf="courseForm.controls['studentsNbr'].errors.required">
+                                        Students number is required
+                                    </div>
+                                    <div *ngIf="courseForm.controls['studentsNbr'].errors.min">
+                                        You should add 1 student at least
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" formControlName="price"
+                                        placeholder="Price *">
+                                </div>
+                                <div style="color: red;" *ngIf="courseForm.controls['price'].invalid && 
+                                    (courseForm.controls['price'].touched || 
+                                    courseForm.controls['price'].dirty)">
+                                    <div *ngIf="courseForm.controls['price'].errors.required">
+                                        Price is required
+                                    </div>
+                                    <div *ngIf="courseForm.controls['price'].errors.min">
+                                        The price must be higher than 300 TND
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <textarea class="form-control" formControlName="description"
-                                        placeholder="Course description ... *"></textarea>
+                                        placeholder="Course description *"></textarea>
                                 </div>
                                 <div style="color: red;" *ngIf="courseForm.controls['description'].invalid && 
                                 (courseForm.controls['description'].touched || 
@@ -88,7 +126,7 @@
                                         Course description is required
                                     </div>
                                     <div *ngIf="courseForm.controls['description'].errors.maxlength">
-                                        Course description should not exceed 150 chars
+                                        Course description should not exceed 80 chars
                                     </div>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CourseService } from 'src/app/services/course.service';
 import Swal from 'sweetalert2';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-add-course',
@@ -15,17 +16,20 @@ export class AddCourseComponent implements OnInit {
   courseForm: FormGroup;
   imagePreview: string;
   msg: any;
+  
   constructor(private formBuilder: FormBuilder,
     private courseService: CourseService,
     private router: Router) { }
 
   ngOnInit() {
     this.courseForm = this.formBuilder.group({
-      courseName: ["", [Validators.required, Validators.minLength(4)]],
+      courseName: ["", [Validators.required]],
       duration: ["", [Validators.required, Validators.min(1)]],
       sessionsNbr: ["", [Validators.required, Validators.min(1)]],
       sessionDuration: ["", [Validators.required]],
-      description: ["", [Validators.required, Validators.maxLength(150)]],
+      studentsNbr: ["", [Validators.required, Validators.min(1)]],
+      price: ["", [Validators.required, Validators.min(300)]],
+      description: ["", [Validators.required, Validators.maxLength(80)]],
       img: ["", [Validators.required]]
     });
   }
@@ -43,6 +47,11 @@ export class AddCourseComponent implements OnInit {
   }
 
   addCourse() {
+    let decodedToken: any = this.decodeToken(sessionStorage.getItem("jwt"));
+    this.courseForm.value.idTeacher = decodedToken.userId;
+    this.courseForm.value.teacherFirstName = decodedToken.fName;
+    this.courseForm.value.teacherLastName = decodedToken.lName;
+    console.log("Here is the new courseForm", this.courseForm.value);
     this.courseService.addCourse(this.courseForm.value, this.courseForm.value.img).subscribe(
       (response) => {
         console.log("Here is BE response,", response.msg);
@@ -55,10 +64,13 @@ export class AddCourseComponent implements OnInit {
             timer: 3000
           });
           // I just put the home path as a test, I should replace it later by the course page
-          this.router.navigate([""]);
+          this.router.navigate(["allCourses"]);
         }
       });
   }
 
-  
+  decodeToken(token: string) {
+    return jwt_decode(token);
+  }
+
 }
