@@ -69,7 +69,9 @@ export class UserService {
     return this.http.delete<{msg: string}>(`${this.userURL}/${id}`);
   }
 
-  // findUserById(id) {
-  //   return this.http.post<{user: any}>(this.userURL, id);
-  // }
+  getStudents() {
+    return this.http.get<{docs: any, msg: string}>(this.userURL + "/students");
+  }
+
+
 }

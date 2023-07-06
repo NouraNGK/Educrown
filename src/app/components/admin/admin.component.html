@@ -82,25 +82,28 @@
         <div class="admin-tabs" style="margin-top: 30px;">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Teachers</button>
+                  <button class="nav-link active" id="pills-teachers-tab" data-bs-toggle="pill" data-bs-target="#pills-teachers" type="button" role="tab" aria-controls="pills-teachers" aria-selected="true">Teachers</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Students</button>
+                  <button class="nav-link" id="pills-students-tab" data-bs-toggle="pill" data-bs-target="#pills-students" type="button" role="tab" aria-controls="pills-students" aria-selected="false">Students</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Parents</button>
+                    <button class="nav-link" id="pills-parents-tab" data-bs-toggle="pill" data-bs-target="#pills-parents" type="button" role="tab" aria-controls="pills-parents" aria-selected="false">Parents</button>
                   </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Courses</button>
+                  <button class="nav-link" id="pills-courses-tab" data-bs-toggle="pill" data-bs-target="#pills-courses" type="button" role="tab" aria-controls="pills-courses" aria-selected="false">Courses</button>
                 </li>
               </ul>
               
               <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="tab-pane fade show active" id="pills-teachers" role="tabpanel" aria-labelledby="pills-teachers-tab">
                     <app-teachers-table></app-teachers-table>
                 </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                <div class="tab-pane fade" id="pills-students" role="tabpanel" aria-labelledby="pills-students-tab">
+                    <app-students-table></app-students-table>
+                </div>
+                <div class="tab-pane fade" id="pills-parents" role="tabpanel" aria-labelledby="pills-parents-tab">...</div>
+                <div class="tab-pane fade" id="pills-courses" role="tabpanel" aria-labelledby="pills-courses-tab">...</div>
               </div>
         </div>
     </div>

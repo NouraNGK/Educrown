@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th><i class="fas fa-user"></i> ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Tel</th>
+            <th>Avatar</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+            <td>{{student._id}}</td>
+            <td>{{student.firstName}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.tel}}</td>
+            <td><img [src]="student.avatar" alt="" width="200px" style="margin: 3px 0;"></td>
+            <td>
+                <button class="display-btn" style="margin-right: 3px;" (click)="goToInfo(student._id)">Display</button>
+                <button class="delete-btn" (click)="deleteStudent(student._id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

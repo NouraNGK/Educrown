@@ -283,7 +283,7 @@ app.post("/api/users/login", (req, res) => {
 // Business Logic : Get all teachers exept those with status on hold
 app.get("/api/users/teachers", (req, res) => {
     User.find({ role: "teacher" }).then((data) => {
-        res.json({ docs: data, msg: "OK" });
+        res.json({ docs: data, msg: "ok" });
     });
 });
 
@@ -291,13 +291,13 @@ app.get("/api/users/teachers", (req, res) => {
 // Business Logic: Confirm teacher by Id
 app.get("/api/users/confirmTeacher/:id", (req, res) => {
     console.log("Here is the ID of the teacher to confirm", req.params.id);
-    User.updateOne({ _id: req.params.id }, {status: "confirmed"}).then(
+    User.updateOne({ _id: req.params.id }, { status: "confirmed" }).then(
         (response) => {
             if (response.nModified == 1) {
                 res.json({ msg: "1" });
-              } else {
+            } else {
                 res.json({ msg: "0" });
-              }
+            }
         });
 });
 
@@ -306,11 +306,20 @@ app.get("/api/users/confirmTeacher/:id", (req, res) => {
 app.delete("/api/users/:id", (req, res) => {
     console.log("Here into BL: delete user by id", req.params.id);
     User.deleteOne({ _id: req.params.id }).then((response) => {
-      response.deletedCount == 1
-        ? res.json({ msg: "1" })
-        : res.json({ msg: "0" })
+        response.deletedCount == 1
+            ? res.json({ msg: "1" })
+            : res.json({ msg: "0" })
     });
-  });
+});
+
+
+//   Business Logic: Get All Students
+app.get("/api/users/students", (req, res) => {
+    User.find({ role: "student" }).then(
+        (data) => {
+            res.json({ docs: data, msg: "ok" });
+        });
+});
 
 
 

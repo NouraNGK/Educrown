@@ -1,0 +1,67 @@
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: separate!important;
+    border-spacing: 10px!important;
+}
+
+td,
+th {
+    background-color: #e5edfd;
+    height: 40px;
+    border-radius: 8px;
+}
+
+th {
+    background-color: #1363DF;
+    color: white;
+    font-weight: 100;
+}
+
+tr,
+td {
+    border: 2px solid white;
+}
+
+.confirm-btn{
+    border: 2px rgb(25, 198, 25) solid;
+    border-radius: 8px; 
+    color: rgb(25, 198, 25);
+}
+
+.confirm-btn:hover{
+    background-color: rgb(25, 198, 25);
+    color: white;
+}
+
+.display-btn{
+    border: 2px #1363DF solid;
+    border-radius: 8px;
+}
+
+.display-btn:hover{
+    background-color: #1363DF;
+    color: white;
+}
+
+.edit-btn{
+    border: 2px orange solid;
+    border-radius: 8px; 
+    color: orange;
+}
+
+.edit-btn:hover{
+    background-color: orange;
+    color: white;
+}
+
+.delete-btn{
+    border: 2px red solid;
+    border-radius: 8px; 
+    color: red;
+}
+
+.delete-btn:hover{
+    background-color: red;
+    color: white;
+}
