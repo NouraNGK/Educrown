@@ -24,6 +24,7 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 import { SearchTeachersComponent } from './components/search-teachers/search-teachers.component';
 import { CourseComponent } from './components/course/course.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { TeachersTableComponent } from './components/teachers-table/teachers-table.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AdminComponent } from './components/admin/admin.component';
     AddCourseComponent,
     SearchTeachersComponent,
     CourseComponent,
-    AdminComponent
+    AdminComponent,
+    TeachersTableComponent
   ],
   imports: [
     BrowserModule,

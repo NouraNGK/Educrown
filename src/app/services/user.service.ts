@@ -57,6 +57,18 @@ export class UserService {
     return this.http.post<{msg: string, user: any}>(this.userURL + "/login", user);
   }
 
+  getTeachers() {
+    return this.http.get<{docs: any, msg: string}>(this.userURL + "/teachers");
+  }
+
+  confirmTeacher(id) {
+    return this.http.get<{msg: string}>(`${this.userURL}/confirmTeacher/${id}`);
+  }
+
+  deleteUser(id) {
+    return this.http.delete<{msg: string}>(`${this.userURL}/${id}`);
+  }
+
   // findUserById(id) {
   //   return this.http.post<{user: any}>(this.userURL, id);
   // }

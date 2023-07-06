@@ -280,14 +280,42 @@ app.post("/api/users/login", (req, res) => {
 });
 
 
-// Business Logic: Find user by Id
-// app.post("/api/users", (req, res) => {
-//     console.log("Here into BL: Find user by Id", req.body);
-//     User.findOne({ _id: req.body.id }).then(
-//         (findedUser) => {
-//             res.json({ user: findedUser });
-//         });
-// });
+// Business Logic : Get all teachers exept those with status on hold
+app.get("/api/users/teachers", (req, res) => {
+    User.find({ role: "teacher" }).then((data) => {
+        res.json({ docs: data, msg: "OK" });
+    });
+});
+
+
+// Business Logic: Confirm teacher by Id
+app.get("/api/users/confirmTeacher/:id", (req, res) => {
+    console.log("Here is the ID of the teacher to confirm", req.params.id);
+    User.updateOne({ _id: req.params.id }, {status: "confirmed"}).then(
+        (response) => {
+            if (response.nModified == 1) {
+                res.json({ msg: "1" });
+              } else {
+                res.json({ msg: "0" });
+              }
+        });
+});
+
+
+// Business Logic: Delete user by ID
+app.delete("/api/users/:id", (req, res) => {
+    console.log("Here into BL: delete user by id", req.params.id);
+    User.deleteOne({ _id: req.params.id }).then((response) => {
+      response.deletedCount == 1
+        ? res.json({ msg: "1" })
+        : res.json({ msg: "0" })
+    });
+  });
+
+
+
+
+
 
 
 // **********Courses********** 

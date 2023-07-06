@@ -135,10 +135,9 @@ table {
     text-align: center;
     border-collapse: separate;
     border-spacing: 10px;
-    /* font-size: 20px; */
 }
 
-td,
+/* td,
 th {
     background-color: #e5edfd;
     height: 40px;
@@ -148,9 +147,9 @@ th {
 th {
     background-color: #1363DF;
     color: white;
-}
+} */
 
-.price,
+/* .price,
 .count {
     padding: 6px;
     border-radius: 6px;
@@ -163,8 +162,11 @@ th {
 .count {
     background-color: darkgreen;
     color: white;
-}
+} */
 
 p{
     text-transform: capitalize;
+}
+.nav-link{
+    margin-right: 25px;
 }
