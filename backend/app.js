@@ -322,6 +322,14 @@ app.get("/api/users/students", (req, res) => {
 });
 
 
+//   Business Logic: Get All Parents
+app.get("/api/users/parents", (req, res) => {
+    User.find({ role: "parent" }).then(
+        (data) => {
+            res.json({ docs: data, msg: "ok" });
+        });
+});
+
 
 
 

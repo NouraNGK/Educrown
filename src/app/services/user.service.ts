@@ -73,5 +73,9 @@ export class UserService {
     return this.http.get<{docs: any, msg: string}>(this.userURL + "/students");
   }
 
+  getParents() {
+    return this.http.get<{docs: any, msg: string}>(this.userURL + "/parents");
+  }
+
 
 }
