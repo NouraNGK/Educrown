@@ -1,0 +1,170 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+.dashboard-admin {
+    display: flex;
+}
+
+.img-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #f9d78c;
+    flex-shrink: 0;
+}
+
+.img-box img {
+    width: 100%;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile h2 {
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.menu {
+    margin-top: 100px;
+    background-color: white;
+    width: 90px;
+    height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.menu:hover {
+    width: 260px;
+}
+
+ul {
+    list-style: none;
+    position: relative;
+    height: 95%;
+}
+
+ul li a {
+    display: block;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    transition: .5s;
+}
+
+ul li a:hover,
+.active,
+.data-info .box:hover,
+td:hover {
+    background-color: #e5edfd;
+}
+
+.log-out {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+ul li a i {
+    font-size: 20px;
+}
+
+.content {
+    width: 100%;
+    margin: 10px;
+    background-color: white;
+    margin-top: 120px;
+}
+
+.title-info {
+    background-color: #061E43;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.data-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.data-info .box {
+    background-color: #e5edfd!important;
+    height: 150px;
+    flex-basis: 150px;
+    flex-grow: 1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.data-info .box i {
+    font-size: 40px;
+}
+
+.data-info .box .data {
+    text-align: center;
+}
+
+.data-info .box .data span {
+    font-size: 30px;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 10px;
+    /* font-size: 20px; */
+}
+
+td,
+th {
+    background-color: #e5edfd;
+    height: 40px;
+    border-radius: 8px;
+}
+
+th {
+    background-color: #1363DF;
+    color: white;
+}
+
+.price,
+.count {
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.price {
+    background-color: #f9d78c;;
+}
+
+.count {
+    background-color: darkgreen;
+    color: white;
+}
+
+p{
+    text-transform: capitalize;
+}

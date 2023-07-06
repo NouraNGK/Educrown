@@ -23,6 +23,7 @@ import { SignupAdminComponent } from './components/signup-admin/signup-admin.com
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { SearchTeachersComponent } from './components/search-teachers/search-teachers.component';
 import { CourseComponent } from './components/course/course.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CourseComponent } from './components/course/course.component';
     SignupAdminComponent,
     AddCourseComponent,
     SearchTeachersComponent,
-    CourseComponent
+    CourseComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

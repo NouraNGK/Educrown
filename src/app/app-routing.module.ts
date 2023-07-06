@@ -7,7 +7,7 @@ import { SignupAdminComponent } from './components/signup-admin/signup-admin.com
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { SearchTeachersComponent } from './components/search-teachers/search-teachers.component';
 import { CoursesComponent } from './components/courses/courses.component';
-import { CourseComponent } from './components/course/course.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 const routes: Routes = [
@@ -24,7 +24,9 @@ const routes: Routes = [
  // http://localhost:4200/searchTeachers
  {path:"searchTeachers", component: SearchTeachersComponent},
  // http://localhost:4200/allCourses
- {path: "allCourses", component: CoursesComponent}
+ {path: "allCourses", component: CoursesComponent},
+ // http://localhost:4200/admin
+ {path:"admin", component: AdminComponent}
 ];
 
 @NgModule({
