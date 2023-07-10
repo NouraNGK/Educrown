@@ -64,17 +64,20 @@ app.use('/myFiles', express.static(path.join('backend/images')));
 app.use('/myDocuments', express.static(path.join('backend/documents')));
 
 // Media Types that we can accept in the BE side
-const MIME_TYPE = {
+const MIME_TYPE_IMG = {
     'image/png': 'png',
     'image/jpeg': 'jpg',
-    'image/jpg': 'jpg',
-    "application/pdf": "pdf"
+    'image/jpg': 'jpg'
 };
+
+const MIME_TYPE_CV = {
+    "application/pdf": "pdf"
+}
 
 const storageImgConfig = multer.diskStorage({
     // destination
     destination: (req, file, cb) => {
-        const isValid = MIME_TYPE[file.mimetype];
+        const isValid = MIME_TYPE_IMG[file.mimetype];
         let error = new Error("Mime type is invalid");
         if (isValid) {
             error = null;
@@ -83,7 +86,7 @@ const storageImgConfig = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         const name = file.originalname.toLowerCase().split(' ').join('-');
-        const extension = MIME_TYPE[file.mimetype];
+        const extension = MIME_TYPE_IMG[file.mimetype];
         const imgName = name + '-' + Date.now() + '-crococoder-' + '.' +
             extension;
         cb(null, imgName);
@@ -93,7 +96,7 @@ const storageImgConfig = multer.diskStorage({
 const storageCvConfig = multer.diskStorage({
     // destination
     destination: (req, file, cb) => {
-        const isValid = MIME_TYPE[file.mimetype];
+        const isValid = MIME_TYPE_CV[file.mimetype];
         let error = new Error("Mime type is invalid");
         if (isValid) {
             error = null;
@@ -102,7 +105,7 @@ const storageCvConfig = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         const name = file.originalname.toLowerCase().split(' ').join('-');
-        const extension = MIME_TYPE[file.mimetype];
+        const extension = MIME_TYPE_CV[file.mimetype];
         const cvName = name + '-' + Date.now() + '-crococoder-' + '.' +
             extension;
         cb(null, cvName);
@@ -206,11 +209,11 @@ app.post("/api/users/signupParent", (req, res) => {
 
 
 // Business Logic: SignupAdmin
-app.post("/api/users/signupAdmin", multer({ storage: storageImgConfig }).single('img'), (req, res) => {
+app.post("/api/users/signupAdmin", multer({ storage: storageImgConfig }).single('avatar'), (req, res) => {
     console.log("Here into SignupAdmin BL", req.body);
     bcrypt.hash(req.body.pwd, 8).then((cryptedPwd) => {
         req.body.pwd = cryptedPwd;
-        req.body.img = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`
+        req.body.avatar = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`
         let user = new User(req.body);
         user.save((err, doc) => {
             // console.log("Here error", err);
@@ -351,6 +354,17 @@ app.get("/api/courses", (req, res) => {
     Course.find().then((docs) => {
         res.json({ allCourses: docs });
     });
+});
+
+// Business Logic: Delete One Course
+app.delete("/api/courses/:id", (req, res) => {
+    console.log("Here is course ID to delete", req.params.id);
+    Course.deleteOne({ _id: req.params.id }).then(
+        (response) => {
+            response.deletedCount == 1
+                ? res.json({ msg: "1" })
+                : res.json({ msg: "0" })
+        });
 });
 
 

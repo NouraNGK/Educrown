@@ -1,0 +1,33 @@
+<table>
+    <thead>
+        <tr>
+            <th><i class="fas fa-book"></i> ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Duration</th>
+            <th>Sessions Number</th>
+            <th>Students Number</th>
+            <th>Price</th>
+            <th>Avatar</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let course of courses">
+            <td>{{course._id}}</td>
+            <td>{{course.courseName}}</td>
+            <td>{{course.description}}</td>
+            <td>{{course.duration}} week(s)</td>
+            <td>{{course.sessionsNbr}}</td>
+            <td>{{course.studentsNbr}}</td>
+            <td>{{course.price}} TND</td>
+            <td><img [src]="course.img" alt="" style="padding: 0 3px;"></td>
+            <td>
+                <button class="display-btn" style="margin-bottom: 8px;" (click)="goToInfo(course._id)">Display</button>
+                <button class="delete-btn" (click)="deleteCourse(course._id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+

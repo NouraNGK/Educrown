@@ -27,6 +27,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { TeachersTableComponent } from './components/teachers-table/teachers-table.component';
 import { StudentsTableComponent } from './components/students-table/students-table.component';
 import { ParentsTableComponent } from './components/parents-table/parents-table.component';
+import { CoursesTableComponent } from './components/courses-table/courses-table.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ParentsTableComponent } from './components/parents-table/parents-table.
     AdminComponent,
     TeachersTableComponent,
     StudentsTableComponent,
-    ParentsTableComponent
+    ParentsTableComponent,
+    CoursesTableComponent
   ],
   imports: [
     BrowserModule,

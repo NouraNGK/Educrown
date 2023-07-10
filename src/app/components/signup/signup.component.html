@@ -10,232 +10,495 @@
                 <div class="col-lg-8" style="margin-left: 200px;">
                     <div class="contact-form-wrap">
                         <h4 class="title">Sign<span style="color: orange;">up</span></h4>
-                        <form [formGroup]="signupForm">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="firstName"
-                                            placeholder="First Name *">
-                                    </div>
-                                    <div style="color: red;" *ngIf="signupForm.controls['firstName'].invalid && 
-                                    (signupForm.controls['firstName'].touched || 
-                                    signupForm.controls['firstName'].dirty)">
-                                        <div *ngIf="signupForm.controls['firstName'].errors.required">
-                                            First Name is required
+
+                        <div *ngIf="path === '/subscriptionTe'">
+                            <form [formGroup]="teacherForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="firstName"
+                                                placeholder="First Name *">
                                         </div>
-                                        <div *ngIf="signupForm.controls['firstName'].errors.minlength">
-                                            First Name must have at least 3 chars
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="lastName"
-                                            placeholder="Last Name *">
-                                    </div>
-                                    <div style="color: red;" *ngIf="signupForm.controls['lastName'].invalid && 
-                                    (signupForm.controls['lastName'].touched || 
-                                    signupForm.controls['lastName'].dirty)">
-                                        <div *ngIf="signupForm.controls['lastName'].errors.required">
-                                            Last Name is required
-                                        </div>
-                                        <div *ngIf="signupForm.controls['lastName'].errors.minlength">
-                                            Last Name must have at least 5 chars
+                                        <div style="color: red;" *ngIf="teacherForm.controls['firstName'].invalid && 
+                                    (teacherForm.controls['firstName'].touched || 
+                                    teacherForm.controls['firstName'].dirty)">
+                                            <div *ngIf="teacherForm.controls['firstName'].errors.required">
+                                                First Name is required
+                                            </div>
+                                            <div *ngIf="teacherForm.controls['firstName'].errors.minlength">
+                                                First Name must have at least 3 chars
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" formControlName="email"
-                                            placeholder="E-mail *">
-                                    </div>
-                                    <div style="color: red;" *ngIf="signupForm.controls['email'].invalid && 
-                                    (signupForm.controls['email'].touched || 
-                                    signupForm.controls['email'].dirty)">
-                                        <div *ngIf="signupForm.controls['email'].errors.required">
-                                            Email is required
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="lastName"
+                                                placeholder="Last Name *">
                                         </div>
-                                        <div *ngIf="signupForm.controls['email'].errors.pattern">
-                                            Invalid Email Format <br>
-                                            Follow these examples to have a valid email address: <br>
-                                            1-user@example.com <br>
-                                            2-john.doe123@gmail.com <br>
-                                            3-info@my-domain.co <br>
+                                        <div style="color: red;" *ngIf="teacherForm.controls['lastName'].invalid && 
+                                    (teacherForm.controls['lastName'].touched || 
+                                    teacherForm.controls['lastName'].dirty)">
+                                            <div *ngIf="teacherForm.controls['lastName'].errors.required">
+                                                Last Name is required
+                                            </div>
+                                            <div *ngIf="teacherForm.controls['lastName'].errors.minlength">
+                                                Last Name must have at least 5 chars
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="tel" class="form-control" formControlName="tel"
-                                            placeholder="Phone Number *">
-                                    </div>
-                                    <div style="color: red;" *ngIf="signupForm.controls['tel'].invalid && 
-                                    (signupForm.controls['tel'].touched || 
-                                    signupForm.controls['tel'].dirty)">
-                                        <div *ngIf="signupForm.controls['tel'].errors.required">
-                                            Phone number is required
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" formControlName="email"
+                                                placeholder="E-mail *">
                                         </div>
-                                        <div *ngIf="signupForm.controls['tel'].errors.pattern">
-                                            Invalid phone number
-                                        </div>
-                                        <div *ngIf="signupForm.controls['tel'].errors.minlength ||
-                                        signupForm.controls['tel'].errors.maxlength">
-                                            You have to insert 8 numbers exactly
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" formControlName="address"
-                                            placeholder="Address *">
-                                    </div>
-                                    <div style="color: red;" *ngIf="signupForm.controls['address'].invalid && 
-                                    (signupForm.controls['address'].touched || 
-                                    signupForm.controls['address'].dirty)">
-                                        <div *ngIf="signupForm.controls['address'].errors.required">
-                                            Address is required
-                                        </div>
-                                        <div *ngIf="signupForm.controls['address'].errors.maxlength">
-                                            You should not exceed 25 chars
+                                        <div style="color: red;" *ngIf="teacherForm.controls['email'].invalid && 
+                                    (teacherForm.controls['email'].touched || 
+                                    teacherForm.controls['email'].dirty)">
+                                            <div *ngIf="teacherForm.controls['email'].errors.required">
+                                                Email is required
+                                            </div>
+                                            <div *ngIf="teacherForm.controls['email'].errors.pattern">
+                                                Invalid Email Format <br>
+                                                Follow these examples to have a valid email address: <br>
+                                                1-user@example.com <br>
+                                                2-john.doe123@gmail.com <br>
+                                                3-info@my-domain.co <br>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" formControlName="pwd"
-                                            placeholder="Password *">
-                                    </div>
-                                    <div style="color: red;" *ngIf="signupForm.controls['pwd'].invalid && 
-                                    (signupForm.controls['pwd'].touched || 
-                                    signupForm.controls['pwd'].dirty)">
-                                        <div *ngIf="signupForm.controls['pwd'].errors.required">
-                                            Password is required
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="tel" class="form-control" formControlName="tel"
+                                                placeholder="Phone Number *">
                                         </div>
-                                        <div *ngIf="signupForm.controls['pwd'].errors.pattern">
-                                            Password criteria: <br>
-                                            *Allowed characters: uppercase letters, lowercase letters, numbers, and the
-                                            special characters `!`, `@`, `#`, `$`, `%`, `^`, `&`, `*` <br>
-                                            *Length of 6 to 12 characters
+                                        <div style="color: red;" *ngIf="teacherForm.controls['tel'].invalid && 
+                                    (teacherForm.controls['tel'].touched || 
+                                    teacherForm.controls['tel'].dirty)">
+                                            <div *ngIf="teacherForm.controls['tel'].errors.required">
+                                                Phone number is required
+                                            </div>
+                                            <div *ngIf="teacherForm.controls['tel'].errors.pattern">
+                                                Invalid phone number
+                                            </div>
+                                            <div *ngIf="teacherForm.controls['tel'].errors.minlength ||
+                                        teacherForm.controls['tel'].errors.maxlength">
+                                                You have to insert 8 numbers exactly
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <select class="form-control" #roleSelect formControlName="role"
-                                            style="margin-left: 170px;">
-                                            <option value="">Select a Role *</option>
-                                            <option value="teacher">Teacher</option>
-                                            <option value="student">Student</option>
-                                            <option value="parent">Parent</option>
-                                        </select>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="address"
+                                                placeholder="Address *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="teacherForm.controls['address'].invalid && 
+                                    (teacherForm.controls['address'].touched || 
+                                    teacherForm.controls['address'].dirty)">
+                                            <div *ngIf="teacherForm.controls['address'].errors.required">
+                                                Address is required
+                                            </div>
+                                            <div *ngIf="teacherForm.controls['address'].errors.maxlength">
+                                                You should not exceed 25 chars
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div style="color: red; margin-left: 180px;" *ngIf="signupForm.controls['role'].invalid && 
-                                    signupForm.controls['role'].touched">
-                                        <div *ngIf="signupForm.controls['role'].errors.required">
-                                            This field is required
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" formControlName="pwd"
+                                                placeholder="Password *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="teacherForm.controls['pwd'].invalid && 
+                                    (teacherForm.controls['pwd'].touched || 
+                                    teacherForm.controls['pwd'].dirty)">
+                                            <div *ngIf="teacherForm.controls['pwd'].errors.required">
+                                                Password is required
+                                            </div>
+                                            <div *ngIf="teacherForm.controls['pwd'].errors.pattern">
+                                                Password criteria: <br>
+                                                *Allowed characters: uppercase letters, lowercase letters, numbers, and
+                                                the
+                                                special characters `!`, `@`, `#`, `$`, `%`, `^`, `&`, `*` <br>
+                                                *Length of 6 to 12 characters
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row" *ngIf="roleSelect.value === 'teacher'">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <select class="form-control" formControlName="specialty"
-                                            style="margin-left: 170px;">
-                                            <option value="">Select a Specialty *</option>
-                                            <option value="business">Business</option>
-                                            <option value="dataScience">Data Science</option>
-                                            <option value="development">Development</option>
-                                            <option value="finance">Finance</option>
-                                            <option value="marketing">Marketing</option>
-                                        </select>
-                                    </div>
-                                    <div style="color: red; margin-left: 180px;" *ngIf="signupForm.controls['specialty'].invalid && 
-                                    signupForm.controls['specialty'].touched">
-                                        <div *ngIf="signupForm.controls['specialty'].errors.required">
-                                            Specialty is required
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="specialty"
+                                                style="margin-left: 170px;">
+                                                <option value="">Select a Specialty *</option>
+                                                <option value="business">Business</option>
+                                                <option value="dataScience">Data Science</option>
+                                                <option value="development">Development</option>
+                                                <option value="finance">Finance</option>
+                                                <option value="marketing">Marketing</option>
+                                            </select>
+                                        </div>
+                                        <div style="color: red; margin-left: 180px;" *ngIf="teacherForm.controls['specialty'].invalid && 
+                                    teacherForm.controls['specialty'].touched">
+                                            <div *ngIf="teacherForm.controls['specialty'].errors.required">
+                                                Specialty is required
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row" *ngIf="roleSelect.value === 'teacher'">
-                                <div class="form-group" style="visibility: hidden;">
-                                    <input type="file" class="form-control" #cvPicker (change)="onCvSelected($event)">
-                                </div>
-                                <div class="text-center">
-                                    <button class="btn" (click)="cvPicker.click()"
-                                        style="margin-top: -60px; margin-left: -20px;">
-                                        Select your CV
-                                    </button>
-                                </div>
-                                <div class="row mt-5" *ngIf="cvName"
-                                    style="font-weight: bold; color: rgb(245, 160, 3); ">
-                                    <span style="text-align: center; margin-top: -20px;">Selected CV Name: {{ cvName
-                                        }}</span>
-                                </div>
-                            </div>
-                            <div class="row" *ngIf="roleSelect.value === 'student'">
-                                <div class="col-md-6" style="margin-left: -42px; margin-top: -60px;">
+                                <div class="row">
                                     <div class="form-group" style="visibility: hidden;">
-                                        <input type="file" class="form-control" #filePicker
-                                            (change)="onImageSelected($event)">
+                                        <input type="file" class="form-control" #cvPicker
+                                            (change)="onFileSelected($event)">
                                     </div>
                                     <div class="text-center">
-                                        <button class="btn" (click)="filePicker.click()"
-                                            style="margin-left: -5px; margin-right: -435px;">
-                                            Select your avatar
+                                        <button class="btn" (click)="cvPicker.click()"
+                                            style="margin-top: -60px; margin-left: 0px;">
+                                            Select your CV
                                         </button>
                                     </div>
-                                    <div class="text-center mt-5">
-                                        <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px"
-                                            style="margin-left: 280px;">
+                                    <div *ngIf="sanitizedPDFUrl">
+                                        <iframe [src]="sanitizedPDFUrl" width="100%" height="500px"></iframe>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row" *ngIf="roleSelect.value === 'parent'">
-                                <div class="col-md-6" style="margin-left: 170px;">
-                                    <div class="form-group">
-                                        <input type="tel" class="form-control" formControlName="childNbr"
-                                            placeholder="Your child's number *">
-                                    </div>
-                                    <div style="color: red;" *ngIf="signupForm.controls['childNbr'].invalid && 
-                                    (signupForm.controls['childNbr'].touched || 
-                                    signupForm.controls['childNbr'].dirty)">
-                                        <div *ngIf="signupForm.controls['childNbr'].errors.required">
-                                            Your child's number is required
-                                        </div>
-                                        <div *ngIf="signupForm.controls['childNbr'].errors.pattern">
-                                            Invalid phone number
-                                        </div>
-                                        <div *ngIf="signupForm.controls['childNbr'].errors.minlength ||
-                                        signupForm.controls['childNbr'].errors.maxlength">
-                                            You have to insert 8 numbers exactly
+
+                                <div style="margin-top: 25px;">
+                                    <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory
+                                        !
+                                    </p>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="submit" (click)="signup()" [disabled]="teacherForm.invalid"
+                                                class="btn btn-primary py-3 px-5" value="Signup">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div style="margin-top: 25px;">
-                                <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory !
-                                </p>
-                            </div>
+                                <div style="text-align: center;">
+                                    <span style="color: red;">{{errorMsg}}</span>
+                                </div>
 
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="submit" (click)="signup()" [disabled]="disabledButton()"
-                                            class="btn btn-primary py-3 px-5" value="Signup">
+                                {{teacherForm.value | json}}
+                                {{teacherForm.valid | json}}
+                            </form>
+                        </div>
+
+                        <div *ngIf="path === '/subscriptionSt'">
+                            <form [formGroup]="studentForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="firstName"
+                                                placeholder="First Name *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="studentForm.controls['firstName'].invalid && 
+                                    (studentForm.controls['firstName'].touched || 
+                                    studentForm.controls['firstName'].dirty)">
+                                            <div *ngIf="studentForm.controls['firstName'].errors.required">
+                                                First Name is required
+                                            </div>
+                                            <div *ngIf="studentForm.controls['firstName'].errors.minlength">
+                                                First Name must have at least 3 chars
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="lastName"
+                                                placeholder="Last Name *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="studentForm.controls['lastName'].invalid && 
+                                    (studentForm.controls['lastName'].touched || 
+                                    studentForm.controls['lastName'].dirty)">
+                                            <div *ngIf="studentForm.controls['lastName'].errors.required">
+                                                Last Name is required
+                                            </div>
+                                            <div *ngIf="studentForm.controls['lastName'].errors.minlength">
+                                                Last Name must have at least 5 chars
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" formControlName="email"
+                                                placeholder="E-mail *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="studentForm.controls['email'].invalid && 
+                                    (studentForm.controls['email'].touched || 
+                                    studentForm.controls['email'].dirty)">
+                                            <div *ngIf="studentForm.controls['email'].errors.required">
+                                                Email is required
+                                            </div>
+                                            <div *ngIf="studentForm.controls['email'].errors.pattern">
+                                                Invalid Email Format <br>
+                                                Follow these examples to have a valid email address: <br>
+                                                1-user@example.com <br>
+                                                2-john.doe123@gmail.com <br>
+                                                3-info@my-domain.co <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="tel" class="form-control" formControlName="tel"
+                                                placeholder="Phone Number *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="studentForm.controls['tel'].invalid && 
+                                    (studentForm.controls['tel'].touched || 
+                                    studentForm.controls['tel'].dirty)">
+                                            <div *ngIf="studentForm.controls['tel'].errors.required">
+                                                Phone number is required
+                                            </div>
+                                            <div *ngIf="studentForm.controls['tel'].errors.pattern">
+                                                Invalid phone number
+                                            </div>
+                                            <div *ngIf="studentForm.controls['tel'].errors.minlength ||
+                                        studentForm.controls['tel'].errors.maxlength">
+                                                You have to insert 8 numbers exactly
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="address"
+                                                placeholder="Address *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="studentForm.controls['address'].invalid && 
+                                    (studentForm.controls['address'].touched || 
+                                    studentForm.controls['address'].dirty)">
+                                            <div *ngIf="studentForm.controls['address'].errors.required">
+                                                Address is required
+                                            </div>
+                                            <div *ngIf="studentForm.controls['address'].errors.maxlength">
+                                                You should not exceed 25 chars
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" formControlName="pwd"
+                                                placeholder="Password *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="studentForm.controls['pwd'].invalid && 
+                                    (studentForm.controls['pwd'].touched || 
+                                    studentForm.controls['pwd'].dirty)">
+                                            <div *ngIf="studentForm.controls['pwd'].errors.required">
+                                                Password is required
+                                            </div>
+                                            <div *ngIf="studentForm.controls['pwd'].errors.pattern">
+                                                Password criteria: <br>
+                                                *Allowed characters: uppercase letters, lowercase letters, numbers, and
+                                                the
+                                                special characters `!`, `@`, `#`, `$`, `%`, `^`, `&`, `*` <br>
+                                                *Length of 6 to 12 characters
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-left: -42px; margin-top: -25px;">
+                                        <div class="form-group" style="visibility: hidden;">
+                                            <input type="file" class="form-control" #filePicker
+                                                (change)="onImageSelected($event)">
+                                        </div>
+                                        <div class="text-center">
+                                            <button class="btn" (click)="filePicker.click()"
+                                                style="margin-left: -5px; margin-right: -435px;">
+                                                Select your avatar
+                                            </button>
+                                        </div>
+                                        <div class="text-center mt-5">
+                                            <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px"
+                                                style="margin-left: 280px;">
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <div style="text-align: center;">
-                                <span style="color: red;">{{errorMsg}}</span>
-                            </div>
-                            
-                            {{signupForm.value | json}}
-                            {{signupForm.valid | json}}
-                        </form>
+                                <div style="margin-top: 25px;">
+                                    <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory
+                                        !
+                                    </p>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="submit" (click)="signup()" [disabled]="studentForm.invalid"
+                                                class="btn btn-primary py-3 px-5" value="Signup">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <span style="color: red;">{{errorMsg}}</span>
+                                </div>
+
+                                {{studentForm.value | json}}
+                                {{studentForm.valid | json}}
+                            </form>
+                        </div>
+
+                        <div *ngIf="path === '/subscriptionPa'">
+                            <form [formGroup]="parentForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="firstName"
+                                                placeholder="First Name *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="parentForm.controls['firstName'].invalid && 
+                                    (parentForm.controls['firstName'].touched || 
+                                    parentForm.controls['firstName'].dirty)">
+                                            <div *ngIf="parentForm.controls['firstName'].errors.required">
+                                                First Name is required
+                                            </div>
+                                            <div *ngIf="parentForm.controls['firstName'].errors.minlength">
+                                                First Name must have at least 3 chars
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="lastName"
+                                                placeholder="Last Name *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="parentForm.controls['lastName'].invalid && 
+                                    (parentForm.controls['lastName'].touched || 
+                                    parentForm.controls['lastName'].dirty)">
+                                            <div *ngIf="parentForm.controls['lastName'].errors.required">
+                                                Last Name is required
+                                            </div>
+                                            <div *ngIf="parentForm.controls['lastName'].errors.minlength">
+                                                Last Name must have at least 5 chars
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" formControlName="email"
+                                                placeholder="E-mail *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="parentForm.controls['email'].invalid && 
+                                    (parentForm.controls['email'].touched || 
+                                    parentForm.controls['email'].dirty)">
+                                            <div *ngIf="parentForm.controls['email'].errors.required">
+                                                Email is required
+                                            </div>
+                                            <div *ngIf="parentForm.controls['email'].errors.pattern">
+                                                Invalid Email Format <br>
+                                                Follow these examples to have a valid email address: <br>
+                                                1-user@example.com <br>
+                                                2-john.doe123@gmail.com <br>
+                                                3-info@my-domain.co <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="tel" class="form-control" formControlName="tel"
+                                                placeholder="Phone Number *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="parentForm.controls['tel'].invalid && 
+                                    (parentForm.controls['tel'].touched || 
+                                    parentForm.controls['tel'].dirty)">
+                                            <div *ngIf="parentForm.controls['tel'].errors.required">
+                                                Phone number is required
+                                            </div>
+                                            <div *ngIf="parentForm.controls['tel'].errors.pattern">
+                                                Invalid phone number
+                                            </div>
+                                            <div *ngIf="parentForm.controls['tel'].errors.minlength ||
+                                        parentForm.controls['tel'].errors.maxlength">
+                                                You have to insert 8 numbers exactly
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" formControlName="address"
+                                                placeholder="Address *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="parentForm.controls['address'].invalid && 
+                                    (parentForm.controls['address'].touched || 
+                                    parentForm.controls['address'].dirty)">
+                                            <div *ngIf="parentForm.controls['address'].errors.required">
+                                                Address is required
+                                            </div>
+                                            <div *ngIf="parentForm.controls['address'].errors.maxlength">
+                                                You should not exceed 25 chars
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" formControlName="pwd"
+                                                placeholder="Password *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="parentForm.controls['pwd'].invalid && 
+                                    (parentForm.controls['pwd'].touched || 
+                                    parentForm.controls['pwd'].dirty)">
+                                            <div *ngIf="parentForm.controls['pwd'].errors.required">
+                                                Password is required
+                                            </div>
+                                            <div *ngIf="parentForm.controls['pwd'].errors.pattern">
+                                                Password criteria: <br>
+                                                *Allowed characters: uppercase letters, lowercase letters, numbers, and
+                                                the
+                                                special characters `!`, `@`, `#`, `$`, `%`, `^`, `&`, `*` <br>
+                                                *Length of 6 to 12 characters
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-left: 170px;">
+                                        <div class="form-group">
+                                            <input type="tel" class="form-control" formControlName="childNbr"
+                                                placeholder="Your child's number *">
+                                        </div>
+                                        <div style="color: red;" *ngIf="parentForm.controls['childNbr'].invalid && 
+                                    (parentForm.controls['childNbr'].touched || 
+                                    parentForm.controls['childNbr'].dirty)">
+                                            <div *ngIf="parentForm.controls['childNbr'].errors.required">
+                                                Your child's number is required
+                                            </div>
+                                            <div *ngIf="parentForm.controls['childNbr'].errors.pattern">
+                                                Invalid phone number
+                                            </div>
+                                            <div *ngIf="parentForm.controls['childNbr'].errors.minlength ||
+                                        parentForm.controls['childNbr'].errors.maxlength">
+                                                You have to insert 8 numbers exactly
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div style="margin-top: 25px;">
+                                    <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory
+                                        !
+                                    </p>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="submit" (click)="signup()" [disabled]="parentForm.invalid"
+                                                class="btn btn-primary py-3 px-5" value="Signup">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <span style="color: red;">{{errorMsg}}</span>
+                                </div>
+
+                                {{parentForm.value | json}}
+                                {{parentForm.valid | json}}
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>

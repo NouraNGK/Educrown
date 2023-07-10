@@ -12,8 +12,12 @@ import { AdminComponent } from './components/admin/admin.component';
 const routes: Routes = [
  // http://localhost:4200/
  {path: "", component: HomeComponent},
- // http://localhost:4200/subscription
- {path: "subscription", component: SignupComponent},
+ // http://localhost:4200/subscriptionTe
+ {path: "subscriptionTe", component: SignupComponent},
+ // http://localhost:4200/subscriptionSt
+ {path: "subscriptionSt", component: SignupComponent},
+ // http://localhost:4200/subscriptionPa
+ {path: "subscriptionPa", component: SignupComponent},
  // http://localhost:4200/signupAdmin
  {path: "signupAdmin", component: SignupAdminComponent},
  // http://localhost:4200/signin

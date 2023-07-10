@@ -29,4 +29,8 @@ export class CourseService {
     return this.http.get<{allCourses: any}>(this.courseURL);
   }
 
+  deleteCourse(id) {
+    return this.http.delete<{msg: string}>(`${this.courseURL}/${id}`);
+  }
+
 }

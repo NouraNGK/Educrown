@@ -49,7 +49,7 @@ export class UserService {
     formData.append("tel", user.tel);
     formData.append("pwd", user.pwd);
     formData.append("role", user.role);
-    formData.append("img", img);
+    formData.append("avatar", img);
     return this.http.post<{msg: string}>(this.userURL + "/signupAdmin", formData);
   }
 
