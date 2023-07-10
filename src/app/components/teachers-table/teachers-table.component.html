@@ -18,7 +18,7 @@
             <td>{{teacher.lastName}}</td>
             <td>{{teacher.tel}}</td>
             <td>{{teacher.specialty}}</td>
-            <td>{{teacher.cv}}</td>
+            <td><button class="read-btn" (click)="displayCv(teacher._id)">Show File</button></td>
             <td>{{teacher.status}}</td>
             <td>
                 <button class="confirm-btn mt-1" (click)="confirmTeacher(teacher._id)">Confirm</button>

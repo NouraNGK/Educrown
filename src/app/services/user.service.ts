@@ -77,5 +77,8 @@ export class UserService {
     return this.http.get<{docs: any, msg: string}>(this.userURL + "/parents");
   }
 
+  getUserById(id) {
+    return this.http.get<{user: any}>(`${this.userURL}/${id}`);
+  }
 
 }

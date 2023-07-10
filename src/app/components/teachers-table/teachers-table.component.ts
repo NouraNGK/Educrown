@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-teachers-table',
@@ -10,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class TeachersTableComponent implements OnInit {
 
   teachers: any;
+  sanitizedPDFUrl: any;
   constructor(private userService: UserService,
     private router: Router) { }
 
@@ -31,7 +33,7 @@ export class TeachersTableComponent implements OnInit {
     localStorage.setItem("id", id);
     this.router.navigate(["userInfo"]);
   }
-  
+
 
   deleteTeacher(id) {
     this.userService.deleteUser(id).subscribe(
@@ -50,5 +52,43 @@ export class TeachersTableComponent implements OnInit {
         this.teachers = response.docs;
       });
   }
+
+
+  displayCv(id) {
+    this.userService.getUserById(id).subscribe(
+      (response) => {
+        console.log("Here is the BL response:", response.user);
+        let pdfUrlFromDatabase = response.user.cv;
+        Swal.fire({
+          html: `
+            <embed src="${pdfUrlFromDatabase}" type="application/pdf" width="100%" height="500px" />
+          `,
+          showCancelButton: true,
+          confirmButtonText: 'Close',
+          cancelButtonText: 'Cancel',
+          showCloseButton: true
+        });
+
+        // Other solutions
+        // **
+        // window.location.href = pdfUrlFromDatabase;
+        // **
+        // Swal.fire({
+        //   imageUrl: pdfUrlFromDatabase,
+        //   imageAlt: 'PDF Preview',
+        //   width: '80%',
+        //   showCancelButton: true,
+        //   confirmButtonText: 'Open PDF',
+        //   cancelButtonText: 'Cancel'
+        // })
+        // .then((result) => {
+        //   if (result.isConfirmed) {
+        //     Handle opening the PDF, e.g., open in a new tab or redirect to a PDF viewer page
+        //     window.open(pdfUrlFromDatabase, '_blank');
+        //   }
+        // });
+      });
+  }
+
 
 }

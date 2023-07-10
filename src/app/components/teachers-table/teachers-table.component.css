@@ -27,6 +27,7 @@ td {
     border: 2px rgb(25, 198, 25) solid;
     border-radius: 8px; 
     color: rgb(25, 198, 25);
+    margin-right: 3px;
 }
 
 .confirm-btn:hover{
@@ -37,6 +38,7 @@ td {
 .display-btn{
     border: 2px #1363DF solid;
     border-radius: 8px;
+    margin-right: 3px;
 }
 
 .display-btn:hover{
@@ -63,5 +65,16 @@ td {
 
 .delete-btn:hover{
     background-color: red;
+    color: white;
+}
+
+.read-btn{
+    border: 2px orange solid;
+    border-radius: 8px; 
+    color: orange;
+}
+
+.read-btn:hover{
+    background-color: orange;
     color: white;
 }

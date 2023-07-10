@@ -334,6 +334,17 @@ app.get("/api/users/parents", (req, res) => {
 });
 
 
+//   Business Logic: Get User By Id
+app.get("/api/users/:id", (req, res) => {
+    console.log("Here is user Id", req.params.id);
+    User.findOne({_id: req.params.id}).then(
+        (doc) => {
+            res.json({user: doc});
+        });
+});
+
+
+
 
 
 
