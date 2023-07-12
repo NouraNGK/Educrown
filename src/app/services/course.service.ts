@@ -33,4 +33,8 @@ export class CourseService {
     return this.http.delete<{msg: string}>(`${this.courseURL}/${id}`);
   }
 
+  getCourseById(id) {
+    return this.http.get<{course: any}>(`${this.courseURL}/${id}`);
+  }
+
 }

@@ -28,6 +28,8 @@ import { TeachersTableComponent } from './components/teachers-table/teachers-tab
 import { StudentsTableComponent } from './components/students-table/students-table.component';
 import { ParentsTableComponent } from './components/parents-table/parents-table.component';
 import { CoursesTableComponent } from './components/courses-table/courses-table.component';
+import { AssignmentComponent } from './components/assignment/assignment.component';
+import { AssignmentDetailsComponent } from './components/assignment-details/assignment-details.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { CoursesTableComponent } from './components/courses-table/courses-table.
     TeachersTableComponent,
     StudentsTableComponent,
     ParentsTableComponent,
-    CoursesTableComponent
+    CoursesTableComponent,
+    AssignmentComponent,
+    AssignmentDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -81,4 +81,8 @@ export class UserService {
     return this.http.get<{user: any}>(`${this.userURL}/${id}`);
   }
 
+  assignStudentToCourse(obj) {
+    return this.http.post<{msg: string}>(this.userURL, obj);
+  }
+
 }

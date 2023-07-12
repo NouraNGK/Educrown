@@ -64,7 +64,7 @@ export class AddCourseComponent implements OnInit {
             timer: 3000
           });
           // I just put the home path as a test, I should replace it later by the course page
-          this.router.navigate(["allCourses"]);
+          this.router.navigate([""]);
         }
       });
   }

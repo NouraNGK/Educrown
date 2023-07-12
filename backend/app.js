@@ -27,9 +27,13 @@ const mongoose = require("mongoose");
 mongoose.set('useCreateIndex', true)
 mongoose.connect('mongodb://127.0.0.1:27017/educrownDB');
 
+// Import ObjectID
+const { ObjectId } = require("mongodb");
+
 // Models importation
 const User = require("./models/user");
 const Course = require("./models/course");
+const Affectation = require("./models/affectation");
 
 // creates express application
 const app = express();
@@ -337,9 +341,33 @@ app.get("/api/users/parents", (req, res) => {
 //   Business Logic: Get User By Id
 app.get("/api/users/:id", (req, res) => {
     console.log("Here is user Id", req.params.id);
-    User.findOne({_id: req.params.id}).then(
+    User.findOne({ _id: req.params.id }).then(
         (doc) => {
-            res.json({user: doc});
+            res.json({ user: doc });
+        });
+});
+
+//   Business Logic: Assign a student to a course
+// msg: "0" => Student is already assigned to this course
+// msg: "1" => Student assigned with success to the course
+app.post("/api/users", (req, res) => {
+    console.log("Here is the affectation Object", req.body);
+    Affectation.findOne({ courseId: req.body.courseId, studentId: req.body.studentId }).then(
+        (doc) => {
+            if (doc) {
+                res.json({ msg: "0" });
+            } else {
+                let affectation = new Affectation({
+                    courseId: ObjectId(req.body.courseId),
+                    studentId: ObjectId(req.body.studentId),
+                });
+                affectation.save((err, result) => {
+                    console.log("Error", err);
+                    if (result) {
+                        res.json({ msg: "1" });
+                    }
+                });
+            }
         });
 });
 
@@ -375,6 +403,15 @@ app.delete("/api/courses/:id", (req, res) => {
             response.deletedCount == 1
                 ? res.json({ msg: "1" })
                 : res.json({ msg: "0" })
+        });
+});
+
+//   Business Logic: Get Course By Id
+app.get("/api/courses/:id", (req, res) => {
+    console.log("Here is course ID", req.params.id);
+    Course.findOne({ _id: req.params.id }).then(
+        (doc) => {
+            res.json({ course: doc });
         });
 });
 
