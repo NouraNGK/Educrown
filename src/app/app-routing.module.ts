@@ -10,6 +10,7 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
 import { AssignmentDetailsComponent } from './components/assignment-details/assignment-details.component';
+import { TeacherCoursesComponent } from './components/teacher-courses/teacher-courses.component';
 
 const routes: Routes = [
  // http://localhost:4200/
@@ -35,7 +36,9 @@ const routes: Routes = [
  // http://localhost:4200/assignment
  {path:"assignment", component: AssignmentComponent},
  // http://localhost:4200/assignment/:id
- {path:"assignmentDetails/:id", component: AssignmentDetailsComponent}
+ {path:"assignmentDetails/:id", component: AssignmentDetailsComponent},
+ // http://localhost:4200/myCourses
+ {path: "myCourses", component: TeacherCoursesComponent}
 ];
 
 @NgModule({

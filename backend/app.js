@@ -415,6 +415,14 @@ app.get("/api/courses/:id", (req, res) => {
         });
 });
 
+//   Business Logic: Get Courses By IdUser
+app.get("/api/courses/myCourses/:id", (req, res) => {
+    Course.find({ idTeacher: req.params.id }).then(
+        (docs) => {
+            res.json({ findedCourses: docs });
+        });
+});
+
 
 
 
