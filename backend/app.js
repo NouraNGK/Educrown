@@ -398,7 +398,13 @@ app.get("/api/users/affectedSrudents/:id", (req, res) => {
 });
 
 
-
+//   Business Logic: Evaluate a student in a teacher-specific course
+app.post("/api/users/evaluation", (req, res) => {
+    console.log("Here is the evaluation object from FE:", req.body);
+    let evaluation = new Evaluation(req.body);
+    evaluation.save();
+    res.json({msg: "1"});
+})
 
 
 

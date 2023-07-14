@@ -21,7 +21,7 @@ export class UserService {
     formData.append("specialty", user.specialty);
     formData.append("cv", cv);
     formData.append("status", user.status);
-    return this.http.post<{msg: string}>(this.userURL + "/signupTeacher", formData);
+    return this.http.post<{ msg: string }>(this.userURL + "/signupTeacher", formData);
   }
 
   signupStudent(user: any, img: File) {
@@ -34,11 +34,11 @@ export class UserService {
     formData.append("pwd", user.pwd);
     formData.append("role", user.role);
     formData.append("avatar", img);
-    return this.http.post<{msg: string}>(this.userURL + "/signupStudent", formData);
+    return this.http.post<{ msg: string }>(this.userURL + "/signupStudent", formData);
   }
 
   signupParent(user: any) {
-    return this.http.post<{msg: string}>(this.userURL + "/signupParent", user);
+    return this.http.post<{ msg: string }>(this.userURL + "/signupParent", user);
   }
 
   signupAdmin(user: any, img: File) {
@@ -50,43 +50,46 @@ export class UserService {
     formData.append("pwd", user.pwd);
     formData.append("role", user.role);
     formData.append("avatar", img);
-    return this.http.post<{msg: string}>(this.userURL + "/signupAdmin", formData);
+    return this.http.post<{ msg: string }>(this.userURL + "/signupAdmin", formData);
   }
 
   login(user) {
-    return this.http.post<{msg: string, user: any}>(this.userURL + "/login", user);
+    return this.http.post<{ msg: string, user: any }>(this.userURL + "/login", user);
   }
 
   getTeachers() {
-    return this.http.get<{docs: any, msg: string}>(this.userURL + "/teachers");
+    return this.http.get<{ docs: any, msg: string }>(this.userURL + "/teachers");
   }
 
   confirmTeacher(id) {
-    return this.http.get<{msg: string}>(`${this.userURL}/confirmTeacher/${id}`);
+    return this.http.get<{ msg: string }>(`${this.userURL}/confirmTeacher/${id}`);
   }
 
   deleteUser(id) {
-    return this.http.delete<{msg: string}>(`${this.userURL}/${id}`);
+    return this.http.delete<{ msg: string }>(`${this.userURL}/${id}`);
   }
 
   getStudents() {
-    return this.http.get<{docs: any, msg: string}>(this.userURL + "/students");
+    return this.http.get<{ docs: any, msg: string }>(this.userURL + "/students");
   }
 
   getParents() {
-    return this.http.get<{docs: any, msg: string}>(this.userURL + "/parents");
+    return this.http.get<{ docs: any, msg: string }>(this.userURL + "/parents");
   }
 
   getUserById(id) {
-    return this.http.get<{user: any}>(`${this.userURL}/${id}`);
+    return this.http.get<{ user: any }>(`${this.userURL}/${id}`);
   }
 
   assignStudentToCourse(obj) {
-    return this.http.post<{msg: string}>(this.userURL, obj);
+    return this.http.post<{ msg: string }>(this.userURL, obj);
   }
 
   getAffectedStudentsByCourseId(id) {
-    return this.http.get<{students: any, msg: string}>(`${this.userURL}`+ "/affectedSrudents/" +`${id}`);
+    return this.http.get<{ students: any, msg: string }>(`${this.userURL}` + "/affectedSrudents/" + `${id}`);
   }
 
+  studentEvaluation(evalObj) {
+    return this.http.post<{msg: string}>(`${this.userURL}/evaluation`, evalObj);
+  }
 }
