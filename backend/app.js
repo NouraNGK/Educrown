@@ -34,6 +34,7 @@ const { ObjectId } = require("mongodb");
 const User = require("./models/user");
 const Course = require("./models/course");
 const Affectation = require("./models/affectation");
+const Evaluation = require("./models/evaluation");
 
 // creates express application
 const app = express();
