@@ -38,7 +38,7 @@ export class CourseInfoComponent implements OnInit {
   }
 
   goToEvaluation(idStudent) {
-    this.router.navigate[`evaluation/${this.idChosenCourse}/${idStudent}`];
+    this.router.navigate([`studentEvaluation/${this.idChosenCourse}/${idStudent}`]);
   }
 
 }

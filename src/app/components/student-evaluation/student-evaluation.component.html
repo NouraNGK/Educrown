@@ -1,0 +1,79 @@
+<!-- main-area -->
+<main class="main-area fix" style="margin-top: 100px;">
+
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
+
+    <!-- Evaluation Start -->
+    <section class="contact-area section-py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8" style="margin-left: 200px;">
+                    <div class="contact-form-wrap">
+                        <h4 class="title">Student <span style="color: orange;">Evaluation</span></h4>
+                        <form [formGroup]="evaluationForm">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" formControlName="note"
+                                        placeholder="Insert a note *">
+                                </div>
+                                <div style="color: red;" *ngIf="evaluationForm.controls['note'].invalid && 
+                                    (evaluationForm.controls['note'].touched || 
+                                    evaluationForm.controls['note'].dirty)">
+                                    <div *ngIf="evaluationForm.controls['note'].errors.required">
+                                        Note is required
+                                    </div>
+                                    <div *ngIf="evaluationForm.controls['note'].errors.min">
+                                        Note must be equal or greater than 0
+                                    </div>
+                                    <div *ngIf="evaluationForm.controls['note'].errors.max">
+                                        Note must not exceed 20
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control" formControlName="comment"
+                                        placeholder="Write a comment *"></textarea>
+                                </div>
+                                <div style="color: red;" *ngIf="evaluationForm.controls['comment'].invalid && 
+                                (evaluationForm.controls['comment'].touched || 
+                                evaluationForm.controls['comment'].dirty)">
+                                    <div *ngIf="evaluationForm.controls['comment'].errors.required">
+                                        Comment is required
+                                    </div>
+                                    <div *ngIf="evaluationForm.controls['comment'].errors.maxlength">
+                                        Comment should not exceed 45 chars
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 25px;">
+                                <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory !
+                                </p>
+                            </div>
+
+                            <div class="col-md-4" style="margin-left: -12px;">
+                                <div class="form-group">
+                                    <input type="submit" (click)="addEvaluation()" [disabled]="evaluationForm.invalid"
+                                        class="btn btn-primary py-3 px-5" value="Add Evaluation" style="width: 250px;">
+                                </div>
+                            </div>
+
+                            <div>
+                                <span>{{msg}}</span>
+                            </div>
+
+                            {{evaluationForm.value | json}}
+                            {{evaluationForm.valid | json}}
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Evaluation End -->
+
+</main>
+<!-- main-area-end -->
