@@ -371,6 +371,31 @@ app.post("/api/users", (req, res) => {
         });
 });
 
+//   Business Logic: Get affected students by courseId
+app.get("/api/users/affectedSrudents/:id", (req, res) => {
+    console.log("Here is ID course:", req.params.id);
+    Affectation.aggregate([
+        { $match: { courseId: mongoose.Types.ObjectId(req.params.id) } },
+        {
+            $lookup: {
+                from: "users",
+                localField: "studentId",
+                foreignField: "_id",
+                as: "students",
+            },
+        },
+    ],
+        (error, docs) => {
+            if (docs) {
+                console.log("Here are the BE docs:", docs);
+                res.json({ students: docs, msg: "1" });
+            } else {
+                res.json({ msg: "0" });
+            }
+        }
+    )
+});
+
 
 
 

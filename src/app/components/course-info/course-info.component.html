@@ -1,0 +1,40 @@
+<!-- main-area -->
+<main class="main-area fix" style="margin-top: 100px;">
+
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
+
+    <!-- Selected Course Info Start -->
+    <section class="contact-area section-py-120">
+        <div class="row">
+            <div class="col-4" style="margin-left: 500px;">
+                <app-course [courseInput]="selectedCourse"></app-course>
+            </div>
+        </div>
+        <h4>List of the assigned students</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Avatar</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of affectedStudentTable">
+                    <td>{{student.students[0].firstName}}</td>
+                    <td>{{student.students[0].lastName}}</td>
+                    <td><img [src]="student.students[0].avatar" alt="img" style="width: 250px; margin: 3px 0px;"></td>
+                    <td>
+                        <button class="display-btn" style="margin-bottom: 8px;"
+                            (click)="goToEvaluation(student.students[0]._id)">Evaluate</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Selected Course Info End -->
+
+</main>
+<!-- main-area-end -->

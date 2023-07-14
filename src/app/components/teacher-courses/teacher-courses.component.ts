@@ -32,7 +32,7 @@ export class TeacherCoursesComponent implements OnInit {
   }
 
   courseDetailsRoute(id) {
-    this.router.navigate([`courseDetails/${id}`]);
+    this.router.navigate([`courseInfo/${id}`]);
   }
 
 }

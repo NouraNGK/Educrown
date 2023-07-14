@@ -31,6 +31,7 @@ import { CoursesTableComponent } from './components/courses-table/courses-table.
 import { AssignmentComponent } from './components/assignment/assignment.component';
 import { AssignmentDetailsComponent } from './components/assignment-details/assignment-details.component';
 import { TeacherCoursesComponent } from './components/teacher-courses/teacher-courses.component';
+import { CourseInfoComponent } from './components/course-info/course-info.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { TeacherCoursesComponent } from './components/teacher-courses/teacher-co
     CoursesTableComponent,
     AssignmentComponent,
     AssignmentDetailsComponent,
-    TeacherCoursesComponent
+    TeacherCoursesComponent,
+    CourseInfoComponent
   ],
   imports: [
     BrowserModule,
