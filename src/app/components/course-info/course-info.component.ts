@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/app/services/course.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -16,7 +16,8 @@ export class CourseInfoComponent implements OnInit {
   affectedStudentTable: any;
   constructor(private activatedRoute: ActivatedRoute,
     private courseService: CourseService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit() {
     this.idChosenCourse = this.activatedRoute.snapshot.paramMap.get("id");
@@ -34,6 +35,10 @@ export class CourseInfoComponent implements OnInit {
           console.log("No student is assigned to this course");
         }
       });
+  }
+
+  goToEvaluation(idStudent) {
+    this.router.navigate[`evaluation/${this.idChosenCourse}/${idStudent}`];
   }
 
 }
