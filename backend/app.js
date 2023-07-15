@@ -404,7 +404,31 @@ app.post("/api/users/evaluation", (req, res) => {
     let evaluation = new Evaluation(req.body);
     evaluation.save();
     res.json({msg: "1"});
-})
+});
+
+//   Business Logic: Get student evaluation in a specific course
+app.get("/api/users/stEval/:idSt/:idCo", (req, res) => {
+    Evaluation.aggregate([
+        {
+          $match: {
+            studentId: mongoose.Types.ObjectId(req.params.idSt),
+            courseId: mongoose.Types.ObjectId(req.params.idCo)
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            note: 1,
+            comment: 1
+          }
+        }
+      ])
+        .then((evaluation) => {
+            if (evaluation) {
+                res.json({eval: evaluation});
+            }
+        })
+});
 
 
 

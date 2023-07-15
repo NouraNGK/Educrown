@@ -34,6 +34,7 @@ import { TeacherCoursesComponent } from './components/teacher-courses/teacher-co
 import { CourseInfoComponent } from './components/course-info/course-info.component';
 import { StudentEvaluationComponent } from './components/student-evaluation/student-evaluation.component';
 import { StudentCoursesComponent } from './components/student-courses/student-courses.component';
+import { StudentCourseInfoComponent } from './components/student-course-info/student-course-info.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { StudentCoursesComponent } from './components/student-courses/student-co
     TeacherCoursesComponent,
     CourseInfoComponent,
     StudentEvaluationComponent,
-    StudentCoursesComponent
+    StudentCoursesComponent,
+    StudentCourseInfoComponent
   ],
   imports: [
     BrowserModule,

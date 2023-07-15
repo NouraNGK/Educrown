@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: separate!important;
+    border-spacing: 10px!important;
+}
+
+td,
+th {
+    background-color: #e5edfd;
+    height: 40px;
+    border-radius: 8px;
+}
+
+th {
+    background-color: #1363DF;
+    color: white;
+    font-weight: 100;
+}
+
+tr,
+td {
+    border: 2px solid white;
+}
+
+h4{
+    padding-left: 10px;
+}

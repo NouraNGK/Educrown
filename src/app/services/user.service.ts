@@ -92,4 +92,8 @@ export class UserService {
   studentEvaluation(evalObj) {
     return this.http.post<{msg: string}>(`${this.userURL}/evaluation`, evalObj);
   }
+
+  getStudentEval(x,y) {
+    return this.http.get<{eval: any}>(`${this.userURL}/stEval/${x}/${y}`);
+  }
 }

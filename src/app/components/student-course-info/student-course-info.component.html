@@ -1,0 +1,39 @@
+<!-- main-area -->
+<main class="main-area fix" style="margin-top: 100px;">
+
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
+
+    <!-- Selected Student Course Info Start -->
+    <section class="contact-area section-py-120">
+        <div class="row">
+            <div class="col-6">
+                <app-course [courseInput]="selectedCourse"></app-course>
+            </div>
+
+            <div class="col-6">
+                <h4>Evalua<span style="color: orange;">tion</span></h4>
+                <table *ngIf="stEvaluation">
+                    <thead>
+                        <tr>
+                            <th>Note</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="stEvaluation.length > 0">
+                            <td>{{stEvaluation[0]?.note}}</td>
+                            <td>{{stEvaluation[0]?.comment}}</td>
+                        </tr>
+                        <tr *ngIf="stEvaluation.length === 0">
+                            <td colspan="2">No evaluation available</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Student Course Info End -->
+
+</main>
+<!-- main-area-end -->
