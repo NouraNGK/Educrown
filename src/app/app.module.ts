@@ -33,6 +33,7 @@ import { AssignmentDetailsComponent } from './components/assignment-details/assi
 import { TeacherCoursesComponent } from './components/teacher-courses/teacher-courses.component';
 import { CourseInfoComponent } from './components/course-info/course-info.component';
 import { StudentEvaluationComponent } from './components/student-evaluation/student-evaluation.component';
+import { StudentCoursesComponent } from './components/student-courses/student-courses.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { StudentEvaluationComponent } from './components/student-evaluation/stud
     AssignmentDetailsComponent,
     TeacherCoursesComponent,
     CourseInfoComponent,
-    StudentEvaluationComponent
+    StudentEvaluationComponent,
+    StudentCoursesComponent
   ],
   imports: [
     BrowserModule,

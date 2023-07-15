@@ -13,6 +13,7 @@ import { AssignmentDetailsComponent } from './components/assignment-details/assi
 import { TeacherCoursesComponent } from './components/teacher-courses/teacher-courses.component';
 import { CourseInfoComponent } from './components/course-info/course-info.component';
 import { StudentEvaluationComponent } from './components/student-evaluation/student-evaluation.component';
+import { StudentCoursesComponent } from './components/student-courses/student-courses.component';
 
 const routes: Routes = [
  // http://localhost:4200/
@@ -44,7 +45,9 @@ const routes: Routes = [
  // http://localhost:4200/courseInfo/:id
  {path: "courseInfo/:id", component: CourseInfoComponent},
   // http://localhost:4200/studentEvaluation/:x/:y
-  {path: "studentEvaluation/:x/:y", component: StudentEvaluationComponent}
+  {path: "studentEvaluation/:x/:y", component: StudentEvaluationComponent},
+  // http://localhost:4200/studentCourses
+  {path: "studentCourses", component: StudentCoursesComponent}
 ];
 
 @NgModule({

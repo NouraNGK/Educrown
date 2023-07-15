@@ -447,12 +447,40 @@ app.get("/api/courses/:id", (req, res) => {
         });
 });
 
-//   Business Logic: Get Courses By IdUser
+//   Business Logic: Get Courses By IdTeacher
 app.get("/api/courses/myCourses/:id", (req, res) => {
     Course.find({ idTeacher: req.params.id }).then(
         (docs) => {
             res.json({ findedCourses: docs });
         });
+});
+
+//   Business Logic: Get All Student Assigned Courses By IdStudent
+app.get("/api/courses/stCourses/:id", (req, res) => {
+    // Course.find({ idTeacher: req.params.id }).then(
+    //     (docs) => {
+    //         res.json({ findedCourses: docs });
+    //     });
+        Affectation.aggregate([
+            { $match: { studentId: mongoose.Types.ObjectId(req.params.id) } },
+            {
+                $lookup: {
+                    from: "courses",
+                    localField: "courseId",
+                    foreignField: "_id",
+                    as: "findedCourses",
+                },
+            },
+        ],
+            (error, docs) => {
+                if (docs) {
+                    console.log("Here are the BE docs:", docs);
+                    res.json({ findedCourses: docs, msg: "1" });
+                } else {
+                    res.json({ msg: "0" });
+                }
+            }
+        )
 });
 
 

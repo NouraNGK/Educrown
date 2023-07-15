@@ -1,0 +1,22 @@
+<!-- main-area -->
+<main class="main-area fix" style="margin-top: 100px;">
+
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
+
+    <!-- Display student's courses Start -->
+    <section class="contact-area section-py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-4" *ngFor="let course of courses">
+                    <img [src]="course.findedCourses[0].img" alt="" (click)="courseDetailsRoute(course.findedCourses[0]._id)">
+                    <h3>{{course.findedCourses[0].courseName}}</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Display student's courses End -->
+
+</main>
+<!-- main-area-end -->
+

@@ -41,4 +41,8 @@ export class CourseService {
     return this.http.get<{findedCourses: any}>(`${this.courseURL}/myCourses/${id}`);
   }
 
+  getCoursesByIdStudent(id) {
+    return this.http.get<{findedCourses: any, msg: string}>(`${this.courseURL}/stCourses/${id}`);
+  }
+
 }
