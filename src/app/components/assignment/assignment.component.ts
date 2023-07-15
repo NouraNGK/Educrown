@@ -26,7 +26,7 @@ export class AssignmentComponent implements OnInit {
 
   affectationRoute(id) {
     this.router.navigate([`assignmentDetails/${id}`]);
-    localStorage.setItem("selectedCourseId", id);
+    // localStorage.setItem("selectedCourseId", id);
   }
 
 }

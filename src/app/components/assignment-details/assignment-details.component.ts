@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/app/services/course.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -18,10 +18,12 @@ export class AssignmentDetailsComponent implements OnInit {
   selectedStudentId: string;
   constructor(private courseService: CourseService,
     private userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.courseId = localStorage.getItem("selectedCourseId");
+    // this.courseId = localStorage.getItem("selectedCourseId");
+    this.courseId = this.activatedRoute.snapshot.paramMap.get("id");
     this.courseService.getCourseById(this.courseId).subscribe(
       (response) => {
         this.selectedCourse = response.course;
