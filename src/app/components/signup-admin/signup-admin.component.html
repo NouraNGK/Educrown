@@ -99,24 +99,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="margin-top: -25px;">
-                            <div class="col-md-6">
-                                <div class="form-group" style="visibility: hidden;">
-                                    <input type="file" class="form-control" #filePicker
-                                        (change)="onImageSelected($event)">
-                                </div>
-                                <div class="text-center">
-                                    <button class="btn" (click)="filePicker.click()"
-                                        style="margin-left: -5px; margin-right: -390px;">
-                                        Select your avatar
-                                    </button>
-                                </div>
-                                <div class="text-center mt-5">
-                                    <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px"
-                                        style="margin-left: 255px;">
-                                </div>
+
+                        <div class="row" style="margin-top: -40px;">
+                            <div class="form-group" style="visibility: hidden;">
+                                <input type="file" class="form-control" #filePicker (change)="onImageSelected($event)">
+                            </div>
+                            <div>
+                                <button class="btn" (click)="filePicker.click()"
+                                    style="width: 250px; margin-left: 213px;">
+                                    Select your avatar
+                                </button>
+                            </div>
+                            <div class="text-center mt-3 mb-5">
+                                <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px">
+                            </div>
+                            <div class="text-center" style="margin-top: -60px;"
+                                *ngIf="signupForm.get('avatar')?.touched && signupForm.get('avatar')?.errors?.invalidFileType">
+                                <span style="color: red;">Invalid file type. Allowed types: PNG, JPG, JPEG.</span>
                             </div>
                         </div>
+
 
                         <div style="margin-top: 25px;">
                             <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory !
@@ -136,8 +138,8 @@
                             <span style="color: red;">{{errorMsg}}</span>
                         </div>
 
-                        {{signupForm.value | json}}
-                        {{signupForm.valid | json}}
+                        <!-- {{signupForm.value | json}}
+                        {{signupForm.valid | json}} -->
 
                     </form>
                 </div>

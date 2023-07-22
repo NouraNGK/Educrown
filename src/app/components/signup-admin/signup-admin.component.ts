@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,7 +14,7 @@ export class SignupAdminComponent implements OnInit {
   imagePreview: string;
   errorMsg: string;
   constructor(private formBuilder: FormBuilder,
-    private userService : UserService,
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit() {
@@ -26,38 +26,80 @@ export class SignupAdminComponent implements OnInit {
       Validators.minLength(8), Validators.maxLength(8)]],
       pwd: ["", [Validators.required,
       Validators.pattern("^[a-zA-Z0-9!@#$%^&*]{6,12}$")]],
-      avatar: ["", [Validators.required]]
+      avatar: ["", [Validators.required, this.avatarTypeValidator(['png', 'jpg', 'jpeg'])]]
     });
   }
 
   onImageSelected(event: Event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    // console.log("Here selected file", file);
-    this.signupForm.patchValue({ avatar: file });
-    this.signupForm.updateValueAndValidity();
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imagePreview = reader.result as string
+    const fileInput = event.target as HTMLInputElement;
+    const files = fileInput.files;
+  
+    if (files && files.length > 0) {
+      const file = files[0];
+      const avatarControl = this.signupForm.get('avatar');
+  
+      if (avatarControl) {
+        avatarControl.patchValue(file);
+        avatarControl.markAsTouched();
+        avatarControl.updateValueAndValidity();
+      }
+  
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
+
+  // onImageSelected(event: Event) {
+  //   const file = (event.target as HTMLInputElement).files[0];
+  //   // console.log("Here selected file", file);
+  //   if (file) {
+  //     this.signupForm.patchValue({ avatar: file });
+  //     this.signupForm.updateValueAndValidity();
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       this.imagePreview = reader.result as string
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
+
+  avatarTypeValidator(allowedTypes: string[]): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (control.value instanceof File) {
+        const file = control.value as File;
+        const extension = file.name.split('.').pop();
+        if (extension) {
+          const lowerCaseExtension = extension.toLowerCase();
+          if (allowedTypes.indexOf(lowerCaseExtension) === -1) {
+            return { invalidFileType: true };
+          }
+        }
+      }
+
+      return null;
     };
-    reader.readAsDataURL(file);
   }
 
   signUp() {
     console.log("Here is the object", this.signupForm.value);
     this.signupForm.value.role = "admin";
     this.userService.signupAdmin(this.signupForm.value, this.signupForm.value.avatar).subscribe(
-    (response) => {
-      // console.log("Here response after signup", response.msg);
-      if (response.msg == "3") {
-        this.router.navigate(["signin"]) ;
-      } else if (response.msg == "2") {
-        this.errorMsg = "Email exists";
-      } else if (response.msg == "1") {
-        this.errorMsg = "Phone number exists";
-      } else if (response.msg == "0") {
-        this.errorMsg = "Email and Phone number exist";
-      }
-    })
+      (response) => {
+        // console.log("Here response after signup", response.msg);
+        if (response.msg == "3") {
+          this.router.navigate(["signin"]);
+        } else if (response.msg == "2") {
+          this.errorMsg = "Email exists";
+        } else if (response.msg == "1") {
+          this.errorMsg = "Phone number exists";
+        } else if (response.msg == "0") {
+          this.errorMsg = "Email and Phone number exist";
+        }
+      })
   }
 
 }
