@@ -7,7 +7,7 @@
     <section class="contact-area section-py-120">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8" style="margin-left: 200px;">
+                <div class="col-lg-8 col-md-10" style="margin-left: 200px;">
                     <div class="contact-form-wrap">
                         <h4 class="title">Sign<span style="color: orange;">up</span></h4>
 
@@ -144,41 +144,38 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6" style="margin-left: -42px; margin-top: -25px;">
+                                <div class="row" style="margin-top: -40px;">
                                         <div class="form-group" style="visibility: hidden;">
                                             <input type="file" class="form-control" #filePicker
                                                 (change)="onImageSelected($event)">
                                         </div>
-                                        <div class="text-center">
+                                        <div>
                                             <button class="btn" (click)="filePicker.click()"
-                                                style="margin-right: -190px;">
+                                                style="width: 250px; margin-left: 213px;">
                                                 Select your avatar
                                             </button>
                                         </div>
-                                        <div class="text-center mt-5">
-                                            <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px"
-                                                style="margin-left: 280px;">
+                                        <div class="text-center mt-3 mb-5">
+                                            <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px">
                                         </div>
-                                    </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="margin-top: -70px;">
                                     <div class="form-group" style="visibility: hidden;">
                                         <input type="file" class="form-control" #cvPicker
                                             (change)="onFileSelected($event)">
                                     </div>
-                                    <div class="text-center">
+                                    <div >
                                         <button class="btn" (click)="cvPicker.click()"
-                                            style="margin-top: -60px; margin-left: 0px;">
+                                            style="width: 208px;">
                                             Select your CV
                                         </button>
                                     </div>
-                                    <div *ngIf="sanitizedPDFUrl">
+                                    <div *ngIf="sanitizedPDFUrl" class="text-center mt-3">
                                         <iframe [src]="sanitizedPDFUrl" width="100%" height="500px"></iframe>
                                     </div>
                                 </div>
 
-                                <div style="margin-top: 25px;">
+                                <div style="margin-top: 30px;">
                                     <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory
                                         !
                                     </p>
@@ -197,8 +194,8 @@
                                     <span style="color: red;">{{errorMsg}}</span>
                                 </div>
 
-                                {{teacherForm.value | json}}
-                                {{teacherForm.valid | json}}
+                                <!-- {{teacherForm.value | json}}
+                                {{teacherForm.valid | json}} -->
                             </form>
                         </div>
 
@@ -314,26 +311,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6" style="margin-left: -42px; margin-top: -25px;">
-                                        <div class="form-group" style="visibility: hidden;">
-                                            <input type="file" class="form-control" #filePicker
-                                                (change)="onImageSelected($event)">
-                                        </div>
-                                        <div class="text-center">
-                                            <button class="btn" (click)="filePicker.click()"
-                                                style="margin-left: -5px; margin-right: -435px;">
-                                                Select your avatar
-                                            </button>
-                                        </div>
-                                        <div class="text-center mt-5">
-                                            <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px"
-                                                style="margin-left: 280px;">
-                                        </div>
+                                <div class="row" style="margin-top: -40px;">
+                                    <div class="form-group" style="visibility: hidden;">
+                                        <input type="file" class="form-control" #filePicker
+                                            (change)="onImageSelected($event)">
                                     </div>
-                                </div>
+                                    <div>
+                                        <button class="btn" (click)="filePicker.click()"
+                                            style="width: 250px; margin-left: 213px;">
+                                            Select your avatar
+                                        </button>
+                                    </div>
+                                    <div class="text-center mt-3 mb-5">
+                                        <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px">
+                                    </div>
+                            </div>
 
-                                <div style="margin-top: 25px;">
+                                <div style="margin-top: 30px;">
                                     <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory
                                         !
                                     </p>
@@ -352,8 +346,8 @@
                                     <span style="color: red;">{{errorMsg}}</span>
                                 </div>
 
-                                {{studentForm.value | json}}
-                                {{studentForm.valid | json}}
+                                <!-- {{studentForm.value | json}}
+                                {{studentForm.valid | json}} -->
                             </form>
                         </div>
 
@@ -493,7 +487,7 @@
                                 </div>
 
 
-                                <div style="margin-top: 25px;">
+                                <div style="margin-top: 30px;">
                                     <p style="color: rgb(11, 180, 11);">Fields marked with an asterisk (*) are mandatory
                                         !
                                     </p>
@@ -512,8 +506,8 @@
                                     <span style="color: red;">{{errorMsg}}</span>
                                 </div>
 
-                                {{parentForm.value | json}}
-                                {{parentForm.valid | json}}
+                                <!-- {{parentForm.value | json}}
+                                {{parentForm.valid | json}} -->
                             </form>
                         </div>
 
