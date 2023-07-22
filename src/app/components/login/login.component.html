@@ -7,15 +7,16 @@
     <section class="contact-area section-py-120">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8" style="margin-left: 200px;">
+                <div class="col-lg-8 col-sm-10" style="margin-left: 200px;">
                     <div class="contact-form-wrap">
                         <h4 class="title">Log<span style="color: orange;">in</span></h4>
                         <form [formGroup]="loginForm">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <span class="input-icon" (click)="focusInput('tel')"><i class="fas fa-phone-alt"></i></span>
                                         <input type="tel" class="form-control" formControlName="tel"
-                                            placeholder="Phone Number *">
+                                            placeholder="Phone Number *" #telInput>
                                     </div>
                                     <div style="color: red;" *ngIf="loginForm.controls['tel'].invalid && 
                                     (loginForm.controls['tel'].touched || 
@@ -34,8 +35,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <span class="input-icon" (click)="focusInput('pwd')"><i class="fas fa-key"></i></span>
                                         <input type="password" class="form-control" formControlName="pwd"
-                                            placeholder="Password *">
+                                            placeholder="Password *" #pwdInput>
                                     </div>
                                     <div style="color: red;" *ngIf="loginForm.controls['pwd'].invalid && 
                                     (loginForm.controls['pwd'].touched || 
@@ -59,10 +61,10 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="submit" (click)="login()" [disabled]="loginForm.invalid"
-                                            class="btn btn-primary py-3 px-5" value="Login">
+                                            class="btn btn-primary" value="Login">
                                     </div>
                                 </div>
                             </div>
@@ -71,8 +73,8 @@
                                 <span style="color: red;">{{errorMsg}}</span>
                             </div>
                             
-                            {{loginForm.value | json}}
-                            {{loginForm.valid | json}}
+                            <!-- {{loginForm.value | json}}
+                            {{loginForm.valid | json}} -->
                         </form>
                     </div>
                 </div>

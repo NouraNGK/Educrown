@@ -35,6 +35,7 @@ const User = require("./models/user");
 const Course = require("./models/course");
 const Affectation = require("./models/affectation");
 const Evaluation = require("./models/evaluation");
+const { async } = require("rxjs/internal/scheduler/async");
 
 // creates express application
 const app = express();
@@ -72,50 +73,51 @@ app.use('/myDocuments', express.static(path.join('backend/documents')));
 const MIME_TYPE_IMG = {
     'image/png': 'png',
     'image/jpeg': 'jpg',
-    'image/jpg': 'jpg'
+    'image/jpg': 'jpg',
+
 };
 
 const MIME_TYPE_CV = {
-    "application/pdf": "pdf"
+    "application/pdf": "pdf",
 }
 
-const storageImgConfig = multer.diskStorage({
-    // destination
+const storageConfig = multer.diskStorage({
     destination: (req, file, cb) => {
-        const isValid = MIME_TYPE_IMG[file.mimetype];
-        let error = new Error("Mime type is invalid");
-        if (isValid) {
-            error = null;
+        let folder;
+
+        // Check if the file is an accepted image type
+        if (MIME_TYPE_IMG[file.mimetype]) {
+            folder = 'images';
         }
-        cb(null, 'backend/images')
+        // Check if the file is an accepted CV type
+        else if (MIME_TYPE_CV[file.mimetype]) {
+            folder = 'documents';
+        } else {
+            // Invalid file type
+            return cb(new Error('Invalid file type'));
+        }
+
+        cb(null, path.join('backend', folder));
     },
     filename: (req, file, cb) => {
         const name = file.originalname.toLowerCase().split(' ').join('-');
-        const extension = MIME_TYPE_IMG[file.mimetype];
-        const imgName = name + '-' + Date.now() + '-crococoder-' + '.' +
-            extension;
-        cb(null, imgName);
-    }
+        const extension = MIME_TYPE_IMG[file.mimetype] || MIME_TYPE_CV[file.mimetype];
+        const filename = name + '-' + Date.now() + '-crococoder-' + '.' + extension;
+        cb(null, filename);
+    },
 });
 
-const storageCvConfig = multer.diskStorage({
-    // destination
-    destination: (req, file, cb) => {
-        const isValid = MIME_TYPE_CV[file.mimetype];
-        let error = new Error("Mime type is invalid");
-        if (isValid) {
-            error = null;
-        }
-        cb(null, 'backend/documents')
-    },
-    filename: (req, file, cb) => {
-        const name = file.originalname.toLowerCase().split(' ').join('-');
-        const extension = MIME_TYPE_CV[file.mimetype];
-        const cvName = name + '-' + Date.now() + '-crococoder-' + '.' +
-            extension;
-        cb(null, cvName);
+const fileFilter = (req, file, cb) => {
+    // Check if the file is an accepted image or CV type
+    if (MIME_TYPE_IMG[file.mimetype] || MIME_TYPE_CV[file.mimetype]) {
+        cb(null, true); // Accept the file
+    } else {
+        cb(new Error('Invalid file type'), false); // Reject the file
     }
-});
+};
+
+const upload = multer({ storage: storageConfig, fileFilter: fileFilter });
+
 
 
 // **********Users********** 
@@ -127,37 +129,47 @@ const storageCvConfig = multer.diskStorage({
 // response : 4 => Tel Child not found (SignupParent)
 
 // Business Logic: SignupTeacher (ou add teacher)
-app.post("/api/users/signupTeacher", multer({ storage: storageCvConfig }).single('cv'), (req, res) => {
-    console.log("Here into SignupTeacher BL", req.body);
-    bcrypt.hash(req.body.pwd, 8).then((cryptedPwd) => {
-        req.body.pwd = cryptedPwd;
-        req.body.cv = `${req.protocol}://${req.get("host")}/myDocuments/${req.file.filename}`
-        let user = new User(req.body);
-        user.save((err, doc) => {
-            // console.log("Here error", err);
-            // console.log("Success", doc);
-            if (err) {
-                if (err.errors.tel && err.errors.email) {
-                    res.json({ msg: "0" });
-                } else if (err.errors.tel) {
-                    res.json({ msg: "1" });
-                } else if (err.errors.email) {
-                    res.json({ msg: "2" });
+app.post("/api/users/signupTeacher",
+    upload.fields([
+        { name: 'cv', maxCount: 1 },
+        { name: 'avatar', maxCount: 1 },
+    ]),
+    (req, res) => {
+        console.log("Here into SignupTeacher BL", req.body);
+        bcrypt.hash(req.body.pwd, 8).then((cryptedPwd) => {
+            req.body.pwd = cryptedPwd;
+            // Access uploaded files using req.files
+            const cvFile = req.files['cv'][0];
+            const avatarFile = req.files['avatar'][0];
+            // Store the file paths in the user object
+            req.body.cv = `${req.protocol}://${req.get("host")}/myDocuments/${cvFile.filename}`;
+            req.body.avatar = `${req.protocol}://${req.get("host")}/myFiles/${avatarFile.filename}`;
+            let user = new User(req.body);
+            user.save((err, doc) => {
+                // console.log("Here error", err);
+                // console.log("Success", doc);
+                if (err) {
+                    if (err.errors.tel && err.errors.email) {
+                        res.json({ msg: "0" });
+                    } else if (err.errors.tel) {
+                        res.json({ msg: "1" });
+                    } else if (err.errors.email) {
+                        res.json({ msg: "2" });
+                    }
+                } else {
+                    res.json({ msg: "3" });
                 }
-            } else {
-                res.json({ msg: "3" });
-            }
+            });
         });
     });
-});
 
 
 // Business Logic: SignupStudent (ou add student)
-app.post("/api/users/signupStudent", multer({ storage: storageImgConfig }).single('avatar'), (req, res) => {
+app.post("/api/users/signupStudent", upload.single('avatar'), (req, res) => {
     console.log("Here into SignupStudent BL", req.body);
     bcrypt.hash(req.body.pwd, 8).then((cryptedPwd) => {
         req.body.pwd = cryptedPwd;
-        req.body.avatar = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`
+        req.body.avatar = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`;
         let user = new User(req.body);
         user.save((err, doc) => {
             // console.log("Here error", err);
@@ -214,7 +226,7 @@ app.post("/api/users/signupParent", (req, res) => {
 
 
 // Business Logic: SignupAdmin
-app.post("/api/users/signupAdmin", multer({ storage: storageImgConfig }).single('avatar'), (req, res) => {
+app.post("/api/users/signupAdmin", upload.single('avatar'), (req, res) => {
     console.log("Here into SignupAdmin BL", req.body);
     bcrypt.hash(req.body.pwd, 8).then((cryptedPwd) => {
         req.body.pwd = cryptedPwd;
@@ -273,7 +285,7 @@ app.post("/api/users/login", (req, res) => {
                     || user.role !== "teacher") {
                     let userToSend = {
                         userId: user._id,
-                        email: user.email,
+                        // email: user.email,
                         fName: user.firstName,
                         lName: user.lastName,
                         role: user.role
@@ -403,29 +415,29 @@ app.post("/api/users/evaluation", (req, res) => {
     console.log("Here is the evaluation object from FE:", req.body);
     let evaluation = new Evaluation(req.body);
     evaluation.save();
-    res.json({msg: "1"});
+    res.json({ msg: "1" });
 });
 
 //   Business Logic: Get student evaluation in a specific course
 app.get("/api/users/stEval/:idSt/:idCo", (req, res) => {
     Evaluation.aggregate([
         {
-          $match: {
-            studentId: mongoose.Types.ObjectId(req.params.idSt),
-            courseId: mongoose.Types.ObjectId(req.params.idCo)
-          }
+            $match: {
+                studentId: mongoose.Types.ObjectId(req.params.idSt),
+                courseId: mongoose.Types.ObjectId(req.params.idCo)
+            }
         },
         {
-          $project: {
-            _id: 0,
-            note: 1,
-            comment: 1
-          }
+            $project: {
+                _id: 0,
+                note: 1,
+                comment: 1
+            }
         }
-      ])
+    ])
         .then((evaluation) => {
             if (evaluation) {
-                res.json({eval: evaluation});
+                res.json({ eval: evaluation });
             }
         })
 });
@@ -436,7 +448,7 @@ app.get("/api/users/stEval/:idSt/:idCo", (req, res) => {
 // **********Courses********** 
 
 // Business Logic: Add Course
-app.post("/api/courses", multer({ storage: storageImgConfig }).single('img'), (req, res) => {
+app.post("/api/courses", upload.single('img'), (req, res) => {
     console.log("Here into BL: Add course", req.body);
     req.body.img = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`;
     let obj = new Course(req.body);
@@ -485,26 +497,26 @@ app.get("/api/courses/stCourses/:id", (req, res) => {
     //     (docs) => {
     //         res.json({ findedCourses: docs });
     //     });
-        Affectation.aggregate([
-            { $match: { studentId: mongoose.Types.ObjectId(req.params.id) } },
-            {
-                $lookup: {
-                    from: "courses",
-                    localField: "courseId",
-                    foreignField: "_id",
-                    as: "findedCourses",
-                },
+    Affectation.aggregate([
+        { $match: { studentId: mongoose.Types.ObjectId(req.params.id) } },
+        {
+            $lookup: {
+                from: "courses",
+                localField: "courseId",
+                foreignField: "_id",
+                as: "findedCourses",
             },
-        ],
-            (error, docs) => {
-                if (docs) {
-                    console.log("Here are the BE docs:", docs);
-                    res.json({ findedCourses: docs, msg: "1" });
-                } else {
-                    res.json({ msg: "0" });
-                }
+        },
+    ],
+        (error, docs) => {
+            if (docs) {
+                console.log("Here are the BE docs:", docs);
+                res.json({ findedCourses: docs, msg: "1" });
+            } else {
+                res.json({ msg: "0" });
             }
-        )
+        }
+    )
 });
 
 

@@ -1,5 +1,5 @@
 import { UserService } from 'src/app/services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   word: string = "login";
   loginForm: FormGroup;
   errorMsg: string;
+  @ViewChild('telInput', { static: true }) telInputRef!: ElementRef;
+  @ViewChild('pwdInput', { static: true }) pwdInputRef!: ElementRef;
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
@@ -27,6 +29,14 @@ export class LoginComponent implements OnInit {
       pwd: ["", [Validators.required,
       Validators.pattern("^[a-zA-Z0-9!@#$%^&*]{6,12}$")]]
     });
+  }
+
+  focusInput(inputType: string) {
+    if (inputType === 'tel') {
+      this.telInputRef.nativeElement.focus();
+    } else if (inputType === 'pwd') {
+      this.pwdInputRef.nativeElement.focus();
+    }
   }
 
   login() {

@@ -1,7 +1,6 @@
 <table>
     <thead>
         <tr>
-            <th><i class="fas fa-user"></i> ID</th>
             <th>FirstName</th>
             <th>LastName</th>
             <th>Tel</th>
@@ -13,17 +12,16 @@
     </thead>
     <tbody>
         <tr *ngFor="let teacher of teachers">
-            <td>{{teacher._id}}</td>
             <td>{{teacher.firstName}}</td>
             <td>{{teacher.lastName}}</td>
             <td>{{teacher.tel}}</td>
             <td>{{teacher.specialty}}</td>
-            <td><button class="read-btn" (click)="displayCv(teacher._id)">Show File</button></td>
+            <td><button class="read-btn" (click)="displayCv(teacher._id)"><i class="fa-sharp fa-solid fa-file-powerpoint"></i></button></td>
             <td>{{teacher.status}}</td>
             <td>
-                <button class="confirm-btn mt-1" (click)="confirmTeacher(teacher._id)">Confirm</button>
-                <button class="display-btn mt-1" (click)="goToInfo(teacher._id)">Display</button>
-                <button class="delete-btn mt-1 mb-1" (click)="deleteTeacher(teacher._id)">Delete</button>
+                <button class="confirm-btn mt-1" (click)="confirmTeacher(teacher._id)"><i class="fa-solid fa-square-check"></i></button>
+                <button class="display-btn mt-1" (click)="goToInfo(teacher._id)"><i class="fa-solid fa-display"></i></button>
+                <button class="delete-btn mt-1 mb-1" (click)="deleteTeacher(teacher._id)"><i class="fas fa-trash-alt"></i></button>
             </td>
         </tr>
     </tbody>

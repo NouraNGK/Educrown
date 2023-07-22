@@ -1,7 +1,6 @@
 <table>
     <thead>
         <tr>
-            <th><i class="fas fa-user"></i> ID</th>
             <th>FirstName</th>
             <th>LastName</th>
             <th>Tel</th>
@@ -11,14 +10,13 @@
     </thead>
     <tbody>
         <tr *ngFor="let p of parents">
-            <td>{{p._id}}</td>
             <td>{{p.firstName}}</td>
             <td>{{p.lastName}}</td>
             <td>{{p.tel}}</td>
             <td>{{p.childNbr}}</td>
             <td>
-                <button class="display-btn" style="margin-right: 3px;" (click)="goToInfo(p._id)">Display</button>
-                <button class="delete-btn" (click)="deleteParent(p._id)">Delete</button>
+                <button class="display-btn" style="margin-right: 3px;" (click)="goToInfo(p._id)"><i class="fa-solid fa-display"></i></button>
+                <button class="delete-btn" (click)="deleteParent(p._id)"><i class="fas fa-trash-alt"></i></button>
             </td>
         </tr>
     </tbody>

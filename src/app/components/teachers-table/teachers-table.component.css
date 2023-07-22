@@ -24,7 +24,7 @@ td {
 }
 
 .confirm-btn{
-    border: 2px rgb(25, 198, 25) solid;
+    border: none;
     border-radius: 8px; 
     color: rgb(25, 198, 25);
     margin-right: 3px;
@@ -36,7 +36,7 @@ td {
 }
 
 .display-btn{
-    border: 2px #1363DF solid;
+    border: none;
     border-radius: 8px;
     margin-right: 3px;
 }
@@ -46,19 +46,8 @@ td {
     color: white;
 }
 
-.edit-btn{
-    border: 2px orange solid;
-    border-radius: 8px; 
-    color: orange;
-}
-
-.edit-btn:hover{
-    background-color: orange;
-    color: white;
-}
-
 .delete-btn{
-    border: 2px red solid;
+    border: none;
     border-radius: 8px; 
     color: red;
 }
@@ -69,8 +58,8 @@ td {
 }
 
 .read-btn{
-    border: 2px orange solid;
-    border-radius: 8px; 
+    border: none;
+    border-radius: 8px;
     color: orange;
 }
 

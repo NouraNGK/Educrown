@@ -24,7 +24,7 @@ td {
 }
 
 .display-btn{
-    border: 2px #1363DF solid;
+    border: none;
     border-radius: 8px;
 }
 
@@ -34,7 +34,7 @@ td {
 }
 
 .delete-btn{
-    border: 2px red solid;
+    border: none;
     border-radius: 8px; 
     color: red;
 }

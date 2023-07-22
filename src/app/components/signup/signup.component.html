@@ -145,6 +145,24 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-6" style="margin-left: -42px; margin-top: -25px;">
+                                        <div class="form-group" style="visibility: hidden;">
+                                            <input type="file" class="form-control" #filePicker
+                                                (change)="onImageSelected($event)">
+                                        </div>
+                                        <div class="text-center">
+                                            <button class="btn" (click)="filePicker.click()"
+                                                style="margin-right: -190px;">
+                                                Select your avatar
+                                            </button>
+                                        </div>
+                                        <div class="text-center mt-5">
+                                            <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px"
+                                                style="margin-left: 280px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="form-group" style="visibility: hidden;">
                                         <input type="file" class="form-control" #cvPicker
                                             (change)="onFileSelected($event)">

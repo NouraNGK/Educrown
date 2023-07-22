@@ -28,7 +28,6 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.path = this.router.url;
-    console.log("Here path", this.path);
 
     this.teacherForm = this.formBuilder.group({
       firstName: ["", [Validators.required, Validators.minLength(3)]],
@@ -40,7 +39,8 @@ export class SignupComponent implements OnInit {
       pwd: ["", [Validators.required,
       Validators.pattern("^[a-zA-Z0-9!@#$%^&*]{6,12}$")]],
       specialty: ["", [Validators.required]],
-      cv: ["", [Validators.required]]
+      cv: ["", [Validators.required]],
+      avatar: ["", [Validators.required]]
     });
 
     this.studentForm = this.formBuilder.group({
@@ -72,8 +72,15 @@ export class SignupComponent implements OnInit {
   onImageSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     console.log("Here selected file", file);
+
+    if (this.path === "/subscriptionTe") {
+    this.teacherForm.patchValue({ avatar: file });
+    this.teacherForm.updateValueAndValidity();
+    } else if (this.path === "/subscriptionSt") {
     this.studentForm.patchValue({ avatar: file });
     this.studentForm.updateValueAndValidity();
+    }
+
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string
@@ -102,14 +109,14 @@ export class SignupComponent implements OnInit {
 
 
   signup() {
-    console.log("Here is the object", this.teacherForm.value);
-    console.log("Here is the object", this.studentForm.value);
-    console.log("Here is the object", this.parentForm.value);
     if (this.path === "/subscriptionTe") {
+      console.log("Here is the object", this.teacherForm.value);
       this.teacherForm.value.role = "teacher";
       this.teacherForm.value.status = "on hold";
-      this.userService.signupTeacher(this.teacherForm.value, this.teacherForm.value.cv).subscribe(
-      (response) => {
+      console.log("Here is the selected cv", this.teacherForm.value.cv);
+      console.log("Here is the selected avatar", this.teacherForm.value.avatar);
+      this.userService.signupTeacher(this.teacherForm.value, this.teacherForm.value.cv, 
+        this.teacherForm.value.avatar).subscribe((response) => {
         console.log("Here response after signup", response.msg);
         if (response.msg == "3") {
           this.router.navigate(["signin"]) ;
@@ -122,6 +129,7 @@ export class SignupComponent implements OnInit {
         }
       })
     } else if (this.path === "/subscriptionSt") {
+      console.log("Here is the object", this.studentForm.value);
       this.studentForm.value.role = "student";
       console.log("Here is signupStudent obj", this.studentForm.value, "and student avatar", this.studentForm.value.avatar);
       this.userService.signupStudent(this.studentForm.value, this.studentForm.value.avatar).subscribe(
@@ -138,6 +146,7 @@ export class SignupComponent implements OnInit {
         }
         })
     } else {
+      console.log("Here is the object", this.parentForm.value);
       this.parentForm.value.role = "parent";
       this.userService.signupParent(this.parentForm.value).subscribe(
         (response) => {
