@@ -8,8 +8,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-4" *ngFor="let course of courses">
-                    <img [src]="course.img" alt="" (click)="courseDetailsRoute(course._id)">
+                    <img [src]="course.img" alt="" style="border-radius: 8px;" (click)="courseDetailsRoute(course._id)">
                     <h3>{{course.courseName}}</h3>
+                    <i class="fas fa-edit edit-icon" style="color: #1363DF;" (click)="goToEdit(course._id)"></i>
                 </div>
             </div>
         </div>

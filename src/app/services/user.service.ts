@@ -98,4 +98,8 @@ export class UserService {
   getStudentEval(x,y) {
     return this.http.get<{eval: any}>(`${this.userURL}/stEval/${x}/${y}`);
   }
+
+  getTeachersBySpecialty(teacherObj) {
+    return this.http.post<{teachers: any, msg: string}>(`${this.userURL}/specialty`, teacherObj);
+  }
 }

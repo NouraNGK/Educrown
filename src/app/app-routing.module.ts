@@ -31,12 +31,14 @@ const routes: Routes = [
  {path:"signin", component: LoginComponent},
  // http://localhost:4200/addCourse
  {path:"addCourse", component: AddCourseComponent},
+ // http://localhost:4200/editCourse/:id
+ {path:"editCourse/:id", component: AddCourseComponent},
  // http://localhost:4200/searchTeachers
  {path:"searchTeachers", component: SearchTeachersComponent},
  // http://localhost:4200/allCourses
  {path: "allCourses", component: CoursesComponent},
  // http://localhost:4200/admin
- {path:"admin", component: AdminComponent},
+ {path:"dashboardAdmin", component: AdminComponent},
  // http://localhost:4200/assignment
  {path:"assignment", component: AssignmentComponent},
  // http://localhost:4200/assignment/:id

@@ -2,19 +2,19 @@
     <div class="menu" >
         <ul>
             <li class="profile">
-                <div class="img-box">
-                    <img src="" alt="profile">
+                <div class="img-box" *ngIf="connectedUser">
+                    <img [src]= "connectedUser.avatar" alt="profile" style="object-fit: cover;">
                 </div>
-                <h2>noura</h2>
+                <h2>{{connectedUser?.firstName}}</h2>
             </li>
             <li>
-                <a class="active" routerLink="#">
+                <a class="active">
                     <i class="fas fa-home"></i>
                     <p>dashboard</p>
                 </a>
             </li>
             <li>
-                <a routerLink="usersTable">
+                <a routerLink= "">
                     <i class="fas fa-user-group"></i>
                     <p>users</p>
                 </a>
@@ -44,7 +44,8 @@
                 </a>
             </li>
             <li class="log-out">
-                <a href="#" style="background-color: rgb(243, 52, 52);">
+                <a href="#" style="background-color: rgb(243, 52, 52);"
+                (click)="logOut()">
                     <i class="fas fa-sign-out" style="color: white;"></i>
                     <p style="color: white;">Log Out</p>
                 </a>

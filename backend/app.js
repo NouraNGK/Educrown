@@ -443,6 +443,13 @@ app.get("/api/users/stEval/:idSt/:idCo", (req, res) => {
 });
 
 
+app.post("/api/users/specialty", (req, res) => {
+    // console.log("Here is the required specialty from FE:", req.body.branch);
+    User.find({specialty: req.body.branch}).then((docs) => {
+        console.log("here is the search result:", docs);
+        (docs.length === 0) ? res.json({msg: "0"}) : res.json({teachers: docs, msg: "1"})
+    });
+})
 
 
 // **********Courses********** 
@@ -518,6 +525,20 @@ app.get("/api/courses/stCourses/:id", (req, res) => {
         }
     )
 });
+
+//   Business Logic: Editing course with ID
+app.put("/api/courses/editCourse/:id",upload.single('img'), (req, res) => {
+    console.log("here is the ID of the course to be modified", req.params.id);
+    console.log("here is the course to be updated", req.body);
+    let newCourse = req.body;
+    newCourse.img = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`;
+    Course.updateOne({_id: req.params.id}, newCourse).then((result) => {
+        console.log("Here result after update", result);
+        result.nModified == 1
+          ? res.json({ msg: "Edited With Success" })
+          : res.json({ msg: "Echec" });
+    });
+})
 
 
 

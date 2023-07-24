@@ -32,10 +32,11 @@
         </div>
         <div class="courses__item-bottom">
             <div class="author">
-                <a href="#">
-                    <img src="assets/img/courses/course_author002.png" alt="img">
-                </a>
-                <a href="#" style="text-transform: capitalize;">{{courseInput?.teacherFirstName}} {{courseInput?.teacherLastName}}</a>
+                <div class="img-box" *ngIf="teacherAvatar">
+                    <img [src]="teacherAvatar" alt="img">
+                </div>
+                <a href="#" style="text-transform: capitalize;">{{courseInput?.teacherFirstName}}
+                    {{courseInput?.teacherLastName}}</a>
             </div>
         </div>
     </div>

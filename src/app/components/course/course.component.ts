@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -9,10 +10,16 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CourseComponent implements OnInit {
 
   @Input() courseInput: any;
-  constructor() { }
+  teacherAvatar;
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-
+    if (this.courseInput && this.courseInput.idTeacher) {
+      this.userService.getUserById(this.courseInput.idTeacher).subscribe(
+        (response)  => {
+          this.teacherAvatar = response.user.avatar;
+        });
+    }
   }
 
 

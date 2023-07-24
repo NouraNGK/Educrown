@@ -1,7 +1,7 @@
 <!-- main-area -->
 <main class="main-area fix" style="margin-top: 100px;">
 
-    <app-opening-word [openingWordInput]="word"></app-opening-word>
+    <app-opening-word [openingWordInput]="title"></app-opening-word>
 
     <!-- Add Course Form Start -->
     <section class="contact-area section-py-120">
@@ -9,7 +9,11 @@
             <div class="row">
                 <div class="col-lg-8" style="margin-left: 200px;">
                     <div class="contact-form-wrap">
-                        <h4 class="title" style="margin-left: 175px;">Add <span style="color: orange;">Course</span>
+                        <h4 *ngIf="title == 'add course'" class="title" style="margin-left: 175px;">Add <span
+                                style="color: orange;">Course</span>
+                        </h4>
+                        <h4 *ngIf="title == 'edit course'" class="title" style="margin-left: 175px;">Edit <span
+                                style="color: orange;">Course</span>
                         </h4>
 
                         <form [formGroup]="courseForm">
@@ -142,7 +146,15 @@
                                     </button>
                                 </div>
                                 <div class="text-center mt-5">
-                                    <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px">
+                                    <!-- <img [src]="imagePreview" *ngIf="imagePreview" alt="" width="200px"> -->
+                                    <img [src]="imagePreview ? imagePreview : (course && course.img ? course.img : '')" alt="" width="200px">
+                                </div>
+                                <!-- <div *ngIf="course" class="text-center mt-5">
+                                    <img [src]="course.img" *ngIf="course.img" alt="" width="200px">
+                                </div> -->
+                                <div class="text-center"
+                                    *ngIf="courseForm.get('img')?.touched && courseForm.get('img')?.errors?.invalidFileType">
+                                    <p style="color: red;">Invalid file type. Allowed types: PNG, JPG, JPEG.</p>
                                 </div>
                             </div>
 
@@ -153,8 +165,8 @@
 
                             <div class="col-md-4" style="margin-left: -12px;">
                                 <div class="form-group">
-                                    <input type="submit" (click)="addCourse()" [disabled]="courseForm.invalid"
-                                        class="btn btn-primary py-3 px-5" value="Add Course" style="width: 250px;">
+                                    <input type="submit" (click)="validate()" [disabled]="courseForm.invalid"
+                                        class="btn btn-primary py-3 px-5" [value]="title" style="width: 250px;">
                                 </div>
                             </div>
 
@@ -162,8 +174,8 @@
                                 <span>{{msg}}</span>
                             </div>
 
-                            {{courseForm.value | json}}
-                            {{courseForm.valid | json}}
+                            <!-- {{courseForm.value | json}}
+                            {{courseForm.valid | json}} -->
 
                         </form>
 

@@ -45,4 +45,17 @@ export class CourseService {
     return this.http.get<{findedCourses: any, msg: string}>(`${this.courseURL}/stCourses/${id}`);
   }
 
+  editCourse(id: string, newObject: any, img: File) {
+    let formData = new FormData();
+    formData.append("courseName", newObject.courseName);
+    formData.append("duration", newObject.duration);
+    formData.append("sessionsNbr", newObject.sessionsNbr);
+    formData.append("sessionDuration", newObject.sessionDuration);
+    formData.append("studentsNbr", newObject.studentsNbr);
+    formData.append("price", newObject.price);
+    formData.append("description", newObject.description);
+    formData.append("img", img);
+    return this.http.put<{msg: string}>(`${this.courseURL}/editCourse/${id}`, formData);
+  }
+
 }

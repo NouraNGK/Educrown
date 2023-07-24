@@ -30,8 +30,8 @@ export class TeachersTableComponent implements OnInit {
   }
 
   goToInfo(id) {
-    localStorage.setItem("id", id);
-    this.router.navigate(["userInfo"]);
+    // localStorage.setItem("id", id);
+    this.router.navigate([`userInfo/${id}`]);
   }
 
 

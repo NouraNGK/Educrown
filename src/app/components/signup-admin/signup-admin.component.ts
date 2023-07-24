@@ -51,21 +51,6 @@ export class SignupAdminComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-  
-
-  // onImageSelected(event: Event) {
-  //   const file = (event.target as HTMLInputElement).files[0];
-  //   // console.log("Here selected file", file);
-  //   if (file) {
-  //     this.signupForm.patchValue({ avatar: file });
-  //     this.signupForm.updateValueAndValidity();
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       this.imagePreview = reader.result as string
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // }
 
   avatarTypeValidator(allowedTypes: string[]): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {

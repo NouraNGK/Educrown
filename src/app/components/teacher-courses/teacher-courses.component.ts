@@ -35,4 +35,8 @@ export class TeacherCoursesComponent implements OnInit {
     this.router.navigate([`courseInfo/${id}`]);
   }
 
+  goToEdit(id) {
+    this.router.navigate([`editCourse/${id}`]);
+  }
+
 }
