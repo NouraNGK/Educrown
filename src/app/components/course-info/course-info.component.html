@@ -6,7 +6,7 @@
     <!-- Selected Course Info Start -->
     <section class="contact-area section-py-120">
         <div class="row">
-            <div class="col-4" style="margin-left: 500px;">
+            <div class="col-4" style="margin-left: 500px;" *ngIf="selectedCourse">
                 <app-course [courseInput]="selectedCourse"></app-course>
             </div>
         </div>

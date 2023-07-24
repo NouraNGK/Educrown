@@ -20,8 +20,6 @@ export class CourseService {
     formData.append("description", course.description);
     formData.append("img", avatar);
     formData.append("idTeacher", course.idTeacher);
-    formData.append("teacherFirstName", course.teacherFirstName);
-    formData.append("teacherLastName", course.teacherLastName);
     return this.http.post<{ msg: string }>(this.courseURL, formData);
   }
 

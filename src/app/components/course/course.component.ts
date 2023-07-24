@@ -9,15 +9,22 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CourseComponent implements OnInit {
 
-  @Input() courseInput: any;
-  teacherAvatar;
+  @Input() 
+  courseInput: any;
+
+  teacherAvatar: any;
+  teacherName: string;
+  teacherLastName: string;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     if (this.courseInput && this.courseInput.idTeacher) {
-      this.userService.getUserById(this.courseInput.idTeacher).subscribe(
+      let teacherId = this.courseInput.idTeacher;
+      this.userService.getUserById(teacherId).subscribe(
         (response)  => {
           this.teacherAvatar = response.user.avatar;
+          this.teacherName = response.user.firstName;
+          this.teacherLastName = response.user.lastName;
         });
     }
   }

@@ -124,8 +124,6 @@ export class AddCourseComponent implements OnInit {
     } else {
       let decodedToken: any = this.decodeToken(sessionStorage.getItem("jwt"));
       this.courseForm.value.idTeacher = decodedToken.userId;
-      this.courseForm.value.teacherFirstName = decodedToken.fName;
-      this.courseForm.value.teacherLastName = decodedToken.lName;
       console.log("Here is the new courseForm", this.courseForm.value);
       this.courseService.addCourse(this.courseForm.value, this.courseForm.value.img).subscribe(
         (response) => {

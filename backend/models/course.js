@@ -11,9 +11,7 @@ const courseSchema = mongoose.Schema({
     price: Number,
     description: String,
     img: String,
-    idTeacher: String,
-    teacherFirstName: String,
-    teacherLastName: String
+    idTeacher: String
 });
 
 // create Model Name "Course"

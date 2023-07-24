@@ -23,8 +23,8 @@ export class SearchTeachersComponent implements OnInit {
     console.log("Here is the object", this.teacher);
     this.userService.getTeachersBySpecialty(this.teacher).subscribe(
       (response) => {
-        // console.log("here is response from BE:", response.msg);
-        // console.log("here is response from BE:", response.teachers);
+        console.log("here is response from BE:", response.msg);
+        console.log("here is response from BE:", response.teachers);
         if (response.msg == "1") {
           this.foundedTeachers = response.teachers;
         } else {
