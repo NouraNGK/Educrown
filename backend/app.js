@@ -300,10 +300,20 @@ app.post("/api/users/login", (req, res) => {
 });
 
 
-// Business Logic : Get all teachers exept those with status on hold
+// Business Logic : Get all teachers
 app.get("/api/users/teachers", (req, res) => {
     User.find({ role: "teacher" }).then((data) => {
         res.json({ docs: data, msg: "ok" });
+    });
+});
+
+
+// Business Logic : Get all teachers exept those with status on hold
+app.get("/api/users/confirmedTeachers", (req, res) => {
+    User.find({ role: "teacher", status: "confirmed" }).then((data) => {
+        data.length > 0 
+        ? res.json({ docs: data, msg: "ok" }) 
+        : res.json ({msg: "no confirmed teacher found"})
     });
 });
 
@@ -363,7 +373,7 @@ app.get("/api/users/:id", (req, res) => {
 //   Business Logic: Assign a student to a course
 // msg: "0" => Student is already assigned to this course
 // msg: "1" => Student assigned with success to the course
-app.post("/api/users", (req, res) => {
+app.post("/api/affectation", (req, res) => {
     console.log("Here is the affectation Object", req.body);
     Affectation.findOne({ courseId: req.body.courseId, studentId: req.body.studentId }).then(
         (doc) => {
@@ -385,7 +395,7 @@ app.post("/api/users", (req, res) => {
 });
 
 //   Business Logic: Get affected students by courseId
-app.get("/api/users/affectedSrudents/:id", (req, res) => {
+app.get("/api/affectation/affectedSrudents/:id", (req, res) => {
     console.log("Here is ID course:", req.params.id);
     Affectation.aggregate([
         { $match: { courseId: mongoose.Types.ObjectId(req.params.id) } },
@@ -411,7 +421,7 @@ app.get("/api/users/affectedSrudents/:id", (req, res) => {
 
 
 //   Business Logic: Evaluate a student in a teacher-specific course
-app.post("/api/users/evaluation", (req, res) => {
+app.post("/api/evaluation", (req, res) => {
     console.log("Here is the evaluation object from FE:", req.body);
     let evaluation = new Evaluation(req.body);
     evaluation.save();
@@ -419,7 +429,7 @@ app.post("/api/users/evaluation", (req, res) => {
 });
 
 //   Business Logic: Get student evaluation in a specific course
-app.get("/api/users/stEval/:idSt/:idCo", (req, res) => {
+app.get("/api/evaluation/stEval/:idSt/:idCo", (req, res) => {
     Evaluation.aggregate([
         {
             $match: {
@@ -443,6 +453,7 @@ app.get("/api/users/stEval/:idSt/:idCo", (req, res) => {
 });
 
 
+//   Business Logic: Get teachers by specialty
 app.post("/api/users/specialty", (req, res) => {
     // console.log("Here is the required specialty from FE:", req.body.branch);
     User.find({specialty: req.body.branch}).then((docs) => {

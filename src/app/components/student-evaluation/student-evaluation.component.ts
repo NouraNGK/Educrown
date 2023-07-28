@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { EvaluationService } from 'src/app/services/evaluation.service';
 
 @Component({
   selector: 'app-student-evaluation',
@@ -17,6 +18,7 @@ export class StudentEvaluationComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
+    private evaluationService: EvaluationService,
     private router: Router) { }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class StudentEvaluationComponent implements OnInit {
     this.evaluationForm.value.teacherId = idSelectedTeacher;
     this.evaluationForm.value.courseId = idSelectedCourse;
     this.evaluationForm.value.studentId = idSelectedStudent;
-    this.userService.studentEvaluation(this.evaluationForm.value).subscribe(
+    this.evaluationService.studentEvaluation(this.evaluationForm.value).subscribe(
       (response) => {
         console.log("Here is response from adding evaluation BL:", response.msg);
         this.router.navigate(["myCourses"]);

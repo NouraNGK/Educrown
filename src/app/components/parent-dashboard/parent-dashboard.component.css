@@ -1,0 +1,457 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Section title styles */
+  .section-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #007bff;
+    margin: 10px auto 0;
+  }
+  
+  /* Course card styles */
+  .course-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    justify-content: center; 
+  }
+  
+  .course-card {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid orange;
+  }
+  
+  .course-card .course-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .course-card .course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+  
+  .course-card h4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  
+  .course-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+
+.teacher-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    animation: fadeInUp 1s ease;
+}
+
+.teacher-card {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    /* border: 2px solid orange; */
+}
+
+.teacher-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.teacher-card .teacher-info {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.teacher-card .teacher-info .teacher-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.teacher-card .teacher-info .teacher-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid #007bff;
+}
+
+.teacher-card .teacher-info .teacher-details {
+    margin-left: 15px;
+}
+
+.teacher-card .teacher-info .teacher-details h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.teacher-card .teacher-info .teacher-details p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.teacher-cv {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cv-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 260px;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cv-button:focus {
+    outline: none;
+}
+
+.cv-button:hover {
+    background-color: white;
+    border: 2px solid orange;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cv-button:hover {
+    animation: pulse 0.5s infinite alternate;
+}
+
+.cv-swal-popup {
+    width: 850px;
+    max-width: 95%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.cv-swal-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cv-swal-html {
+    padding: 20px;
+}
+
+.cv-swal-confirm-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.swal2-close {
+    color: #333;
+    opacity: 0.7;
+}
+
+h6 {
+    font-size: 12px;
+    color: white;
+    margin-top: -4px;
+}
+
+h6:hover {
+    font-size: 12px;
+    color: #007bff;
+    margin-top: -4px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: orange;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: orange;
+    margin: 10px auto 0;
+}
+
+.decorative-space {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.floating-circles {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.floating-circle {
+    position: absolute;
+    background-color: #eaeaea;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: floatAnimation 6s infinite;
+}
+
+.floating-circle.circle-1 {
+    width: 30px;
+    height: 30px;
+    top: 50px;
+    left: 5%;
+    animation-duration: 6s;
+}
+
+.floating-circle.circle-2 {
+    width: 20px;
+    height: 20px;
+    top: 100px;
+    left: 10%;
+    animation-duration: 5s;
+}
+
+.floating-circle.circle-3 {
+    width: 25px;
+    height: 25px;
+    top: 80px;
+    left: 20%;
+    animation-duration: 4s;
+}
+
+.floating-circle.circle-4 {
+    width: 35px;
+    height: 35px;
+    top: 70px;
+    left: 30%;
+    animation-duration: 5s;
+}
+
+.floating-circle.circle-5 {
+    width: 45px;
+    height: 45px;
+    top: 90px;
+    left: 40%;
+    animation-duration: 7s;
+}
+
+.floating-circle.circle-6 {
+    width: 25px;
+    height: 25px;
+    top: 60px;
+    left: 50%;
+    animation-duration: 4s;
+}
+
+.floating-circle.circle-7 {
+    width: 30px;
+    height: 30px;
+    top: 80px;
+    left: 60%;
+    animation-duration: 6s;
+}
+
+.floating-circle.circle-8 {
+    width: 20px;
+    height: 20px;
+    top: 100px;
+    left: 70%;
+    animation-duration: 3s;
+}
+
+.floating-circle.circle-9 {
+    width: 40px;
+    height: 40px;
+    top: 50px;
+    left: 75%;
+    animation-duration: 4.5s;
+}
+
+.floating-circle.circle-10 {
+    width: 30px;
+    height: 30px;
+    top: 70px;
+    left: 85%;
+    animation-duration: 6s;
+}
+
+.floating-circle.circle-11 {
+    width: 35px;
+    height: 35px;
+    top: 90px;
+    left: 90%;
+    animation-duration: 5.5s;
+}
+
+.floating-circle.circle-12 {
+    width: 40px;
+    height: 40px;
+    top: 60px;
+    left: 95%;
+    animation-duration: 7s;
+}
+
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+h4 {
+    text-transform: capitalize;
+}
+
+p {
+    text-transform: capitalize;
+}
+
+.da {
+    color: #0e83f0 !important;
+    background-color: #f5f0ff;
+}
+
+.de {
+    color: #F5B204 !important;
+    background-color: #FFF3D3;
+}
+
+.di {
+    color: #BC18E4 !important;
+    background-color: #F7EEFA;
+}
+
+.b {
+    color: #f50404 !important;
+    background-color: #ffd3d3;
+}
+
+.f {
+    color: #FF109F !important;
+    background-color: #FFF0F9;
+}
+
+.g {
+    color: #04BC53 !important;
+    background-color: #E8F9EF;
+}
+
+.specialty {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+span {
+    padding: 2px 10px;
+    border-radius: 15px;
+} 

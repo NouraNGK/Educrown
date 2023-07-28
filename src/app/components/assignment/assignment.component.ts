@@ -1,5 +1,4 @@
 import { CourseService } from 'src/app/services/course.service';
-import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 

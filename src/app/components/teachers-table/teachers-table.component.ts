@@ -28,10 +28,21 @@ export class TeachersTableComponent implements OnInit {
         }
       });
   }
+    
 
-  goToInfo(id) {
-    // localStorage.setItem("id", id);
-    this.router.navigate([`userInfo/${id}`]);
+  displayPhoto(id) {
+    this.userService.getUserById(id).subscribe(
+      (response) => {
+        console.log("Here is the response:", response);
+        let photo = response.user.avatar;
+        Swal.fire({
+          imageUrl: photo,
+          imageAlt: 'Teacher Photo',
+          showCloseButton: true,
+          showConfirmButton: false,
+          width: 'auto'
+        });
+      });
   }
 
 

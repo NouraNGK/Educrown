@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AffectationService } from 'src/app/services/affectation.service';
 import { CourseService } from 'src/app/services/course.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -18,6 +19,7 @@ export class AssignmentDetailsComponent implements OnInit {
   selectedStudentId: string;
   constructor(private courseService: CourseService,
     private userService: UserService,
+    private affectationService: AffectationService,
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
@@ -44,7 +46,7 @@ export class AssignmentDetailsComponent implements OnInit {
       courseId: this.courseId,
       studentId: this.selectedStudentId
     }
-    this.userService.assignStudentToCourse(affectationObj).subscribe(
+    this.affectationService.assignStudentToCourse(affectationObj).subscribe(
       (response) => {
         console.log("Here is response from BE:", response.msg);
         if (response.msg == "1") {

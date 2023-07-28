@@ -67,6 +67,10 @@ export class UserService {
     return this.http.get<{ msg: string }>(`${this.userURL}/confirmTeacher/${id}`);
   }
 
+  getConfirmedTeachers() {
+    return this.http.get<{ docs: any, msg: string }>(this.userURL + "/confirmedTeachers");
+  }
+
   deleteUser(id) {
     return this.http.delete<{ msg: string }>(`${this.userURL}/${id}`);
   }
@@ -81,22 +85,6 @@ export class UserService {
 
   getUserById(id) {
     return this.http.get<{ user: any }>(`${this.userURL}/${id}`);
-  }
-
-  assignStudentToCourse(obj) {
-    return this.http.post<{ msg: string }>(this.userURL, obj);
-  }
-
-  getAffectedStudentsByCourseId(id) {
-    return this.http.get<{ students: any, msg: string }>(`${this.userURL}` + "/affectedSrudents/" + `${id}`);
-  }
-
-  studentEvaluation(evalObj) {
-    return this.http.post<{msg: string}>(`${this.userURL}/evaluation`, evalObj);
-  }
-
-  getStudentEval(x,y) {
-    return this.http.get<{eval: any}>(`${this.userURL}/stEval/${x}/${y}`);
   }
 
   getTeachersBySpecialty(teacherObj) {

@@ -32,7 +32,7 @@ export class AddCourseComponent implements OnInit {
       sessionDuration: ["", [Validators.required]],
       studentsNbr: ["", [Validators.required, Validators.min(1)]],
       price: ["", [Validators.required, Validators.min(300)]],
-      description: ["", [Validators.required, Validators.maxLength(80)]],
+      description: ["", [Validators.required, Validators.maxLength(30)]],
       img: ["", [Validators.required, this.imgTypeValidator(['png', 'jpg', 'jpeg'])]]
     });
 
@@ -107,7 +107,7 @@ export class AddCourseComponent implements OnInit {
               icon: 'success',
               title: 'Course Edited Successfully!',
               text: 'Your course has been successfully edited.',
-              timer: 5000, 
+              timer: 4000, 
               showConfirmButton: false
             });
           this.router.navigate(["myCourses"]);
@@ -116,7 +116,7 @@ export class AddCourseComponent implements OnInit {
               icon: 'error',
               title: 'Error',
               text: 'Failed to edit the course. Please try again later.',
-              timer: 5000, 
+              timer: 4000, 
               showConfirmButton: false
             });
           }

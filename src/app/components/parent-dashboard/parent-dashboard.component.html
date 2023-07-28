@@ -1,0 +1,102 @@
+<main class="main-area fix" style="margin-top: 100px;">
+
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
+
+    <div class="decorative-space">
+        <div class="floating-circles">
+            <div class="floating-circles">
+                <div class="floating-circle circle-1"></div>
+                <div class="floating-circle circle-2"></div>
+                <div class="floating-circle circle-3"></div>
+                <div class="floating-circle circle-4"></div>
+                <div class="floating-circle circle-5"></div>
+                <div class="floating-circle circle-6"></div>
+                <div class="floating-circle circle-7"></div>
+                <div class="floating-circle circle-8"></div>
+                <div class="floating-circle circle-9"></div>
+                <div class="floating-circle circle-10"></div>
+                <div class="floating-circle circle-11"></div>
+                <div class="floating-circle circle-12"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Display the list of courses -->
+    <div class="container">
+        <div *ngIf="courses">
+            <h3 class="section-title">List of Courses</h3>
+            <div class="course-list">
+                <div class="course-card" *ngFor="let course of courses">
+                    <app-course [courseInput]="course"></app-course>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="decorative-space">
+        <div class="floating-circles">
+            <div class="floating-circles">
+                <div class="floating-circle circle-1"></div>
+                <div class="floating-circle circle-2"></div>
+                <div class="floating-circle circle-3"></div>
+                <div class="floating-circle circle-4"></div>
+                <div class="floating-circle circle-5"></div>
+                <div class="floating-circle circle-6"></div>
+                <div class="floating-circle circle-7"></div>
+                <div class="floating-circle circle-8"></div>
+                <div class="floating-circle circle-9"></div>
+                <div class="floating-circle circle-10"></div>
+                <div class="floating-circle circle-11"></div>
+                <div class="floating-circle circle-12"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div *ngIf="teachers">
+            <h3 class="section-title">List of Teachers</h3>
+            <div class="teacher-list">
+                <div class="teacher-card" *ngFor="let teacher of teachers">
+                    <div class="teacher-info">
+                        <div class="teacher-image">
+                            <img [src]="teacher.avatar" alt="Teacher Image">
+                        </div>
+                        <div class="teacher-details">
+                            <h4>{{ teacher.firstName }} {{ teacher.lastName }}</h4>
+                            <span [ngClass]="{
+                                'da': teacher.specialty === 'data science',
+                                'de': teacher.specialty === 'development',
+                                'di': teacher.specialty === 'marketing',
+                                'b': teacher.specialty === 'business',
+                                'f' : teacher.specialty === 'finance',
+                                'g': teacher.specialty === 'graphic design'
+                            }">{{ teacher.specialty }}</span>
+                        </div>
+                    </div>
+                    <div class="teacher-cv">
+                        <button class="cv-button" (click)="showFullCVAlert(teacher.cv)">
+                            <div class="cv-header">
+                                <h6>Click to display the teacher CV</h6>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="decorative-space">
+        <div class="floating-circles">
+            <div class="floating-circles">
+                <div class="floating-circle circle-1"></div>
+                <div class="floating-circle circle-2"></div>
+                <div class="floating-circle circle-3"></div>
+                <div class="floating-circle circle-4"></div>
+                <div class="floating-circle circle-5"></div>
+                <div class="floating-circle circle-6"></div>
+                <div class="floating-circle circle-7"></div>
+                <div class="floating-circle circle-8"></div>
+                <div class="floating-circle circle-9"></div>
+                <div class="floating-circle circle-10"></div>
+                <div class="floating-circle circle-11"></div>
+                <div class="floating-circle circle-12"></div>
+            </div>
+        </div>
+    </div>
+</main>

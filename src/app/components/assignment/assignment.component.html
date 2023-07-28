@@ -6,6 +6,7 @@
     <!-- Add Course Form Start -->
     <section class="contact-area section-py-120">
         <div class="container">
+            <p class="click-message">Click on the photo for student assignment</p>
             <div class="row">
                 <div class="col-4" *ngFor="let course of courses">
                     <img [src]="course.img" alt="" (click)="affectationRoute(course._id)">

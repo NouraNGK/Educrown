@@ -4,6 +4,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { UserService } from 'src/app/services/user.service';
 import jwt_decode from 'jwt-decode';
 import Swal from 'sweetalert2'
+import { EvaluationService } from 'src/app/services/evaluation.service';
 
 @Component({
   selector: 'app-student-course-info',
@@ -18,7 +19,8 @@ export class StudentCourseInfoComponent implements OnInit {
   stEvaluation: any;
   constructor(private activatedRoute: ActivatedRoute,
     private courseService: CourseService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private evaluationService: EvaluationService) { }
 
   ngOnInit() {
     let stCourseId = this.activatedRoute.snapshot.paramMap.get("id");
@@ -28,7 +30,7 @@ export class StudentCourseInfoComponent implements OnInit {
       });
     this.decodedToken = this.decodeToken(sessionStorage.getItem("jwt"));
     console.log("Here is teacher decodedToken", this.decodedToken);
-    this.userService.getStudentEval(this.decodedToken.userId, stCourseId).subscribe(
+    this.evaluationService.getStudentEval(this.decodedToken.userId, stCourseId).subscribe(
       (response) => {
         console.log("Here is the evaluation received from the BL:", response.eval);
           this.stEvaluation = response.eval;

@@ -15,6 +15,7 @@ import { CourseInfoComponent } from './components/course-info/course-info.compon
 import { StudentEvaluationComponent } from './components/student-evaluation/student-evaluation.component';
 import { StudentCoursesComponent } from './components/student-courses/student-courses.component';
 import { StudentCourseInfoComponent } from './components/student-course-info/student-course-info.component';
+import { ParentDashboardComponent } from './components/parent-dashboard/parent-dashboard.component';
 
 const routes: Routes = [
  // http://localhost:4200/
@@ -52,7 +53,9 @@ const routes: Routes = [
   // http://localhost:4200/studentCourses
   {path: "studentCourses", component: StudentCoursesComponent},
   // http://localhost:4200/studentCourseInfo/:id
-  {path: "studentCourseInfo/:id", component: StudentCourseInfoComponent}
+  {path: "studentCourseInfo/:id", component: StudentCourseInfoComponent},
+  // http://localhost:4200/parentDashboard
+  {path: "parentDashboard", component: ParentDashboardComponent}
   
 ];
 

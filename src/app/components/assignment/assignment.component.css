@@ -1,4 +1,4 @@
-img {
+/* img {
     width: 350px;
     height: 250px;
     margin-top: 6px;
@@ -14,4 +14,235 @@ h3{
     border: 1px solid orange;
     margin-right: px;
     margin-bottom: 5px;
-}
+} */
+
+  /* ********************************************* */
+  
+  /* .contact-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .contact-area .col-4 {
+    width: 200px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .contact-area .col-4 img {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .contact-area .col-4 h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .contact-area .col-4:hover {
+    transform: scale(1.05);
+  } */
+  
+ /* ************ok ********************* */
+
+  .contact-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .contact-area .col-4 {
+    width: 200px;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .contact-area .col-4 img {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .contact-area .col-4:hover img {
+    transform: scale(1.1);
+  }
+  
+  .contact-area .col-4::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: orange;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .contact-area .col-4:hover::before {
+    opacity: 1;
+  }
+  
+  .contact-area .col-4 h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    background-color: orange;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .contact-area .col-4:hover h3 {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+
+
+  /* .click-message {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff6b6b;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hide the message when the user clicks on the photo */
+  /* .instructor__item.clicked .click-message {
+    opacity: 0;
+  } */
+
+  .click-message {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #061E43;
+    background-color: #f5f0ff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Hide the message when the user clicks on the photo */
+  .instructor__item.clicked .click-message {
+    opacity: 0;
+  }
+  
+  /* Styles for the course image */
+  .course-img {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Hover effect for the course image */
+  .instructor__item:hover .course-img {
+    transform: scale(1.05);
+  }
+  
+  /* Creative design for specialty display */
+  .instructor__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .instructor__item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .instructor__item:hover::before {
+    opacity: 1;
+  }
+  
+  .instructor__content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .instructor__item:hover .instructor__content {
+    opacity: 1;
+  }
+  
+  .instructor__content h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .instructor__content a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* **********ok */
+  .click-message::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 8px 10px;
+    border-color: transparent transparent orange;
+    transform: translateX(-50%);
+  }
+  
+  .click-message:hover {
+    transform: translateY(-5px);
+    background-color: #3c9bf4;
+    color: #fff;
+  }
+  
+  .click-message:hover::after {
+    border-color: transparent transparent #3c9bf4;
+  }

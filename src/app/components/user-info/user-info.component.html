@@ -1,0 +1,69 @@
+<div class="instructor__item">
+  <div class="instructor__img">
+    <div class="instructor__shape" *ngIf="userInput" [ngStyle]="{'background-color':backgroundColor()}"
+      style="border-radius: 135px 0 0 0;">
+    </div>
+    <a href="instructor-details.html"><img [src]="userInput?.avatar" alt="instructor"></a>
+  </div>
+  <div class="instructor__content">
+    <div class="left">
+      <span class="specialty" [ngClass]="{
+            'da': userInput?.specialty === 'data science',
+            'de': userInput?.specialty === 'development',
+            'di': userInput?.specialty === 'marketing',
+            'b': userInput?.specialty === 'business',
+            'f' : userInput?.specialty === 'finance',
+            'g': userInput?.specialty === 'graphic design'
+        }">
+        {{userInput?.specialty}}
+      </span>
+      <h4 class="name" style="text-transform: capitalize;"><a href="instructor-details.html">{{userInput?.firstName}}
+          {{userInput?.lastName}}</a></h4>
+    </div>
+    <div class="right">
+      <span class="share"><i class="flaticon-share"></i></span>
+      <ul class="social-list list-wrap">
+        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="instructor__item">
+  <div class="instructor__img">
+    <div class="instructor__shape" *ngIf="userInput" [ngStyle]="{'background-color': backgroundColor()}"></div>
+    <a href="instructor-details.html">
+      <img [src]="userInput?.avatar" alt="instructor">
+    </a>
+  </div>
+  <div class="instructor__content">
+    <div class="left">
+      <span class="designation" [ngClass]="{
+            'da': userInput?.specialty === 'data science',
+            'de': userInput?.specialty === 'development',
+            'di': userInput?.specialty === 'digital marketing',
+            'b': userInput?.specialty === 'business',
+            'f': userInput?.specialty === 'finance',
+            'g': userInput?.specialty === 'graphic design'
+          }">
+        {{userInput?.specialty}}
+      </span>
+      <h4 class="name" style="text-transform: capitalize;">
+        <a href="instructor-details.html">{{userInput?.firstName}} {{userInput?.lastName}}</a>
+      </h4>
+    </div>
+    <div class="right">
+      <span class="share"><i class="flaticon-share"></i></span>
+      <ul class="social-list list-wrap">
+        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div> -->

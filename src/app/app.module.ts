@@ -36,6 +36,8 @@ import { CourseInfoComponent } from './components/course-info/course-info.compon
 import { StudentEvaluationComponent } from './components/student-evaluation/student-evaluation.component';
 import { StudentCoursesComponent } from './components/student-courses/student-courses.component';
 import { StudentCourseInfoComponent } from './components/student-course-info/student-course-info.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { ParentDashboardComponent } from './components/parent-dashboard/parent-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { StudentCourseInfoComponent } from './components/student-course-info/stu
     CourseInfoComponent,
     StudentEvaluationComponent,
     StudentCoursesComponent,
-    StudentCourseInfoComponent
+    StudentCourseInfoComponent,
+    UserInfoComponent,
+    ParentDashboardComponent
   ],
   imports: [
     BrowserModule,
