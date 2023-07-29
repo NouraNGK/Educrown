@@ -16,4 +16,5 @@ export class EvaluationService {
   getStudentEval(x,y) {
     return this.http.get<{eval: any}>(`${this.evaluationURL}/stEval/${x}/${y}`);
   }
+
 }

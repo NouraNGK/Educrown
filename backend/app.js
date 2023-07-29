@@ -473,10 +473,24 @@ app.get("/api/users/student/:phone", (req, res) => {
 });
 
 //   Business Logic: Get all student courses to which he is assigned
-app.get("/api/affectation/:id", async (req, res) => {
-    let idStudent = req.params.id;
-    const foundedCourses = await Affectation.aggregate([
-        { $match: { studentId: mongoose.Types.ObjectId(idStudent) } },
+app.get('/api/affectation/:id', async (req, res) => {
+    const idStudent = req.params.id;
+    try {
+        const courses = await getCoursesForStudent(idStudent);
+        if (courses.length === 0) {
+            return res.json({ msg: '0' });
+        } else {
+            return res.json({ courses: courses, msg: '1' });
+        }
+    } catch (error) {
+        console.error('Error fetching courses:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+async function getCoursesForStudent(studentId) {
+    const courses = await Affectation.aggregate([
+        { $match: { studentId: mongoose.Types.ObjectId(studentId) } },
         {
             $lookup: {
                 from: 'courses',
@@ -494,8 +508,8 @@ app.get("/api/affectation/:id", async (req, res) => {
             }
         }
     ]);
-    courses.length == 0 ? res.json({ msg: "0" }) : res.json({ courses: foundedCourses, msg: "1" })
-});
+    return courses;
+}
 
 
 
