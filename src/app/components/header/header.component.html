@@ -69,10 +69,17 @@
                       <option value="5">Finance</option>
                     </select>
                   </div>
-                  <div class="input-grp">
+                  <!-- <div class="input-grp">
                     <input type="text" placeholder="Search For Course . . .">
                     <button type="submit"><i class="flaticon-searching"></i></button>
-                  </div>
+                  </div> -->
+                  <form #searchForm="ngForm" (ngSubmit)="search()">
+                    <div class="input-grp">
+                      <input type="tel" [(ngModel)]="student.phoneNbr" [ngModelOptions]="{standalone:true}"
+                      placeholder="Your child's number . . .">
+                      <button type="submit"><i class="flaticon-searching"></i></button>
+                    </div>
+                  </form>
                 </form>
               </div>
               <div class="tgmenu__action">

@@ -1,0 +1,22 @@
+<main class="main-area fix" style="margin-top: 100px;">
+
+    <app-opening-word [openingWordInput]="word"></app-opening-word>
+    <div class="container">
+        <div *ngIf="courses">
+          <h3 class="section-title">List of Courses</h3>
+          <div class="course-list">
+            <div class="course-card" *ngFor="let course of courses">
+              <h4>{{ course.courseName }}</h4>
+              <p>{{ course.teacherName }}</p>
+              <div class="evaluation">
+                <p>Teacher's Evaluation: {{ course.teacherEvaluation }}</p>
+                <p>Student's Grade: {{ course.studentGrade }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+</main>

@@ -16,4 +16,8 @@ export class AffectationService {
   getAffectedStudentsByCourseId(id) {
     return this.http.get<{ students: any, msg: string }>(`${this.affectationURL}` + "/affectedSrudents/" + `${id}`);
   }
+
+  getStudentCourses(id) {
+    return this.http.get<{ courses: any, msg: string }>(`${this.affectationURL}/${id}`);
+  }
 }

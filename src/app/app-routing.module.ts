@@ -16,6 +16,8 @@ import { StudentEvaluationComponent } from './components/student-evaluation/stud
 import { StudentCoursesComponent } from './components/student-courses/student-courses.component';
 import { StudentCourseInfoComponent } from './components/student-course-info/student-course-info.component';
 import { ParentDashboardComponent } from './components/parent-dashboard/parent-dashboard.component';
+import { StudentInfoComponent } from './components/student-info/student-info.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
  // http://localhost:4200/
@@ -55,8 +57,11 @@ const routes: Routes = [
   // http://localhost:4200/studentCourseInfo/:id
   {path: "studentCourseInfo/:id", component: StudentCourseInfoComponent},
   // http://localhost:4200/parentDashboard
-  {path: "parentDashboard", component: ParentDashboardComponent}
-  
+  {path: "parentDashboard", component: ParentDashboardComponent},
+  // http://localhost:4200/studentInfo/:phone
+  {path: "studentInfo/:studentId", component: StudentInfoComponent},
+  // http://localhost:4200/404NotFound
+  {path: "404NotFound", component: ErrorComponent}
 ];
 
 @NgModule({

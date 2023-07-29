@@ -311,9 +311,9 @@ app.get("/api/users/teachers", (req, res) => {
 // Business Logic : Get all teachers exept those with status on hold
 app.get("/api/users/confirmedTeachers", (req, res) => {
     User.find({ role: "teacher", status: "confirmed" }).then((data) => {
-        data.length > 0 
-        ? res.json({ docs: data, msg: "ok" }) 
-        : res.json ({msg: "no confirmed teacher found"})
+        data.length > 0
+            ? res.json({ docs: data, msg: "ok" })
+            : res.json({ msg: "no confirmed teacher found" })
     });
 });
 
@@ -456,11 +456,48 @@ app.get("/api/evaluation/stEval/:idSt/:idCo", (req, res) => {
 //   Business Logic: Get teachers by specialty
 app.post("/api/users/specialty", (req, res) => {
     // console.log("Here is the required specialty from FE:", req.body.branch);
-    User.find({specialty: req.body.branch}).then((docs) => {
+    User.find({ specialty: req.body.branch }).then((docs) => {
         console.log("here is the search result:", docs);
-        (docs.length === 0) ? res.json({msg: "0"}) : res.json({teachers: docs, msg: "1"})
+        (docs.length === 0) ? res.json({ msg: "0" }) : res.json({ teachers: docs, msg: "1" })
     });
-})
+});
+
+
+//   Business Logic: Get User By Phone Number
+app.get("/api/users/student/:phone", (req, res) => {
+    let studentPhone = req.params.phone;
+    console.log("here is the child phone number in the BE", studentPhone);
+    User.findOne({ tel: studentPhone, role: "student" }).then((doc) => {
+        res.json({ student: doc });
+    })
+});
+
+//   Business Logic: Get all student courses to which he is assigned
+app.get("/api/affectation/:id", async (req, res) => {
+    let idStudent = req.params.id;
+    const foundedCourses = await Affectation.aggregate([
+        { $match: { studentId: mongoose.Types.ObjectId(idStudent) } },
+        {
+            $lookup: {
+                from: 'courses',
+                localField: 'courseId',
+                foreignField: '_id',
+                as: 'courseData'
+            }
+        },
+        { $unwind: '$courseData' },
+        {
+            $project: {
+                _id: '$courseData._id',
+                courseName: '$courseData.courseName',
+                img: '$courseData.img'
+            }
+        }
+    ]);
+    courses.length == 0 ? res.json({ msg: "0" }) : res.json({ courses: foundedCourses, msg: "1" })
+});
+
+
 
 
 // **********Courses********** 
@@ -538,16 +575,16 @@ app.get("/api/courses/stCourses/:id", (req, res) => {
 });
 
 //   Business Logic: Editing course with ID
-app.put("/api/courses/editCourse/:id",upload.single('img'), (req, res) => {
+app.put("/api/courses/editCourse/:id", upload.single('img'), (req, res) => {
     console.log("here is the ID of the course to be modified", req.params.id);
     console.log("here is the course to be updated", req.body);
     let newCourse = req.body;
     newCourse.img = `${req.protocol}://${req.get("host")}/myFiles/${req.file.filename}`;
-    Course.updateOne({_id: req.params.id}, newCourse).then((result) => {
+    Course.updateOne({ _id: req.params.id }, newCourse).then((result) => {
         console.log("Here result after update", result);
         result.nModified == 1
-          ? res.json({ msg: "Edited With Success" })
-          : res.json({ msg: "Echec" });
+            ? res.json({ msg: "Edited With Success" })
+            : res.json({ msg: "Echec" });
     });
 })
 

@@ -90,4 +90,8 @@ export class UserService {
   getTeachersBySpecialty(teacherObj) {
     return this.http.post<{teachers: any, msg: string}>(`${this.userURL}/specialty`, teacherObj);
   }
+
+  getUserByNbr(studentNbr) {
+    return this.http.get<{student: any}>(`${this.userURL}/student/${studentNbr}`);
+  }
 }

@@ -38,6 +38,8 @@ import { StudentCoursesComponent } from './components/student-courses/student-co
 import { StudentCourseInfoComponent } from './components/student-course-info/student-course-info.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { ParentDashboardComponent } from './components/parent-dashboard/parent-dashboard.component';
+import { StudentInfoComponent } from './components/student-info/student-info.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { ParentDashboardComponent } from './components/parent-dashboard/parent-d
     StudentCoursesComponent,
     StudentCourseInfoComponent,
     UserInfoComponent,
-    ParentDashboardComponent
+    ParentDashboardComponent,
+    StudentInfoComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
